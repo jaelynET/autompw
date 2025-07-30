@@ -1,10 +1,11 @@
 "use client";
 
-import { startTransition, useActionState } from "react";
+import { startTransition, Suspense, useActionState } from "react";
 import { signInUser } from "../_lib/actions";
 import PasswordForm from "./PasswordForm";
 import OneTapComponent from "./OneTap";
 import { useSearchParams } from "next/navigation";
+import Loading from "../laoding";
 
 function EmailForm() {
   const searchParams = useSearchParams();
@@ -28,37 +29,39 @@ function EmailForm() {
   }
 
   return (
-    <div>
-      {state?.user ? (
-        <>
-          <div>
-            <p>{state.user}</p>
-            <button onClick={handleSubmit} className="cursor-pointer">
-              change email
-            </button>
-          </div>
-          <PasswordForm userEmail={state.user} />
-        </>
-      ) : (
-        <form action={(formData) => formAction(formData)}>
-          <div>
-            <h2>Enter email address</h2>
+    <Suspense fallback={<Loading />}>
+      <div>
+        {state?.user ? (
+          <>
+            <div>
+              <p>{state.user}</p>
+              <button onClick={handleSubmit} className="cursor-pointer">
+                change email
+              </button>
+            </div>
+            <PasswordForm userEmail={state.user} />
+          </>
+        ) : (
+          <form action={(formData) => formAction(formData)}>
+            <div>
+              <h2>Enter email address</h2>
 
-            <p className="text-red-500">{state?.message}</p>
-            <p className="text-red-500">{state?.errors}</p>
+              <p className="text-red-500">{state?.message}</p>
+              <p className="text-red-500">{state?.errors}</p>
 
-            <input
-              placeholder="example@email.com"
-              className=" border border-primary-400 rounded-sm py-3 px-3"
-              name="email"
-            />
-            <button className="rounded-md bg-blue-500 py-3 px-3 cursor-pointer">
-              Continue
-            </button>
-          </div>
-        </form>
-      )}
-    </div>
+              <input
+                placeholder="example@email.com"
+                className=" border border-primary-400 rounded-sm py-3 px-3"
+                name="email"
+              />
+              <button className="rounded-md bg-blue-500 py-3 px-3 cursor-pointer">
+                Continue
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </Suspense>
   );
 }
 
