@@ -1,30 +1,35 @@
 "use client";
-
+import { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
   PaymentMethodMessagingElement,
 } from "@stripe/react-stripe-js";
 
-// Initialize Stripe outside of the render lifecycle
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
 );
 
 export default function KlarnaMessage({ amount }) {
-  // Ensure we don't pass null/undefined to Stripe or it will break rendering
-  const totalAmount = amount ? Math.round(amount) : 0;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Safeguard: Do not render or query Stripe during Vercel's SSR compilation phase
+  if (!mounted || !amount) return null;
+
+  const totalAmount = Math.round(amount);
 
   return (
-    // 1. The Elements context wrapper is mandatory
-    // 2. Passing a unique 'key' forces the element to update smoothly when changing variants
     <Elements stripe={stripePromise} key={totalAmount}>
       <PaymentMethodMessagingElement
         options={{
           paymentMethodTypes: ["klarna"],
-          amount: totalAmount, // must be an integer in cents (e.g. 4500 for $45.00)
+          amount: totalAmount,
           currency: "USD",
-          countryCode: "US", // 💡 Recommended for Vercel: bypasses server region mismatches
+          countryCode: "US", // Prevents Vercel geofencing server IP bugs
         }}
       />
     </Elements>
