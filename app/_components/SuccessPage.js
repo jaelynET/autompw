@@ -2,7 +2,6 @@
 import { Suspense, useEffect } from "react";
 import { useCart } from "./CartContext";
 import Link from "next/link";
-import Loading from "../laoding";
 
 function SuccessPage({ customerEmail }) {
   useEffect(function () {

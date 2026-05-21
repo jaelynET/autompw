@@ -43,11 +43,11 @@ export default function MostPopular() {
         >
           Popular Categories
         </h3>
-        <div className="border-b-2 border-solid absolute left-[45%]   border-accent-50 w-[10%] top-[58%] border-main-600 md:top-[83%] md:w-[8%] md:border-b-7 md:border-main md:left-[46%] "></div>
+        {/* <div className="border-b-2 border-solid absolute left-[45%]   border-accent-50 w-[10%] top-[58%] border-main-600 md:top-[83%] md:w-[8%] md:border-b-7 md:border-main md:left-[46%] "></div>
+      </div> 
+      
+      <div className="border-b-4 border-solid absolute left-[55%] -translate-x-10   border-accent-50 w-[10%] "></div>*/}
       </div>
-      {/* 
-      <div className="border-b-4 border-solid absolute left-[55%] -translate-x-10   border-accent-50 w-[10%] "></div>
-      </div> */}
 
       <div className="grid grid-cols-2 gap-1 place-items-center mb-3 mx-auto md:hidden ">
         <div>

@@ -1,46 +1,130 @@
 import { NextResponse } from "next/server";
+import Stripe from "stripe";
 import { headers } from "next/headers";
-import { stripe } from "@/app/_lib/stripe";
 import { createClient } from "@/app/utils/supabase/server";
-import { redirect } from "next/navigation";
 
-export async function POST(req, res) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-  const formData = await req.formData();
-  const cart = JSON.parse(formData.get("cart"));
-
-  const lineItems = cart.map((item) => ({
-    price: item.priceId.trim(),
-    quantity: item.quantity,
-  }));
+export async function POST(req) {
   try {
+    // ---------------------------------------------------
+    // 1. Create Supabase server client
+    // ---------------------------------------------------
+    const supabase = await createClient();
+
+    // ---------------------------------------------------
+    // 2. Check logged-in user
+    // ---------------------------------------------------
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      return NextResponse.json({
+        redirectTo: "/login?next=/checkout-resume",
+      });
+    }
+
+    const customerEmail = user.email;
+    const userId = user.id;
+
+    // ---------------------------------------------------
+    // 3. Read cart from frontend
+    // Expected shape:
+    // [
+    //   {
+    //     id: 92,
+    //     name: "...",
+    //     image: "...",
+    //     quantity: 1,
+    //     regularPrice: 86900,
+    //     size: "51 x 28",
+    //     finish: "white"
+    //   }
+    // ]
+    // ---------------------------------------------------
+    const { cart } = await req.json();
+
+    if (!cart || !Array.isArray(cart) || cart.length === 0) {
+      return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
+    }
+
+    // ---------------------------------------------------
+    // 4. Build Stripe line items directly from cart
+    // regularPrice already in cents
+    // ---------------------------------------------------
+    const line_items = cart.map((item) => ({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: `${item.name} (${item.size} / ${item.finish})`,
+          images: item.image ? [item.image] : [],
+        },
+        unit_amount: item.regularPrice,
+      },
+      quantity: item.quantity,
+    }));
+
+    if (!line_items.length) {
+      return NextResponse.json(
+        { error: "No checkout items found" },
+        { status: 400 },
+      );
+    }
+
+    // ---------------------------------------------------
+    // 5. Get site origin
+    // ---------------------------------------------------
     const headersList = await headers();
     const origin = headersList.get("origin");
 
-    // Create Checkout Sessions from body params.
+    // ---------------------------------------------------
+    // 6. Create Stripe checkout session
+    // ---------------------------------------------------
     const session = await stripe.checkout.sessions.create({
-      line_items: lineItems,
       mode: "payment",
+      line_items,
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}`,
+      cancel_url: `${origin}/`,
+      customer_email: customerEmail,
+      metadata: {
+        user_id: userId,
+        cart: JSON.stringify(
+          cart.map((item) => ({
+            id: item.id,
+            name: item.name,
+            image: item.image,
+            regularPrice: item.regularPrice,
+            quantity: item.quantity,
+          })),
+        ),
+      },
     });
-    console.log(session.url);
-    if (!user) {
-      const url = new URL("/login", req.url);
 
-      url.searchParams.set("rdirect", session.url);
-      return NextResponse.redirect(url);
-    }
-    return NextResponse.redirect(session.url, 303);
-  } catch (err) {
+    // ---------------------------------------------------
+    // 7. Optional: store session in DB
+    // ---------------------------------------------------
+    await supabase.from("checkout_sessions").insert({
+      stripe_session_id: session.id,
+      email: customerEmail,
+      status: "pending",
+    });
+
+    // ---------------------------------------------------
+    // 8. Return Stripe URL to frontend
+    // ---------------------------------------------------
+    return NextResponse.json({
+      url: session.url,
+    });
+  } catch (error) {
+    console.error("Checkout route error:", error);
+
     return NextResponse.json(
-      { error: err.message },
-      { status: err.statusCode || 500 }
+      {
+        error: "Checkout failed",
+      },
+      { status: 500 },
     );
   }
 }

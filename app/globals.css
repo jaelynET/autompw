@@ -1,6 +1,78 @@
 @import "tailwindcss";
 /* @import "tailwindcss/preflight"; */
 
+@layer components {
+  .spinner {
+    @apply mx-auto my-8; /* Tailwind utilities still work here */
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid theme("colors.button");
+    border-right-color: transparent; /* <-- needs to differ or it won’t spin visually */
+    animation: rotate 1s infinite linear;
+  }
+
+  .spinner-mini {
+    margin: 0;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid theme("colors.button");
+    border-right-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+
+  #nprogress .spinner {
+    display: none !important;
+  }
+
+  #nprogress .bar {
+    background: #000; /* black */
+    height: 3px; /* thickness */
+    z-index: 999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .swiper-slide-thumb-active {
+    border-color: pink;
+  }
+
+  /* Only MobileFullscreenGallery pagination */
+  .mobile-gallery .swiper-pagination {
+    bottom: 48px; /* push dots down */
+    text-align: center;
+  }
+
+  .mobile-gallery .swiper-pagination-bullet {
+    background: white;
+    opacity: 0.35;
+  }
+
+  .mobile-gallery .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+
+  /*.swiper-container {
+    padding-bottom: 70px; /* Add padding to make space for the dots below the content 
+    position: relative; /* Ensure the container is the positioning context if needed 
+  }*/
+
+  /* .swiper-pagination {
+    position: absolute !important; /* Forces it to the desired position 
+    bottom: 0 !important; /* Positions the bottom edge of the pagination container at the bottom of the swiper-container's padding 
+    text-align: center;
+    width: 100%;
+  } */
+
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
+
 @root {
   --background: #ffffff;
   --foreground: #171717;
@@ -16,7 +88,15 @@
 
   --color-main: #ffa94d;
   --color-main-2: #ffb25f;
-  --color-text-1: #4c3317;
+  --color-text-1: ##3a3a3a;
+  --color-text-2: #4b3b2e;
+  /* --color-button: #b8b7a6; */
+  --color-button: #625548;
+  --color-icon: #3b2a1a;
+  --color-footer: #d0ccc8;
+  /* --color-icon: #4b3b2e; */
+
+  /* --color-button: #d6c2a9 */
 
   /*  #ffa94d tints */
   --color-main-50: #fff6ed;

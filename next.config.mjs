@@ -17,6 +17,7 @@ const nextConfig = {
         search: "",
       },
     ],
+    domains: ["files.stripe.com"],
   },
 };
 

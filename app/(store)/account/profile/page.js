@@ -1,4 +1,5 @@
 import UpdateUser from "@/app/_components/UpdateUser";
+import { VerifyProvider } from "@/app/_components/VerifyContext";
 import { createClient } from "@/app/utils/supabase/server";
 //import { createUser, getUser } from "../_lib/apiAuth";
 
@@ -9,8 +10,12 @@ async function Page() {
 
   return (
     <div>
-      <h2>Account Details</h2>
-      {app_metadata.provider === "email" && <UpdateUser user={user_metadata} />}
+      <VerifyProvider>
+        <h2>Account Details</h2>
+        {app_metadata.provider === "email" && (
+          <UpdateUser user={user_metadata} />
+        )}
+      </VerifyProvider>
     </div>
   );
 }

@@ -1,8 +1,8 @@
-import { supabase } from "./supabase";
-
 import { createClient } from "../utils/supabase/server";
+import { headers } from "next/headers";
 
 export async function signup(userInfo) {
+  console.log(userInfo);
   const supabase = await createClient();
   const { fullName, email, password } = userInfo;
   const { data, error } = await supabase.auth.signUp({
@@ -33,23 +33,44 @@ export async function logout() {
 }
 
 export async function getUser(email) {
-  const { data, error } = await supabase
+  const supabase = await createClient();
+
+  const { data } = await supabase
     .from("users")
     .select("*")
-    .eq("email", email)
+    .ilike("email", email)
     .single();
 
   // No error here! We handle the possibility of no guest in the sign in callback
   return data;
 }
 
-export async function createUser(userInfo) {
-  const { data, error } = await supabase.from("users").insert([userInfo]);
+export async function forgotPassword(email) {
+  const supabase = await createClient();
+  const origin = await headers().get("origin");
 
-  if (error) {
-    console.error(error);
-    throw new Error("Guest could not be created");
+  if (!origin) {
+    return { error: { message: "Missing request origin" } };
   }
+  // const origin = await headers().get("origin");
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${origin}/api/auth/callback?next=/reset-password`,
+  });
+  return { error };
+}
 
-  return data;
+export async function updatePassword(newPassword) {
+  const supabase = await createClient();
+  const { error } = await supabase.auth.updateUser({
+    password: newPassword,
+  });
+  return { error };
+}
+
+export async function updateEmail(newEmail) {
+  const supabase = await createClient();
+  const { error } = await supabase.auth.updateUser({
+    password: newEmail,
+  });
+  return { error };
 }

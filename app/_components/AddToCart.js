@@ -4,55 +4,48 @@ import { useCart } from "@/app/_components/CartContext";
 import { Suspense, useState, useTransition } from "react";
 import CartItems from "./CartItems";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import Loading from "../laoding";
+import SpinnerMini from "./SpinnerMini";
 
-function AddToCart({ product }) {
+function AddToCart({ product, selectedVariant }) {
   const { addToCart, setShowCart } = useCart();
 
   const [quantity, setQuantity] = useState(1);
-  const [isPending, startTransition] = useTransition();
+
   const { id, name, image, regularPrice, priceId } = product;
 
   const productData = {
-    id,
-    name,
-    image,
-    regularPrice,
+    id: selectedVariant.id, // ID of the variant
+    name: product.name,
+    // Add these for the sub-labels
+    size: selectedVariant.nominal_size,
+    finish: selectedVariant.colorFinish,
+    image: product.image || selectedVariant.image,
+    regularPrice: selectedVariant.regularPrice,
     quantity,
-    priceId,
   };
+
   return (
     <div className="relative ">
       <div className="flex gap-2 mx-4 ">
-        <span className="text-grey-0 text-xs px-1 py-1 rounded-md  bg-grey-100 self-center min-[375px]:mx-5 min-[425px]:mx-7 ">
+        <span className="text-grey-0 text-xs px-1 py-1 rounded-md   self-center min-[375px]:mx-5 min-[425px]:mx-7 ">
           Quantity:
         </span>
         <input
           type="number"
           min={1}
           className=" border border-grey-50 text-center  w-40 h-5 border-primary-400 rounded-sm py-3 px-3 mb-1"
-          defaultValue={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
+          value={quantity}
+          onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
         />
       </div>
       <button
-        className="w-70  bg-main py-3 px-3 cursor-pointer block mt-2  mx-4 rounded-full min-[375px]:mx-7 min-[375px]:w-75 min-[425px]:mx-9 min-[425px]:w-80  "
-        //onClick={addToCart(product)}
-        disabled={isPending}
-        onClick={() => {
-          startTransition(async () => {
-            await addToCart(productData);
-            setShowCart((show) => !show);
-          });
-        }}
+        type="button"
+        disabled={!selectedVariant}
+        onClick={() => addToCart(productData)}
+        className="w-full max-w-md mx-auto block mt-4 py-3.5 px-6 font-bold text-base text-white text-center rounded-full bg-button hover:bg-[#4d4238] active:scale-[0.99] transition-all cursor-pointer uppercase"
       >
-        <p className="text-white font-bold">
-          {isPending ? "Adding" : "Add to Cart"}
-        </p>
+        Add to Cart
       </button>
-      <div>
-        <CartItems />
-      </div>
     </div>
   );
 }

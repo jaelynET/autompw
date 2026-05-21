@@ -1,6 +1,6 @@
-function Overlay({ isOpen }) {
+function Overlay() {
   return (
-    <div className="md:fixed md:inset-0 md:bg-gray-600 md:opacity-50 md:z-9" />
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-40 transition-opacity" />
   );
 }
 

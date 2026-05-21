@@ -1,39 +1,43 @@
-import {
-  getBathtub,
-  getBathtubs,
-  getBathtubWidth,
-  getLength,
-} from "../_lib/data-service";
-
-import Filter from "./Fliter";
 import ProductCard from "./ProductCard";
+import Pagination from "./Pagination";
+import { PAGE_SIZE } from "../constants";
+import { getB } from "../_lib/data-service";
 
-async function BathubList({ filter, width, height, material }) {
-  const bathtubs = await getBathtubs();
-  if (!bathtubs.length) return null;
+async function BathtubList({ productType, slug, filters, page }) {
+  const { data: products, count } = await getB(
+    productType,
+    filters,
+    page,
+    PAGE_SIZE,
+  );
+  const totalPages = Math.ceil(count / PAGE_SIZE);
 
-  let displayTubs;
-  if (filter === "") displayTubs = bathtubs;
+  const sortedProducts = [...products].sort((a, b) => {
+    const aInStock = a.product_variants?.some((v) =>
+      v.inventory?.some((i) => i.in_stock),
+    );
 
-  if (filter) {
-    const tubs = await getLength(filter);
-    displayTubs = tubs;
-  }
+    const bInStock = b.product_variants?.some((v) =>
+      v.inventory?.some((i) => i.in_stock),
+    );
 
-  // if (width) {
-  //   const tubsWidth = await getBathtubWidth(width);
-  //   displayTubs = tubsWidth;
-  // }
+    return Number(bInStock) - Number(aInStock);
+  });
 
   return (
-    <div className="">
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-8 ml-4 md:justify-center md:ml-83 md:gap-10 ">
-        {displayTubs.map((bathtub) => (
-          <ProductCard product={bathtub} key={bathtub.id} />
+    <>  
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 sm:gap-x-6 md:gap-x-8">
+        {sortedProducts.map((bathtub) => (
+          <ProductCard product={bathtub} slug={slug} key={bathtub.id} />
         ))}
       </div>
-    </div>
+      <div className="mt-12">
+        <Pagination totalPages={totalPages} />
+      </div>
+    </>
+  
+
   );
 }
 
-export default BathubList;
+export default BathtubList;

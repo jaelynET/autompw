@@ -4,7 +4,7 @@ import GoogleButton from "../../_components/GoogleButton";
 import OneTap from "../../_components/OneTap";
 // import { supabase } from "@/app/_lib/supabase";
 
-import CreateAccount from "../../_components/SignupForm";
+import CreateAccount from "../../_components/CreateAccount";
 //import { createClient } from "@/app/utils/supabase/client";
 import Head from "next/head";
 
@@ -20,14 +20,15 @@ function Page() {
           <EmailForm />
         </div>
 
-        <p>or</p>
+        {/* <p>or</p>
 
         <GoogleButton />
-        {/* <OneTap /> */}
+        {/* <OneTap /> 
       </div>
-      {/* <div className="flex flex-col gap-6 mt-4 items-center">
+      <div className="flex flex-col gap-6 mt-4 items-center">
         <CreateAccount />
-      </div> */}
+        */}
+      </div>
     </>
   );
 }

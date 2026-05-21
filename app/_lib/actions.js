@@ -2,23 +2,27 @@
 
 import { redirect } from "next/navigation";
 
-import { getUser, login, logout, signup } from "./apiAuth";
+import {
+  createUser,
+  forgotPassword,
+  getUser,
+  login,
+  logout,
+  signup,
+  updateEmail,
+  updatePassword,
+} from "./apiAuth";
 // import { signIn, signOut } from "./auth";
 import { z } from "zod";
 import { createClient } from "../utils/supabase/server";
 import { supabase } from "./supabase";
+import { userReview } from "./data-service";
 
 export async function signupAction(data) {
-  console.log(data);
-
   const userSignin = await signup(data);
   if (!userSignin) {
     throw new Error("Something went wrong. Please try again");
   }
-
-  const createUser = await createUser({
-    email: data.email,
-  });
 
   redirect("/");
 }
@@ -37,7 +41,7 @@ export async function googleSignin() {
 
 export async function signInUser(formData) {
   const userEmail = formData.get("email");
-  console.log(userEmail);
+  // console.log(userEmail);
 
   // 1.) Validate field
   const emailSchema = z.object({
@@ -55,9 +59,9 @@ export async function signInUser(formData) {
   }
   //2.) check if user exist
   const user = await getUser(userEmail);
-  //console.log(user);
+
   if (!user) {
-    return { message: "Email provided does not exist" };
+    return { createAccount: userEmail };
   } else {
     return { user: user.email };
   }
@@ -90,6 +94,55 @@ export async function signInAction() {
 
 export async function signOutAction() {
   await signOut({ redirectTo: "/" });
+}
+
+export async function submitReview(input, rating, productId) {
+  const { title, description } = input;
+
+  const review = {
+    ...rating,
+    title,
+    description,
+    productId,
+  };
+
+  await userReview(review);
+}
+
+export async function forgotPasswordAction(formData) {
+  const userEmail = formData.get("email");
+
+  const { error } = await forgotPassword(userEmail);
+  if (error) {
+    return { message: "Could not reset passsword" };
+  }
+  return { message: "Check your email for the reset link." };
+}
+
+export async function resetPasswordAction(formData) {
+  const userEmail = formData.get("email");
+
+  const { error } = await forgotPassword(userEmail);
+  if (error) {
+    return { message: "Could not send reset passsword link" };
+  }
+  return { message: "Check your email for the reset link." };
+}
+
+export async function updatePasswordAction(newPassword) {
+  console.log(newPassword);
+  const { error } = await updatePassword(newPassword);
+  if (error) return { success: false, error: error.message };
+  return { success: true };
+}
+
+export async function updateEmailAction(newEmail) {
+  const { error } = await updateEmail(newEmail);
+  if (error) {
+    return { message: "Can't update email. Please try again" };
+  } else {
+    return { message: "Email address change." };
+  }
 }
 
 //export async function handleCheckout({ product }) {

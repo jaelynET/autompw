@@ -1,86 +1,149 @@
-import { FaInstagram } from "react-icons/fa";
-import { FaPinterest } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
+import Link from "next/link";
+import { FaInstagram, FaFacebook, FaPinterest } from "react-icons/fa";
 
 function Footer() {
   return (
-    <div className="bg-primary-100 p-5 ">
-      <nav className="grid grid-cols-2  justify-center pl-5 md:grid md:grid-cols-4   md:pt-10 md:pl-75 ">
-        <div className="mb-5  ">
-          <h3 className="font-semibold mb-1 text-sm md:text-base ">Company</h3>
-          <ul>
-            <li className="text-xs md:text-sm">About us</li>
-            <li className="text-xs md:text-sm">Finance with Klarna</li>
-          </ul>
-        </div>
-        <div className="mb-5">
-          <h3 className="font-semibold text-sm mb-1 md:text-base">Policy</h3>
-          <ul>
-            <li className="text-xs md:text-sm">Returns</li>
-            <li className="text-xs md:text-sm">Shipping Policy</li>
-          </ul>
-        </div>
+    <footer className="bg-footer border-t">
+      <div className="max-w-7xl mx-auto px-5 py-10">
+        <nav className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {/* Company */}
+          <div>
+            <h3 className="font-semibold mb-3 text-sm md:text-base">Company</h3>
 
-        <div>
-          <h3 className="font-semibold text-sm mb-1 md:text-base">
-            Customer Service
-          </h3>
-          <ul>
-            <li className="text-xs md:text-sm">sales@tubvilla.com</li>
-            <li className="text-xs md:text-sm">Track your order</li>
-          </ul>
-        </div>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/about"
+                  className="text-xs md:text-sm hover:underline"
+                >
+                  About Us
+                </Link>
+              </li>
 
-        <div className="flex gap-2">
-          <FaInstagram className="w-5 h-5" />
-          <FaFacebook className="w-5 h-5" />
-          <FaPinterest className="w-5 h-5" />
-        </div>
-      </nav>
-    </div>
-  );
-}
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-xs md:text-sm hover:underline"
+                >
+                  Contact Us
+                </Link>
+              </li>
 
-{
-  /*
-  
-  
-  
-    <div className="bg-primary-100 p-14">
-      <nav className="grid grid-cols-3 place-content-center pb-10 ">
-        <div>
-          <h3>Company</h3>
-          <ul>
-            <li>About us</li>
-            <li>Finance with Affirm</li>
-          </ul>
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-xs md:text-sm hover:underline"
+                >
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Policies */}
+          <div>
+            <h3 className="font-semibold mb-3 text-sm md:text-base">
+              Policies
+            </h3>
+
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-xs md:text-sm hover:underline"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/terms-and-conditions"
+                  className="text-xs md:text-sm hover:underline"
+                >
+                  Terms & Conditions
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/shipping-policy"
+                  className="text-xs md:text-sm hover:underline"
+                >
+                  Shipping Policy
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/return-policy"
+                  className="text-xs md:text-sm hover:underline"
+                >
+                  Return & Refund Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="font-semibold mb-3 text-sm md:text-base">
+              Customer Support
+            </h3>
+
+            <ul className="space-y-2">
+              <li className="text-xs md:text-sm">707-315-6575</li>
+
+              <li className="text-xs md:text-sm break-all">
+                sales@tubvilla.com
+              </li>
+
+              <li className="text-xs md:text-sm">Mon, Wed, Fri / 11AM – 1PM PST</li>
+            </ul>
+          </div>
+
+          {/* Socials */}
+          <div>
+            <h3 className="font-semibold mb-3 text-sm md:text-base">
+              Follow Us
+            </h3>
+
+            <div className="flex gap-4">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="hover:opacity-70 transition"
+              >
+                <FaInstagram className="w-5 h-5" />
+              </a>
+
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="hover:opacity-70 transition"
+              >
+                <FaFacebook className="w-5 h-5" />
+              </a>
+
+              <a
+                href="#"
+                aria-label="Pinterest"
+                className="hover:opacity-70 transition"
+              >
+                <FaPinterest className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <div className="border-t mt-10 pt-5 text-xs text-gray-500 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} TubVilla. All rights reserved.</p>
+
+          <p>Modern bathtubs, faucets, and bathroom essentials.</p>
         </div>
-        <div>
-          <h3>Policy</h3>
-          <ul>
-            <li>Returns</li>
-            <li>Shipping Policy</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Customer Service</h3>
-          <ul>
-            <li>Contact us</li>
-            <li>Track my order</li>
-          </ul>
-        </div>
-      </nav>
-      <div className="flex flex-col gap-7 justify-center">
-        {/* Add date dynamically 
-        <p>&copy; 2025 Mi Casa Mi Tub. All rights Reserved.</p>
-        <ul className="flex gap-7">
-          <li>Terms of use</li>
-          <li>Privacy Policy</li>
-          <li>Accesibilty</li>
-        </ul>
       </div>
-    </div>
-  */
+    </footer>
+  );
 }
 
 export default Footer;

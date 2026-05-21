@@ -5,70 +5,70 @@ import {
   useContext,
   useEffect,
   useState,
-  useTransition,
+  useCallback,
 } from "react";
 
 const CartContext = createContext();
 
 function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  // Fix: Synchronously read from localStorage on initial run to completely eliminate empty states
+  const [cart, setCart] = useState(() => {
+    if (typeof window !== "undefined") {
+      const availableCart = localStorage.getItem("cart");
+      return availableCart ? JSON.parse(availableCart) : [];
+    }
+    return [];
+  });
 
   const [showCart, setShowCart] = useState(false);
 
-  const [isPending, startTransition] = useTransition();
-  // 1. load local storage on mount
-  useEffect(function () {
-    const avaiableCart = localStorage.getItem("cart");
-    if (avaiableCart) {
-      setCart(JSON.parse(avaiableCart));
-    }
-  }, []);
+  // Sync to localStorage instantly whenever the cart array array updates
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
-  useEffect(
-    function () {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    },
-    [cart]
-  );
-
-  const addToCart = (product) => {
+  // Combined action handler to guarantee zero UI frame lag on click
+  const addToCartAndOpen = useCallback((product) => {
     setCart((prev) => {
       const exists = prev.find((item) => item.id === product.id);
       if (exists) {
         return prev.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
+            ? { ...item, quantity: item.quantity + product.quantity }
+            : item,
         );
       }
       return [...prev, { ...product }];
     });
-  };
 
-  const updateQuantity = (id, quantity) => {
+    // Forces React to batch both states together so the drawer never opens to an empty cart
+    setShowCart(true);
+  }, []);
+
+  const updateQuantity = useCallback((id, quantity) => {
     setCart((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity } : item))
+      prev.map((item) => (item.id === id ? { ...item, quantity } : item)),
     );
-  };
+  }, []);
 
-  function deleteProduct(id) {
+  const deleteProduct = useCallback((id) => {
     setCart((items) => items.filter((item) => item.id !== id));
-  }
+  }, []);
 
-  const clearCart = () => {
-    setCart(() => []);
-  };
+  const clearCart = useCallback(() => {
+    setCart([]);
+  }, []);
 
   return (
     <CartContext.Provider
       value={{
         cart,
-        addToCart,
+        addToCart: addToCartAndOpen, // Replaces previous decoupled hook references
         showCart,
         setShowCart,
         deleteProduct,
-        isPending,
         updateQuantity,
+        clearCart,
       }}
     >
       {children}
@@ -79,7 +79,7 @@ function CartProvider({ children }) {
 function useCart() {
   const context = useContext(CartContext);
   if (context === undefined)
-    throw new Error("Context is used outside provider");
+    throw new Error("useCart must be used inside a CartProvider component");
   return context;
 }
 
