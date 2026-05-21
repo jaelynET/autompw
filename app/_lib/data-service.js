@@ -127,16 +127,20 @@ export async function showSimilarProducts(slug) {
       );
   }
 
-  // 5. Format output
-  similarProducts = similarProducts.map((p) => ({
-    ...p,
-    regularPrice: p.product_variants?.[0]?.regularPrice || 0,
-    formattedPrice: new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-    }).format((p.product_variants?.[0]?.regularPrice || 0) / 100),
-  }));
+  // 5. Format output safely
+  similarProducts = similarProducts.map((p) => {
+    const basePrice = p.product_variants?.[0]?.regularPrice || 0;
+
+    return {
+      ...p,
+      regularPrice: basePrice,
+      formattedPrice: new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+      }).format(basePrice / 100),
+    };
+  });
 
   return {
     retrieveStyle,
