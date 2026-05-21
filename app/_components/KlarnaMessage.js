@@ -28,7 +28,7 @@ export default function KlarnaMessage({ amount }) {
         options={{
           paymentMethodTypes: ["klarna"],
           amount: totalAmount,
-          currency: "USD",
+          currency: "usd",
           countryCode: "US", // Prevents Vercel geofencing server IP bugs
         }}
       />
