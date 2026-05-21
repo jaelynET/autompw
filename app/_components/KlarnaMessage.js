@@ -26,11 +26,12 @@ export default function KlarnaMessage({ amount }) {
     <Elements stripe={stripePromise} key={totalAmount}>
       <PaymentMethodMessagingElement
         options={{
-          paymentMethodTypes: ["klarna"],
+          // paymentMethodTypes: ["klarna"],
           amount: totalAmount,
           currency: "USD",
           countryCode: "US", // Prevents Vercel geofencing server IP bugs
         }}
+        className="block min-h-[40px]"
       />
     </Elements>
   );
