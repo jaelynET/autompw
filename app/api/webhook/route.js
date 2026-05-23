@@ -9,6 +9,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_KEY,
 );
+export const runtime = "nodejs";
 
 export async function POST(req) {
   try {
@@ -98,14 +99,18 @@ export async function POST(req) {
       .eq("stripe_session_id", session.id);
 
     //  inngest send ...
-    await inngest.send({
-      name: "order/created",
-      data: {
-        email: session.customer_details.email,
-        orderId: order.order_id,
-        total: session.amount_total,
-      },
-    });
+    try {
+      await inngest.send({
+        name: "order/created",
+        data: {
+          email: session.customer_details.email,
+          orderId: order.order_id,
+          total: session.amount_total,
+        },
+      });
+    } catch (err) {
+      console.error("Inngest send failed:", err);
+    }
 
     return NextResponse.json({ received: true });
   } catch (err) {
