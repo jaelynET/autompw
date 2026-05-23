@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { headers } from "next/headers";
 import { createClient } from "@/app/utils/supabase/server";
+import { inngest } from "@/app/_lib/inngest";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
