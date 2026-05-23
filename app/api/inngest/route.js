@@ -69,7 +69,7 @@ export const abandonedCheckout = inngest.createFunction(
   { id: "abandoned-checkout", triggers: [{ event: "checkout/started" }] },
   async ({ event, step }) => {
     const { stripeSessionId } = event.data;
-    await step.sleep("short-wait", "2s");
+    await step.sleep("short-wait", "1m");
 
     const { data, error } = await supabase
       .from("checkout_sessions")
