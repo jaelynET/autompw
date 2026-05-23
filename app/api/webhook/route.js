@@ -63,6 +63,8 @@ export async function POST(req) {
         currency: session.currency,
         products: cart,
         status: "paid",
+        shipping_address: session.shipping_details?.address,
+        billing_address: session.customer_details?.address,
       })
       .select()
       .single();
