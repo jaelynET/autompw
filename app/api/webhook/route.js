@@ -4,12 +4,12 @@ import { createClient } from "@supabase/supabase-js";
 import { inngest } from "@/app/_lib/inngest";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_KEY,
-);
 export const runtime = "nodejs";
+
+export const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY,
+);
 
 export async function POST(req) {
   try {
@@ -43,7 +43,7 @@ export async function POST(req) {
     }
 
     // Prevent duplicates
-    const { data: existing } = await supabase
+    const { data: existing } = await supabaseAdmin
       .from("orders")
       .select("order_id")
       .eq("stripe_session_id", session.id)
@@ -54,7 +54,7 @@ export async function POST(req) {
     }
 
     // Insert order
-    const { data: order, error: orderError } = await supabase
+    const { data: order, error: orderError } = await supabaseAdmin
       .from("orders")
       .insert({
         userId,
@@ -67,9 +67,14 @@ export async function POST(req) {
       .select()
       .single();
 
+    // if (orderError) {
+    //   console.error("Order insert error:", orderError);
+    //   return new NextResponse("DB error", { status: 500 });
+    // }
     if (orderError) {
-      console.error("Order insert error:", orderError);
-      return new NextResponse("DB error", { status: 500 });
+      console.error("ORDER INSERT ERROR:", JSON.stringify(orderError, null, 2));
+
+      return NextResponse.json({ error: orderError }, { status: 500 });
     }
 
     // Insert order items
@@ -83,17 +88,22 @@ export async function POST(req) {
       shipment_group: "standard",
     }));
 
-    const { error: itemsError } = await supabase
+    const { error: itemsError } = await supabaseAdmin
       .from("order_items")
       .insert(itemsToInsert);
 
+    // if (itemsError) {
+    //   console.error("Order items error:", itemsError);
+    //   return new NextResponse("DB error", { status: 500 });
+    // }
     if (itemsError) {
-      console.error("Order items error:", itemsError);
-      return new NextResponse("DB error", { status: 500 });
+      console.error("ITEMS INSERT ERROR:", JSON.stringify(itemsError, null, 2));
+
+      return NextResponse.json({ error: itemsError }, { status: 500 });
     }
 
     // Update checkout session record
-    await supabase
+    await supabaseAdmin
       .from("checkout_sessions")
       .update({ status: "completed" })
       .eq("stripe_session_id", session.id);
