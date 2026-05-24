@@ -2,6 +2,7 @@ import { Resend } from "resend";
 
 import { serve } from "inngest/next";
 import { inngest } from "@/app/_lib/inngest";
+import { createClient } from "@supabase/supabase-js";
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
