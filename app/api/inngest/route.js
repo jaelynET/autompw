@@ -2,7 +2,11 @@ import { Resend } from "resend";
 
 import { serve } from "inngest/next";
 import { inngest } from "@/app/_lib/inngest";
-import { supabase } from "@/app/_lib/supabase";
+
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY,
+);
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -30,7 +34,7 @@ const sendShippingEmail = inngest.createFunction(
 
     // Fetch the customer email from the orders table
     const orderData = await step.run("get-customer-email", async () => {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAdmin
         .from("orders")
         .select("customer_email")
         .eq("order_id", orderId)
@@ -67,7 +71,7 @@ export const abandonedCheckout = inngest.createFunction(
     const { stripeSessionId } = event.data;
     await step.sleep("wait-for-abandonment", "15m");
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from("checkout_sessions")
       .select("*")
       .eq("stripe_session_id", stripeSessionId)
