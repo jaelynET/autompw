@@ -367,7 +367,7 @@ export const abandonedCheckout = inngest.createFunction(
     if (data.status !== "completed") {
       await step.run("send-resend-email", async () => {
         return await resend.emails.send({
-          from: "TubVilla sales@tubvilla.com",
+          from: "TubVilla <sales@tubvilla.com>",
           to: data.email,
           subject: "You left something behind 🛁",
           html: `
