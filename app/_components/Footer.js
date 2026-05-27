@@ -92,7 +92,7 @@ function Footer() {
             </h3>
 
             <ul className="space-y-2">
-              <li className="text-xs md:text-sm">707-315-6575</li>
+              <li className="text-xs md:text-sm">510-274-9796</li>
 
               <li className="text-xs md:text-sm break-all">
                 sales@tubvilla.com

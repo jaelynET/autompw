@@ -25,7 +25,7 @@ export default function ContactPage() {
         <div className="border p-6 rounded-lg">
           <h2 className="font-semibold text-lg mb-3">Phone Support</h2>
 
-          <p className="text-sm font-medium mb-2">707-310-6845</p>
+          <p className="text-sm font-medium mb-2">510-274-9796</p>
 
           <p className="text-sm text-gray-600">
             Phone Hours: Mon, Wed, Fri • 11:00 AM – 1:00 PM PT
