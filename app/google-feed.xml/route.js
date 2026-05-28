@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { formatPrice } from "../utils/format";
 
 export const revalidate = 3600;
 
@@ -65,7 +66,7 @@ export async function GET() {
         : variant.inventory;
       const quantity = inv?.quantity || 0;
       const availability = quantity > 0 ? "in stock" : "out of stock";
-      const price = (variant.regularPrice / 100).toFixed(2);
+      // const price = (variant.regularPrice / 100).toFixed(2);
 
       return `
    <item>
@@ -79,7 +80,7 @@ export async function GET() {
 
   <g:availability>${availability}</g:availability>
   <g:condition>new</g:condition>
-  <g:price>${price} USD</g:price>
+  <g:price>${formatPrice(regularPrice)} USD</g:price>
   <g:brand><![CDATA[${product?.brand || "TubVilla"}]]></g:brand>
 
   ${variant.upc ? `<g:gtin>${variant.upc}</g:gtin>` : ""}
