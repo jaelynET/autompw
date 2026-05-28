@@ -67,22 +67,26 @@ export async function GET() {
       const availability = quantity > 0 ? "in stock" : "out of stock";
 
       return `
-        <item>
-          <g:id>${variant.manufacturer_part_number}</g:id>
-          <g:item_group_id>${variant.productId}</g:item_group_id>
-          <title><![CDATA[${title}]]></title>
-          <description><![CDATA[${product?.description || ""}]]></description>
-          <link>https://tubvilla.com{product?.slug}</link>
-          <g:image_link>${variant.image}</g:image_link>
-          <g:availability>${availability}</g:availability>
-          <g:condition>new</g:condition>
-          <g:price>${variant.regularPrice} USD</g:price>
-          <g:brand>${product?.brand || "TubVilla"}</g:brand>
-          ${variant.upc ? `<g:gtin>${variant.upc}</g:gtin>` : ""}
-          ${variant.colorFinish ? `<g:color>${variant.colorFinish}</g:color>` : ""}
-          ${variant.nominal_size ? `<g:size>${variant.nominal_size}</g:size>` : ""}
-          <g:mpn>${variant.manufacturer_part_number}</g:mpn>
-        </item>
+   <item>
+  <g:id>${variant.manufacturer_part_number}</g:id>
+  <g:item_group_id>${variant.productId}</g:item_group_id>
+  <g:title><![CDATA[${title}]]></g:title>
+  <g:description><![CDATA[${product?.description || ""}]]></g:description>
+  <g:link>https://tubvilla.com${product?.slug}</g:link>
+
+  ${variant.image ? `<g:image_link>${variant.image}</g:image_link>` : ""}
+
+  <g:availability>${availability}</g:availability>
+  <g:condition>new</g:condition>
+  <g:price>${variant.regularPrice} USD</g:price>
+  <g:brand><![CDATA[${product?.brand || "TubVilla"}]]></g:brand>
+
+  ${variant.upc ? `<g:gtin>${variant.upc}</g:gtin>` : ""}
+  ${variant.colorFinish ? `<g:color><![CDATA[${variant.colorFinish}]]></g:color>` : ""}
+  ${variant.nominal_size ? `<g:size><![CDATA[${variant.nominal_size}]]></g:size>` : ""}
+
+  <g:mpn>${variant.manufacturer_part_number}</g:mpn>
+</item>
       `;
     })
     .join("");
