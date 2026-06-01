@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "@/app/_components/CartContext";
+import { sendGtagEvent, ADS_TRACKING_ID } from "@/utils/gtag";
 import { Suspense, useState, useTransition } from "react";
 import CartItems from "./CartItems";
 import { XMarkIcon } from "@heroicons/react/24/solid";
@@ -24,6 +25,32 @@ function AddToCart({ product, selectedVariant }) {
     quantity,
   };
 
+  const handleAddToCartClick = () => {
+    // A. Fire your existing local state cart update
+    addToCart(productData);
+
+    // B. Calculate individual and batch numeric values for Google Ads (converting cents to dollars)
+    const unitPriceNumeric = Number(productData.regularPrice) / 100;
+    const totalValueNumeric = unitPriceNumeric * productData.quantity;
+
+    if (ADS_TRACKING_ID) {
+      sendGtagEvent("add_to_cart", {
+        send_to: ADS_TRACKING_ID,
+        value: totalValueNumeric, // Total cart addition value (Price * Quantity)
+        currency: "USD",
+        items: [
+          {
+            // ⚠️ Ensure productData.id matches your Google Merchant Center variant feed format
+            id: productData.id || product.id,
+            name: `${productData.name} - ${productData.finish} (${productData.size})`,
+            price: unitPriceNumeric,
+            quantity: productData.quantity,
+          },
+        ],
+      });
+    }
+  };
+
   return (
     <div className="relative ">
       <div className="flex gap-2 mx-4 ">
@@ -41,7 +68,7 @@ function AddToCart({ product, selectedVariant }) {
       <button
         type="button"
         disabled={!selectedVariant}
-        onClick={() => addToCart(productData)}
+        onClick={handleAddToCartClick}
         className="w-full max-w-md mx-auto block mt-4 py-3.5 px-6 font-bold text-base text-white text-center rounded-full bg-button hover:bg-[#4d4238] active:scale-[0.99] transition-all cursor-pointer uppercase"
       >
         Add to Cart

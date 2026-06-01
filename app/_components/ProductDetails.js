@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { sendGtagEvent, ADS_TRACKING_ID } from "@/utils/gtag";
+import { formatPrice } from "../utils/format";
+
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import EstimateArrival from "./EstimateArrival";
 import AddToCart from "./AddToCart";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import KlarnaMessage from "./KlarnaMessage";
 import ExpandableSection from "./ExpandableSection";
 import ProductSpecs from "./ProductSpecs";
@@ -11,13 +14,13 @@ import ProductSpecs from "./ProductSpecs";
 import ProductDimensions from "./ProductDimensions";
 import ProductInstallDocs from "./ProductInstallDocs";
 import ProductVariant from "./ProductVariant";
-import { formatPrice } from "../utils/format";
 
 function ProductDetails({ product }) {
   const { name, description, product_variants } = product;
   // const [selectedVariant, setSelectedVariant] = useState(
   //   product.product_variants?.[0] || {},
   // );
+
   const firstAvailableVariant =
     product.product_variants?.find((v) =>
       v.inventory?.some((i) => i.in_stock && !i.discontinued),
@@ -26,6 +29,33 @@ function ProductDetails({ product }) {
     {};
 
   const [selectedVariant, setSelectedVariant] = useState(firstAvailableVariant);
+
+  useEffect(() => {
+    // Ensure both the variant data and the Tracking ID are active
+    if (!selectedVariant || !ADS_TRACKING_ID) return;
+
+    // Convert string prices to numerical floats if they contain strings (e.g., "1250.00")
+    const variantPrice = parseFloat(selectedVariant.regularPrice);
+
+    sendGtagEvent("view_item", {
+      send_to: ADS_TRACKING_ID,
+      value: variantPrice,
+      currency: "USD",
+      items: [
+        {
+          // ⚠️ IMPORTANT: This ID must match your Google Merchant Center Feed item ID.
+          // If your feed uses parent IDs, use product.sku. If it tracks unique variant SKUs, use selectedVariant.sku.
+          id:
+            selectedVariant.manufacturer_part_number ||
+            product.manufacturer_part_number,
+          name: `${product.name} - ${selectedVariant.name}`, // Appends variant title to product title
+          price: variantPrice,
+        },
+      ],
+    });
+
+    // Add selectedVariant to dependency array to refire the tag if the user swaps variants
+  }, [selectedVariant, product]);
 
   const variants = product_variants || [];
 
