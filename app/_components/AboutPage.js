@@ -9,10 +9,12 @@ export default function AboutPage() {
 
         <p className="text-sm md:text-base text-gray-600 leading-relaxed">
           TubVilla is a California-based authorized reseller of premium bathroom
-          fixtures. We work directly with approved manufacturers and
-          distributors. All products are sourced from authorized channels and
-          shipped directly from manufacturer warehouses to customers throughout
-          the United States.
+          fixtures. We partner directly with approved manufacturers and
+          distributors to provide authentic products from trusted brands. All
+          products are sourced through authorized channels and shipped from
+          manufacturer warehouses throughout the United States. Our team is
+          committed to providing responsive customer support and a secure
+          shopping experience for homeowners, contractors, and designers.
         </p>
       </section>
 
