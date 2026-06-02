@@ -268,11 +268,12 @@ export async function popularTubs() {
     return {
       ...product,
       regularPrice,
-      formattedPrice: new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      }).format(regularPrice / 100),
+      // formattedPrice: forma(regularPrice);
+      // formattedPrice: new Intl.NumberFormat("en-US", {
+      //   style: "currency",
+      //   currency: "USD",
+      //   maximumFractionDigits: 0,
+      // }).format(regularPrice / 100),
     };
   });
 }
@@ -325,11 +326,6 @@ export async function underXTubs() {
     return {
       ...product,
       regularPrice,
-      formattedPrice: new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      }).format(regularPrice / 100),
     };
   });
 }

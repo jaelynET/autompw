@@ -13,6 +13,7 @@ import ProductGridSkeleton from "./ProductGridSkeleton";
 import { useEffect, useState } from "react";
 import { useDom } from "./DomContext";
 import Link from "next/link";
+import { formatPrice } from "../utils/format";
 
 function BestSellers({ tubs }) {
   // console.log(tubs);
@@ -94,7 +95,7 @@ function BestSellers({ tubs }) {
           </span>
           <Stars averageRating={averageRating} />
         </div> */}
-              <span className="text-sm">{tub.formattedPrice}</span>
+              <span className="text-sm">{formatPrice(tub.regularPrice)}</span>
             </div>
           </Link>
         </SwiperSlide>

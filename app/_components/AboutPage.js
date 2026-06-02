@@ -8,8 +8,11 @@ export default function AboutPage() {
         </h1>
 
         <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-          TubVilla is an online bathroom retailer focused on freestanding
-          bathtubs, faucets, and modern bathroom essentials.
+          TubVilla is a California-based authorized reseller of premium bathroom
+          fixtures. We work directly with approved manufacturers and
+          distributors. All products are sourced from authorized channels and
+          shipped directly from manufacturer warehouses to customers throughout
+          the United States.
         </p>
       </section>
 

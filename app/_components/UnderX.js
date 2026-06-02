@@ -10,6 +10,7 @@ import Image from "next/image";
 import ProductGridSkeleton from "./ProductGridSkeleton";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { formatPrice } from "../utils/format";
 
 function UnderX({ tubs }) {
   const [mounted, setMounted] = useState(false);
@@ -56,7 +57,7 @@ function UnderX({ tubs }) {
             <p className="text-base uppercase tracking-wide text-pretty md:text-wrap line-clamp-2 font-bold ">
               {product.name}
             </p>
-            <span className="text-sm">{product.formattedPrice}</span>
+            <span className="text-sm">{formatPrice(product.regularPrice)}</span>
           </Link>
         </SwiperSlide>
       ))}

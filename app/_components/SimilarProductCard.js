@@ -19,7 +19,7 @@ import Link from "next/link";
 // }
 function SimilarProductCard({ similarProducts, slug }) {
   const [mounted, setMounted] = useState(false);
-  console.log(similarProducts);
+
   useEffect(() => {
     setMounted(true);
   }, []);

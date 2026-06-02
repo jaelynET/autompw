@@ -1,7 +1,7 @@
 "use client";
 
 import { useCart } from "@/app/_components/CartContext";
-import { sendGtagEvent, ADS_TRACKING_ID } from "@/utils/gtag";
+import { sendGtagEvent, ADS_TRACKING_ID } from "../utils/gtag";
 import { Suspense, useState, useTransition } from "react";
 import CartItems from "./CartItems";
 import { XMarkIcon } from "@heroicons/react/24/solid";

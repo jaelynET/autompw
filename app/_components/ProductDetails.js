@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { sendGtagEvent, ADS_TRACKING_ID } from "@/utils/gtag";
+import { sendGtagEvent, ADS_TRACKING_ID } from "../utils/gtag";
 import { formatPrice } from "../utils/format";
 
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
