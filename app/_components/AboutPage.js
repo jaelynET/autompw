@@ -8,7 +8,7 @@ export default function AboutPage() {
         </h1>
 
         <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-          TubVilla is a California-based authorized reseller of premium bathroom
+          TUBVILLA is a California-based authorized reseller of premium bathroom
           fixtures. We partner directly with approved manufacturers and
           distributors to provide authentic products from trusted brands. All
           products are sourced through authorized channels and shipped from
