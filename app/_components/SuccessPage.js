@@ -29,7 +29,7 @@ function SuccessPage({ customerEmail }) {
         ) {
           window.gtag("event", "purchase", {
             // Links the event to your Google Ads configuration
-            send_to: `AW-${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/YOUR_CONVERSION_LABEL`,
+            send_to: `AW-${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/${process.env.NEXT_PUBLIC_GOOGLE_CONVERSION_LABEL}`,
             transaction_id: orderId,
             value: totalValue,
             currency: "USD", // Change to your local currency code if needed
