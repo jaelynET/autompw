@@ -39,7 +39,7 @@ function SuccessPage({ customerEmail }) {
             // Required parameters for Dynamic Remarketing Retail feeds
             google_business_vertical: "retail",
             items: cartItems.map((item) => ({
-              id: item.id, // MUST match your Google Merchant Center Feed ID exactly
+              id: item.manufacturer_part_number, // MUST match your Google Merchant Center Feed ID exactly
               price: item.regularPrice,
               quantity: item.quantity,
             })),

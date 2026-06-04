@@ -22,6 +22,7 @@ function AddToCart({ product, selectedVariant }) {
     finish: selectedVariant.colorFinish,
     image: product.image || selectedVariant.image,
     regularPrice: selectedVariant.regularPrice,
+    sku: selectedVariant.manufacturer_part_number,
     quantity,
   };
 
