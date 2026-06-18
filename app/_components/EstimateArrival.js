@@ -51,9 +51,13 @@ function EstimateArrival() {
 
         {/* --- MOBILE PLACEMENT: Sits directly below on its own line --- */}
         {/* --- DESKTOP PLACEMENT: Snaps nicely to the right margin side --- */}
-        <div className="pl-11 sm:pl-0">
+        <div className="pl-11 sm:pl-0 sm:ml-auto flex flex-col gap-1 sm:items-end">
           <span className="inline-block text-[10px] font-bold tracking-wider uppercase bg-emerald-50 text-emerald-700 border border-emerald-600/10 px-2.5 py-0.5 rounded-md whitespace-nowrap">
-            Free Shipping
+            Free Freight Shipping
+          </span>
+
+          <span className="inline-block text-[10px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-600/10 px-2.5 py-0.5 rounded-md whitespace-nowrap">
+            (includes liftgate delivery to your curb)
           </span>
         </div>
       </div>
