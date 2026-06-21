@@ -14,7 +14,6 @@ import ProductSpecs from "./ProductSpecs";
 import ProductDimensions from "./ProductDimensions";
 import ProductInstallDocs from "./ProductInstallDocs";
 import ProductVariant from "./ProductVariant";
-import ShippingMethod from "./ShippingMethod";
 
 function ProductDetails({ product, featureImages }) {
   const { name, description, product_variants } = product;
@@ -146,7 +145,6 @@ function ProductDetails({ product, featureImages }) {
           </ExpandableSection>
         </div>
       </div>
-      {/* <AddToCart product={product} selectedVariant={selectedVariant} /> */}
     </>
   );
 }
