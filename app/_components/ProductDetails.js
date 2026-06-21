@@ -14,8 +14,9 @@ import ProductSpecs from "./ProductSpecs";
 import ProductDimensions from "./ProductDimensions";
 import ProductInstallDocs from "./ProductInstallDocs";
 import ProductVariant from "./ProductVariant";
+import ShippingMethod from "./ShippingMethod";
 
-function ProductDetails({ product }) {
+function ProductDetails({ product, featureImages }) {
   const { name, description, product_variants } = product;
   // const [selectedVariant, setSelectedVariant] = useState(
   //   product.product_variants?.[0] || {},
@@ -96,9 +97,18 @@ function ProductDetails({ product }) {
               {formatPrice(selectedVariant.regularPrice)}
             </span>
           </div>
+
+          <div className="mt-2">
+            <EstimateArrival />
+          </div>
           <div className="min-h-[40px] w-full block clear-both my-2">
             <KlarnaMessage amount={selectedVariant.regularPrice} />
           </div>
+        </div>
+        <div className="flex flex-col gap-1 text-sm text-stone-700 mt-2">
+          <p>✓ Premium PMMA Acrylic Construction</p>
+          <p>✓ Insured Freight Delivery</p>
+          <p>✓ Easy Returns for Damaged Deliveries</p>
         </div>
         <div className="mt-6 border-y border-stone-100 py-4">
           <ProductVariant
@@ -114,13 +124,7 @@ function ProductDetails({ product }) {
           ) : (
             <AddToCart product={product} selectedVariant={selectedVariant} />
           )}
-
-          {/* Shipping/Arrival details directly support the purchase decision */}
-          <div className="bg-stone-50 rounded-lg p-3.5 border border-stone-150">
-            <EstimateArrival />
-          </div>
         </div>
-        {/* <EstimateArrival /> */}
         <div className="mt-8 border-t border-stone-200 pt-6">
           <ExpandableSection title="Description">
             <p className="text-stone-600 leading-relaxed">{description}</p>

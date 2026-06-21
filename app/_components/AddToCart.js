@@ -74,6 +74,9 @@ function AddToCart({ product, selectedVariant }) {
       >
         Add to Cart
       </button>
+      <p className="text-xs text-stone-500 mt-2 text-center">
+        Protected by a 1-Year Manufacturer Warranty
+      </p>
     </div>
   );
 }

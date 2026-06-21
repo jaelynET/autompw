@@ -34,7 +34,7 @@ function ProductSpecs({ product, selectedVariant }) {
       </div>
       <div className="flex gap-3">
         <span>Warranty:</span>
-        <li>{`${product.warranty_length} Year Limited`}</li>
+        <li>{`${product.warranty_length} Year `}</li>
       </div>
       <div className="flex gap-3">
         <span>UPC:</span>

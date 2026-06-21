@@ -187,6 +187,20 @@ export async function getProductImages(id) {
   return data;
 }
 
+export async function getProductFeatureImages(id) {
+  const { data, error } = await supabaseAdmin
+    .from("product_feature_images")
+    .select("id,title,image_url,description,position")
+    .eq("product_id", id)
+    .order("position");
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bathtub feature pictures could not be loaded");
+  }
+  return data;
+}
+
 export async function getOrders(id) {
   const { data, error } = await supabaseAdmin
     .from("orders")
