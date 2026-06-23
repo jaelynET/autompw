@@ -8,7 +8,7 @@ function ProductFeatures({ featureImages }) {
     <section className="mt-14 border-t border-stone-200 pt-12">
       {/* Section Heading */}
       <div className="mb-12 text-center">
-        <h2 className="text-2xl md:text-3xl font-medium text-stone-900">
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-stone-900">
           Why Choose This Tub
         </h2>
       </div>

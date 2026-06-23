@@ -16,7 +16,7 @@ import ProductInstallDocs from "./ProductInstallDocs";
 import ProductVariant from "./ProductVariant";
 
 function ProductDetails({ product, featureImages }) {
-  const { name, description, product_variants } = product;
+  const { name, product_title_seo, description, product_variants } = product;
   // const [selectedVariant, setSelectedVariant] = useState(
   //   product.product_variants?.[0] || {},
   // );
@@ -48,7 +48,7 @@ function ProductDetails({ product, featureImages }) {
           id:
             selectedVariant.manufacturer_part_number ||
             product.manufacturer_part_number,
-          name: `${product.name} - ${selectedVariant.name}`, // Appends variant title to product title
+          name: `${product.short_name} - ${selectedVariant.name}`, // Appends variant title to product title
           price: variantPrice,
         },
       ],
@@ -86,7 +86,7 @@ function ProductDetails({ product, featureImages }) {
           <p className="text-xs uppercase text-neutral-500">Out of Stock</p>
         ) : null}
         <h1 className="text-2xl font-bold tracking-tight text-stone-900 sm:text-3xl md:text-4xl leading-tight">
-          {name}
+          {product_title_seo || name}
         </h1>
 
         {/* Price/Finacing */}
@@ -97,15 +97,19 @@ function ProductDetails({ product, featureImages }) {
             </span>
           </div>
 
-          <div className="mt-2">
+          <div className="mt-2 mb-2">
             <EstimateArrival />
           </div>
-          <div className="min-h-[40px] w-full block clear-both my-2">
+          <div className="min-h-[40px] w-full block clear-both my-3">
             <KlarnaMessage amount={selectedVariant.regularPrice} />
           </div>
         </div>
-        <div className="flex flex-col gap-1 text-sm text-stone-700 mt-2">
-          <p>✓ Premium PMMA Acrylic Construction</p>
+        <div className="flex flex-col gap-1 text-sm text-stone-700 font-md mt-2">
+          <p>
+            ✓ Premium{" "}
+            {product.material === "acrylic" ? `PMMA Acrylic` : `Solid Surface`}{" "}
+            Construction
+          </p>
           <p>✓ Insured Freight Delivery</p>
           <p>✓ Easy Returns for Damaged Deliveries</p>
         </div>
@@ -125,11 +129,8 @@ function ProductDetails({ product, featureImages }) {
           )}
         </div>
         <div className="mt-8 border-t border-stone-200 pt-6">
-          <ExpandableSection title="Description">
-            <p className="text-stone-600 leading-relaxed">{description}</p>
-          </ExpandableSection>
-          <ExpandableSection title="Specifications">
-            <ProductSpecs product={product} selectedVariant={selectedVariant} />
+          <ExpandableSection title="Description" openCollapse="true">
+            <p className="text-stone-800 leading-relaxed">{description}</p>
           </ExpandableSection>
           <ExpandableSection title="Dimensions">
             <ProductDimensions
@@ -137,6 +138,10 @@ function ProductDetails({ product, featureImages }) {
               selectedVariant={selectedVariant}
             />
           </ExpandableSection>
+          <ExpandableSection title="Specifications">
+            <ProductSpecs product={product} selectedVariant={selectedVariant} />
+          </ExpandableSection>
+
           <ExpandableSection title="Installations & Documents">
             <ProductInstallDocs
               product={product}

@@ -1,8 +1,8 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-function ExpandableSection({ title, children }) {
-  const [isOpen, setIsOpen] = useState(false);
+function ExpandableSection({ title, children, openCollapse=false }) {
+  const [isOpen, setIsOpen] = useState(openCollapse);
 
   return (
     <div className=" py-2">

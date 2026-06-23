@@ -16,7 +16,7 @@ function AddToCart({ product, selectedVariant }) {
 
   const productData = {
     id: selectedVariant.id, // ID of the variant
-    name: product.name,
+    name: product.short_name || product.name,
     // Add these for the sub-labels
     size: selectedVariant.nominal_size,
     finish: selectedVariant.colorFinish,
@@ -74,7 +74,7 @@ function AddToCart({ product, selectedVariant }) {
       >
         Add to Cart
       </button>
-      <p className="text-xs text-stone-500 mt-2 text-center">
+      <p className="text-xs text-stone-500 font-md mt-2 text-center">
         Protected by a 1-Year Manufacturer Warranty
       </p>
     </div>

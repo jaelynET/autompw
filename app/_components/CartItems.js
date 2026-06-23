@@ -92,9 +92,9 @@ function CartItems() {
                     <span className="text-xl font-bold text-stone-900 tracking-tight">
                       {formattedPrice}
                     </span>
-                    <p className="text-xs text-stone-500 mt-0.5">
+                    {/* <p className="text-xs text-stone-500 mt-0.5">
                       Taxes calculated at checkout
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>

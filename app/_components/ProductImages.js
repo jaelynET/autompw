@@ -107,7 +107,9 @@ function ProductImages({ mainImage, productImages }) {
                   <div className="relative w-full h-20">
                     <Image
                       src={product.image}
-                      alt="Product Thumbnail"
+                      alt={
+                        product.alt_text || product.products.product_title_seo
+                      }
                       fill
                       className="object-cover"
                     />
@@ -141,7 +143,7 @@ function ProductImages({ mainImage, productImages }) {
               >
                 <Image
                   src={product.image}
-                  alt="Product"
+                  alt={product.alt_text || product.products.product_title_seo}
                   fill
                   className="object-cover"
                   priority={index === 0}

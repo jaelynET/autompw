@@ -176,7 +176,7 @@ export async function compatibleFaucets() {
 export async function getProductImages(id) {
   const { data, error } = await supabaseAdmin
     .from("productImages")
-    .select("id,image,position")
+    .select("id,image,position,alt_text,products(product_title_seo)")
     .eq("productId", id)
     .order("position");
 
@@ -191,6 +191,19 @@ export async function getProductFeatureImages(id) {
   const { data, error } = await supabaseAdmin
     .from("product_feature_images")
     .select("id,title,image_url,description,position")
+    .eq("product_id", id)
+    .order("position");
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bathtub feature pictures could not be loaded");
+  }
+  return data;
+}
+export async function productFeatures(id) {
+  const { data, error } = await supabaseAdmin
+    .from("product_features")
+    .select("id,title,description,position")
     .eq("product_id", id)
     .order("position");
 

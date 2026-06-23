@@ -2,8 +2,10 @@ import {
   getBathtub,
   getProductFeatureImages,
   getProductImages,
+  productFeatures,
 } from "../_lib/data-service";
 import CompatibleFaucets from "./CompatibleFaucets";
+import ProductCardFeatures from "./ProductCardFeatures";
 import ProductDetails from "./ProductDetails";
 import ProductFeatures from "./ProductFeatures";
 import ProductImages from "./ProductImages";
@@ -15,7 +17,10 @@ async function ProductBox({ slug }) {
 
   const { id: bathtubId } = bathtub;
   const productImages = await getProductImages(bathtubId);
+  const features = await productFeatures(bathtubId);
   const featureImages = await getProductFeatureImages(bathtubId);
+
+
 
   const {
     image,
@@ -35,8 +40,11 @@ async function ProductBox({ slug }) {
           <ProductDetails product={bathtub} featureImages={featureImages} />
         </div>
       </div>
-
-      <ProductFeatures featureImages={featureImages} />
+      {featureImages?.length > 0 ? (
+        <ProductFeatures featureImages={featureImages} />
+      ) : (
+        <ProductCardFeatures features={features} />
+      )}
 
       {/*
       {product_type === "bathtub" ? (

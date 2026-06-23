@@ -19,7 +19,8 @@ export async function GET() {
         name,
         description,
         slug,
-        brand
+        brand,
+        product_title_seo
       ),
       inventory!left (
         quantity
@@ -52,13 +53,12 @@ export async function GET() {
     .map((variant) => {
       const product = variant.products;
 
-      const titleParts = [
-        product?.name,
-        variant.colorFinish,
-        variant.nominal_size,
-      ].filter(Boolean);
+      // const titleParts = [
+      //   product?.product_title_seo || product.name,
 
-      const title = titleParts.join(" - ");
+      // ].filter(Boolean);
+
+      const title = product?.product_title_seo || product.name;
 
       // 2. GET THE FIRST INVENTORY OBJECT HERE AS WELL
       const inv = Array.isArray(variant.inventory)

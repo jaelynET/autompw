@@ -53,7 +53,7 @@ function MobileGallery({ productImages }) {
                 >
                   <Image
                     src={product.image || product} // Fallback support if mapping directly over a string array
-                    alt={`${product.name || "Product Image"} - View ${i + 1}`}
+                    alt={product.alt_text || product.products.product_title_seo}
                     fill
                     sizes="(max-width: 640px) 100vw, 50vw"
                     className="object-cover object-center"

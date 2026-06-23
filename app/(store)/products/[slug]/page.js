@@ -33,6 +33,15 @@ import ProductBox from "@/app/_components/ProductBox";
 //   }));
 //   return ids;
 // }
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+
+  const bathtub = await getBathtub(slug);
+  return {
+    title: bathtub.meta_title,
+    description: bathtub.meta_description,
+  };
+}
 
 export default async function Page({ params }) {
   const { slug } = await params;

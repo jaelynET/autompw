@@ -30,7 +30,9 @@ function MobileFullscreenGallery({ images, startIndex, onClose }) {
         {images.map((img, i) => (
           <SwiperSlide key={i}>
             <div className="relative w-full h-full">
-              <Image src={img.image} alt="" fill className="object-contain" />
+              <Image src={img.image} 
+               alt={img.alt_text||img.products.product_title_seo}
+              fill className="object-contain" />
             </div>
           </SwiperSlide>
         ))}

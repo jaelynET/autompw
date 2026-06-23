@@ -12,27 +12,34 @@ const stripePromise = loadStripe(
 
 export default function KlarnaMessage({ amount }) {
   const [mounted, setMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Safeguard: Do not render or query Stripe during Vercel's SSR compilation phase
-  if (!mounted || !amount) return null;
+  if (!amount) return null;
 
   const totalAmount = Math.round(amount);
 
   return (
-    <Elements stripe={stripePromise} key={totalAmount}>
-      <PaymentMethodMessagingElement
-        options={{
-          // paymentMethodTypes: ["klarna"],
-          amount: totalAmount,
-          currency: "USD",
-          countryCode: "US", // Prevents Vercel geofencing server IP bugs
-        }}
-        className="block min-h-[40px]"
-      />
-    </Elements>
+    <div className="relative min-h-[40px]">
+      {/* Skeleton */}
+      {isLoading && (
+        <div className="absolute inset-0 animate-pulse rounded-md bg-stone-200" />
+      )}
+
+      <Elements stripe={stripePromise} key={totalAmount}>
+        <PaymentMethodMessagingElement
+          options={{
+            amount: totalAmount,
+            currency: "USD",
+            countryCode: "US",
+          }}
+          onReady={() => setIsLoading(false)}
+          className={isLoading ? "opacity-0" : "opacity-100 transition-opacity"}
+        />
+      </Elements>
+    </div>
   );
 }

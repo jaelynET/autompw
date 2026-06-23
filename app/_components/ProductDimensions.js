@@ -16,27 +16,27 @@ function ProductDimensions({ product, selectedVariant }) {
     <ul>
       <div className="flex gap-3">
         <span>Overall Length:</span>
-        <li>{overall_length}</li>
+        <li>{overall_length} in</li>
       </div>
       <div className="flex gap-3">
         <span>Overall Width:</span>
-        <li>{overall_width}</li>
+        <li>{overall_width} in</li>
       </div>
       <div className="flex gap-3">
         <span>Overall Height:</span>
-        <li>{overall_height}</li>
+        <li>{overall_height} in</li>
       </div>
       <div className="flex gap-3">
         <span>Soaking Depth:</span>
-        <li>{soaking_depth}</li>
+        <li>{soaking_depth} in</li>
       </div>
       <div className="flex gap-3">
         <span>Water Capacity:</span>
-        <li>{water_capacity}</li>
+        <li>{water_capacity} lbs</li>
       </div>
       <div className="flex gap-3">
         <span>Weight:</span>
-        <li>{weight}</li>
+        <li>{weight} lbs</li>
       </div>
       {/* <div className="flex gap-3">
         <span>Drain Location:</span>

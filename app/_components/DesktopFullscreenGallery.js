@@ -48,7 +48,12 @@ function DesktopFullscreenGallery({ images, startIndex, onClose }) {
         {images.map((img, i) => (
           <SwiperSlide key={i}>
             <div className="relative w-full h-full">
-              <Image src={img.image} alt="" fill className="object-contain" />
+              <Image
+                src={img.image}
+                alt={img.alt_text || img.products.product_title_seo}
+                fill
+                className="object-contain"
+              />
             </div>
           </SwiperSlide>
         ))}
@@ -77,7 +82,9 @@ function DesktopFullscreenGallery({ images, startIndex, onClose }) {
                   : "border border-transparent"
               }`}
             >
-              <Image src={img.image} alt="" fill className="object-cover" />
+              <Image src={img.image} 
+               alt={img.alt_text||img.products.product_title_seo}
+              fill className="object-cover" />
             </SwiperSlide>
           ))}
         </Swiper>
