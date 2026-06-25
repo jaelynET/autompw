@@ -16,7 +16,13 @@ import ProductInstallDocs from "./ProductInstallDocs";
 import ProductVariant from "./ProductVariant";
 
 function ProductDetails({ product, featureImages }) {
-  const { name, product_title_seo, description, product_variants } = product;
+  const {
+    name,
+    product_title_seo,
+    description,
+    product_variants,
+    sub_headline,
+  } = product;
   // const [selectedVariant, setSelectedVariant] = useState(
   //   product.product_variants?.[0] || {},
   // );
@@ -77,6 +83,9 @@ function ProductDetails({ product, featureImages }) {
   // 🚨 NO INVENTORY AT ALL (important edge case)
   const noInventory = allInventory.length === 0;
 
+  const savings =
+    selectedVariant.regular_price - selectedVariant.discount_price;
+
   return (
     <>
       <div>
@@ -86,15 +95,36 @@ function ProductDetails({ product, featureImages }) {
           <p className="text-xs uppercase text-neutral-500">Out of Stock</p>
         ) : null}
         <h1 className="text-2xl font-bold tracking-tight text-stone-900 sm:text-3xl md:text-4xl leading-tight">
-          {product_title_seo || name}
+          {name}
         </h1>
+        <h4>{sub_headline}</h4>
 
         {/* Price/Finacing */}
         <div className="mt-3 flex flex-col gap-1 ">
-          <div className="flex items-baseline gap-2">
+          {/* <div className="flex items-baseline gap-2">
             <span className="text-2xl font-black text-stone-950 sm:text-3xl md:text-4xl tracking-tight">
               {formatPrice(selectedVariant.regularPrice)}
             </span>
+            <span className="text-2xl font-black text-stone-950 sm:text-3xl md:text-4xl tracking-tight line-through ">
+              {formatPrice(selectedVariant.discount_price)}
+            </span>
+          </div> */}
+          <div>
+            <span className="text-2xl font-black text-stone-950 sm:text-3xl md:text-4xl tracking-tight">
+              {formatPrice(selectedVariant.regularPrice)}
+            </span>
+            {/* need to change regularprice to discount */}
+            <span className="ml-2 text-lg text-stone-500 line-through">
+              {formatPrice(selectedVariant.discount_price)}
+            </span>
+
+            <p className="mt-1 text-sm font-medium text-green-700">
+              Save{" "}
+              {formatPrice(
+                selectedVariant.discount_price - selectedVariant.regularPrice,
+              )}{" "}
+              + Free Freight Shipping
+            </p>
           </div>
 
           <div className="mt-2 mb-2">
@@ -104,14 +134,14 @@ function ProductDetails({ product, featureImages }) {
             <KlarnaMessage amount={selectedVariant.regularPrice} />
           </div>
         </div>
-        <div className="flex flex-col gap-1 text-sm text-stone-700 font-md mt-2">
+        <div className="flex flex-col gap-1 text-sm  font-md mt-2">
           <p>
             ✓ Premium{" "}
             {product.material === "acrylic" ? `PMMA Acrylic` : `Solid Surface`}{" "}
             Construction
           </p>
-          <p>✓ Insured Freight Delivery</p>
-          <p>✓ Easy Returns for Damaged Deliveries</p>
+          <p>✓ Heat-retaining, durable design built for daily use</p>
+          <p>✓ Easy returns for damaged deliveries</p>
         </div>
         <div className="mt-6 border-y border-stone-100 py-4">
           <ProductVariant
@@ -130,7 +160,7 @@ function ProductDetails({ product, featureImages }) {
         </div>
         <div className="mt-8 border-t border-stone-200 pt-6">
           <ExpandableSection title="Description" openCollapse="true">
-            <p className="text-stone-800 leading-relaxed">{description}</p>
+            <p className=" leading-relaxed">{description}</p>
           </ExpandableSection>
           <ExpandableSection title="Dimensions">
             <ProductDimensions

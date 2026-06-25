@@ -74,8 +74,8 @@ function AddToCart({ product, selectedVariant }) {
       >
         Add to Cart
       </button>
-      <p className="text-xs text-stone-500 font-md mt-2 text-center">
-        Protected by a 1-Year Manufacturer Warranty
+      <p className="text-xs text-stone-900 font-md mt-2 text-center">
+        ✓ 1-year manufacturer warranty included for added protection
       </p>
     </div>
   );

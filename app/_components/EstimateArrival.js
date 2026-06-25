@@ -29,21 +29,14 @@ function EstimateArrival() {
 
   // const endDate = today.setDate(startDate.getDate() + EXPECTED_DELIVERY_END);
   return (
-    <div className="space-y-2">
-      <span className="inline-flex w-fit items-center gap-1.5 text-xs font-semibold tracking-wide uppercase bg-stone-100 text-stone-800 border border-stone-200 px-3 py-1 rounded-full">
-        🚚 Free Freight Shipping
-      </span>
-
+    <div className="space-y-2 rounded-lg border border-stone-200 p-3">
       <div>
-        <p className="text-sm font-medium text-stone-700">
-          Delivered {startingDate} — {endingDate}
+        <p className="text-sm font-semibold">
+          Delivery {startingDate} — {endingDate}
         </p>
 
-        <p className="text-xs text-stone-500 mt-1">
-          Includes liftgate curbside delivery
-        </p>
+        <p className="text-xs  mt-1">Liftgate curbside delivery included</p>
       </div>
-    
     </div>
   );
   // return (
