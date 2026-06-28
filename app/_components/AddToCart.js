@@ -27,28 +27,31 @@ function AddToCart({ product, selectedVariant }) {
   };
 
   const handleAddToCartClick = () => {
-    // A. Fire your existing local state cart update
     addToCart(productData);
 
-    // B. Calculate individual and batch numeric values for Google Ads (converting cents to dollars)
     const unitPriceNumeric = Number(productData.regularPrice) / 100;
     const totalValueNumeric = unitPriceNumeric * productData.quantity;
 
-    if (ADS_TRACKING_ID) {
-      sendGtagEvent("add_to_cart", {
-        send_to: `AW-${ADS_TRACKING_ID}`,
-        value: totalValueNumeric, // Total cart addition value (Price * Quantity)
+    console.log("ATC clicked");
+
+    if (typeof window !== "undefined" && window.gtag) {
+      console.log("Sending ATC event");
+
+      window.gtag("event", "add_to_cart", {
+        send_to: "AW-18204020684/NaIACLrR9cYcEMyfrehD",
+        value: totalValueNumeric,
         currency: "USD",
         items: [
           {
-            // ⚠️ Ensure productData.id matches your Google Merchant Center variant feed format
-            item_id: productData.sku || product.manufacturer_part_number,
-            item_name: `${productData.name} - ${productData.finish} (${productData.size})`,
+            item_id: productData.manufacturer_part_number,
+            item_name: productData.name,
             price: unitPriceNumeric,
             quantity: productData.quantity,
           },
         ],
       });
+    } else {
+      console.log("gtag missing");
     }
   };
 
