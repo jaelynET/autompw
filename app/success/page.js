@@ -8,20 +8,6 @@ import PurchaseTracking from "../_components/PurchaseTracking";
 export default async function Success({ searchParams }) {
   const { session_id } = await searchParams;
 
-  // window.gtag("event", "conversion", {
-  //   send_to: "AW-18204020684/NaIACLrR9cYcEMyfrehD",
-  //   value: totalValueNumeric,
-  //   currency: "USD",
-  //   items: [
-  //     {
-  //       item_id: productData.manufacturer_part_number,
-  //       item_name: productData.name,
-  //       price: unitPriceNumeric,
-  //       quantity: productData.quantity,
-  //     },
-  //   ],
-  // });
-
   if (!session_id)
     throw new Error("Please provide a valid session_id (`cs_test_...`)");
 
@@ -39,7 +25,7 @@ export default async function Success({ searchParams }) {
   if (status === "complete") {
     return (
       <section id="success">
-        {/* <PurchaseTracking session={session} /> */}
+        <PurchaseTracking session={session} />
         <SuccessPage customerEmail={customerEmail} />
       </section>
     );

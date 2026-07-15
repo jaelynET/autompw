@@ -16,7 +16,7 @@ export default function ShippingPolicy() {
         <section>
           <h2 className="font-semibold mb-2">Processing Time</h2>
           <p>
-            Orders are typically processed and shipped within 1–2 business days.
+            Orders are typically processed and shipped within 2–4 business days.
           </p>
         </section>
 
