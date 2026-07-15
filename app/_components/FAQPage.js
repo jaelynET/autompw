@@ -21,7 +21,7 @@ export default function FAQPage() {
 
         <div className="border-b pb-5">
           <h2 className="font-semibold text-base mb-2">
-            Are all items in photo's included?
+            Are all items in photo&apos;s included?
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
             Auto parts are sold separately unless otherwise stated on the

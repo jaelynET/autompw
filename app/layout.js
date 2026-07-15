@@ -7,7 +7,11 @@ export const metadata = {
     template: "%s / AutoMPW",
     default: "AutoMPW",
   },
-  description: "",
+  description: "Find the right part replacement for your car",
+
+  verification: {
+    google: "9zknx53onZ4ErzNfaUrI6KehgaIF1fizs4YNP56lpPs",
+  },
 };
 
 export default function RootLayout({ children }) {
