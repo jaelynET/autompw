@@ -4,38 +4,39 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="mb-12">
         <h1 className="text-3xl md:text-4xl font-semibold mb-4">
-          Modern Bathtubs Designed for Everyday Luxury
+          Quality Auto Parts You Can Count On
         </h1>
 
         <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-          TUBVILLA is a California-based authorized reseller of premium bathroom
-          fixtures. We partner directly with approved manufacturers and
-          distributors to provide authentic products from trusted brands. All
-          products are sourced through authorized channels and shipped from
-          manufacturer warehouses throughout the United States. Our team is
-          committed to providing responsive customer support and a secure
-          shopping experience for homeowners, contractors, and designers.
+          We provide quality replacement auto parts for a wide range of
+          vehicles, helping drivers and repair professionals keep their vehicles
+          running at their best. We work with trusted manufacturers and
+          suppliers to offer dependable aftermarket parts at competitive prices.
+          Every order is backed by secure checkout, responsive customer support,
+          and fast shipping from warehouses across the United States.
         </p>
       </section>
 
       {/* Why choose us */}
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4">
-          Why customers choose TubVilla
+          Why customers choose AutoMPW
         </h2>
 
         <ul className="space-y-2 text-sm md:text-base text-gray-700">
-          <li>• Curated modern designs</li>
-          <li>• Secure checkout</li>
-          <li>• Fast customer support</li>
-          <li>• Nationwide shipping</li>
+          <li>• Quality aftermarket replacement parts</li>
+          <li>• Competitive prices</li>
+          <li>• Secure online checkout</li>
+          <li>• Fast nationwide shipping</li>
+          <li>• Responsive customer support</li>
+          <li>• Fitment information to help you order with confidence</li>
         </ul>
       </section>
 
       {/* Support */}
       <section className="border-t pt-8">
         <h2 className="text-xl font-semibold mb-3">
-          Need help choosing a tub?
+          Need help finding the right part?
         </h2>
 
         <p className="text-sm md:text-base text-gray-600">
@@ -43,8 +44,8 @@ export default function AboutPage() {
         </p>
 
         <div className="mt-3 text-sm md:text-base">
-          <p>📧 sales@tubvilla.com</p>
-          <p>📞 707-315-6575</p>
+          <p>📧 autompwsupport@gmail.com</p>
+          <p>📞 510-977-0587</p>
         </div>
       </section>
     </main>

@@ -1,5 +1,5 @@
 import Header from "@/app/_components/Header";
-import { Playfair_Display } from "next/font/google";
+import { Rubik } from "next/font/google";
 import { CartProvider } from "../_components/CartContext";
 
 import { FilterProvider } from "../_components/FilterContext";
@@ -8,9 +8,8 @@ import Footer from "../_components/Footer";
 import StripeElementsProvider from "../_components/StripeElementsProvider";
 import { DomProvider } from "../_components/DomContext";
 
-// Serif
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair-display",
+const rubik = Rubik({
+  variable: "--font-rubik",
   subsets: ["latin"],
   weight: "400",
 });
@@ -19,7 +18,7 @@ export default function StoreLayout({ children }) {
   const gaId = process.env.NEXT_PUBLIC_GOOGLE_ID;
   return (
     <div
-      className={`${playfairDisplay.className} antialiased flex flex-col min-h-screen w-full `}
+      className={`${rubik.className} antialiased flex flex-col min-h-screen w-full `}
     >
       <CartProvider>
         <Header />

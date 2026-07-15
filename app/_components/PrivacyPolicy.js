@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
         <section>
           <h2 className="font-semibold mb-2">Overview</h2>
           <p>
-            TubVilla respects your privacy and is committed to protecting any
+            AutoMPW respects your privacy and is committed to protecting any
             personal information you share with us when visiting our website or
             making a purchase.
           </p>
@@ -64,9 +64,7 @@ export default function PrivacyPolicy() {
             us at:
             <br />
             <br />
-            Email: sales@tubvilla.com
-            <br />
-            Phone: 707-315-6575
+            Email: autompwsupport@gmail.com
           </p>
         </section>
       </div>

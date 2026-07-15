@@ -1,8 +1,8 @@
-import hero1 from "@/public/expand-1.png";
-import hero2 from "@/public/expand-desktop.png";
+// import hero1 from "@/public/expand-1.png";
+// import hero2 from "@/public/expand-desktop.png";
 
-import Image from "next/image";
-import Link from "next/link";
+// import Image from "next/image";
+// import Link from "next/link";
 
 function Banner() {
   return (

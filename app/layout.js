@@ -4,13 +4,10 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script"; //
 export const metadata = {
   title: {
-    template: "%s / TubVilla",
-    default: "TubVilla",
+    template: "%s / AutoMPW",
+    default: "AutoMPW",
   },
-  description:
-    "A collection of beautiful and luxurious freestanding bathtubs, designed to transform and elevate your bathroom",
-
-  icon: "@/public/tubicon.jpg",
+  description: "",
 };
 
 export default function RootLayout({ children }) {

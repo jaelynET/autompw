@@ -37,22 +37,18 @@ export default function ShippingPolicy() {
           </p>
         </section>
 
-        <section>
+        {/* <section>
           <h2 className="font-semibold mb-2">Freight Delivery</h2>
           <p>
             Freight deliveries are curbside only. The carrier will deliver the
             item to the end of your driveway or nearest accessible point.
             Delivery inside the home or to specific rooms is not included.
           </p>
-        </section>
+        </section> */}
 
         <section>
           <h2 className="font-semibold mb-2">Scheduling Delivery</h2>
-          <p>
-            Once your order ships, you will receive tracking information. For
-            freight shipments, the carrier may contact you directly to schedule
-            delivery.
-          </p>
+          <p>Once your order ships, you will receive tracking information.</p>
         </section>
 
         <section>

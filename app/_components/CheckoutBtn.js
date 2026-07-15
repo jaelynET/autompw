@@ -1,21 +1,20 @@
 "use client";
+import { sendGtagEvent, ADS_TRACKING_ID } from "../utils/gtag";
 
 import { useState } from "react";
-import { useCart } from "./CartContext";
 
-function CheckoutBtn() {
-  const { cart } = useCart();
+function CheckoutBtn({ product }) {
   const [loading, setLoading] = useState(false);
   async function handleCheckout() {
     if (loading) return;
     setLoading(true);
+
     try {
       const res = await fetch("/api/checkout_sessions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ cart }),
       });
 
       const text = await res.text(); // 👈 IMPORTANT DEBUG STEP
@@ -24,12 +23,18 @@ function CheckoutBtn() {
 
       const data = JSON.parse(text);
 
-      if (data.redirectTo) {
-        window.location.href = data.redirectTo;
-        return;
-      }
-
       if (data.url) {
+        sendGtagEvent("add_to_cart", {
+          value: product.pricing.price / 100,
+          currency: "USD",
+          items: [
+            {
+              id: product.specifications.mpn,
+              name: product.title,
+            },
+          ],
+        });
+
         window.location.href = data.url;
         return;
       }
@@ -39,6 +44,7 @@ function CheckoutBtn() {
     } catch (err) {
       setLoading(false);
       alert("Something went wrong");
+      console.log(err);
     }
   }
 
@@ -46,11 +52,11 @@ function CheckoutBtn() {
     <button
       onClick={handleCheckout}
       disabled={loading}
-      className={`w-full rounded-md py-3 px-3 bg-button ${
+      className={`w-full max-w-md mx-auto block mt-4 py-3.5 px-6 font-bold text-base text-center rounded-full bg-red-600 hover:bg-red-700  active:scale-[0.99] transition-all cursor-pointer uppercase mb-3 ${
         loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
       }`}
     >
-      <p className="text-white">{loading ? "Processing..." : "Check out"}</p>
+      <p className="text-white">{loading ? "Processing..." : "Buy now"}</p>
     </button>
   );
 }

@@ -1,26 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/public/tubvillalgo-1.3.png";
+import logo from "@/public/ampwlgo-1.1.svg";
 // import logo from "@/public/logo.svg";
-
-// import logo from "@/public/tubvilla-1.3.png";
+//  import logo from "@/public/.png";
 
 //import logo from "@/public/tubvillalgo-5.jpg";
 
 export default function Logo() {
   return (
-    <Link href={"/"} className="block">
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <Image
         src={logo}
-        alt="TubVilla logo"
+        alt="AutoMPW logo"
         // Use square dimensions to match your actual image file
-        width={80}
-        height={80}
+        width={1200}
+        height={300}
         priority
         // This ensures the browser reserves a square space immediately
-        className="block h-auto w-[70px] md:w-[85px] object-contain ml-5 min-[375px]:ml-10 md:ml-30"
+        className="block h-auto w-[150px] md:w-[190px] lg:w-[220px]object-contain "
       />
-    </Link>
+    </div>
   );
 }
 // Mi <span className="text-main">Casa</span> Mi

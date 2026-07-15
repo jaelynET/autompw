@@ -3,7 +3,7 @@ import { FaInstagram, FaFacebook, FaPinterest } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="bg-footer border-t">
+    <footer className=" border-t">
       <div className="max-w-7xl mx-auto px-5 py-10">
         <nav className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {/* Company */}
@@ -92,10 +92,10 @@ function Footer() {
             </h3>
 
             <ul className="space-y-2">
-              <li className="text-xs md:text-sm">510-274-9796</li>
+              <li className="text-xs md:text-sm">510-977-0587</li>
 
               <li className="text-xs md:text-sm break-all">
-                sales@tubvilla.com
+                autompwsupport@gmail.com
               </li>
 
               <li className="text-xs md:text-sm">
@@ -117,23 +117,23 @@ function Footer() {
 
             <div className="flex gap-4">
               <Link
-                href="https://www.instagram.com/tubvilla"
+                href="https://www.instagram.com/autompw"
                 aria-label="Instagram"
                 className="hover:opacity-70 transition"
               >
                 <FaInstagram className="w-5 h-5" />
               </Link>
 
-              <Link
+              {/* <Link
                 href="https://www.facebook.com/profile.php?id=61589861829653&mibextid=ZbWKwL"
                 aria-label="Facebook"
                 className="hover:opacity-70 transition"
-              >
-                <FaFacebook className="w-5 h-5" />
-              </Link>
+              > */}
+              <FaFacebook className="w-5 h-5" />
+              {/* </Link> */}
 
               <Link
-                href="https://www.pinterest.com/tubvilla"
+                href="https://www.pinterest.com/autompw"
                 aria-label="Pinterest"
                 className="hover:opacity-70 transition"
               >
@@ -144,9 +144,7 @@ function Footer() {
         </nav>
 
         <div className="border-t mt-10 pt-5 text-xs text-gray-500 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} TubVilla. All rights reserved.</p>
-
-          <p>Modern bathtubs, faucets, and bathroom essentials.</p>
+          <p>© {new Date().getFullYear()} All rights reserved to Jaelyn.</p>
         </div>
       </div>
     </footer>

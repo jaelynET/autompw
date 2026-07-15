@@ -7,7 +7,7 @@ export default function TermsAndConditions() {
         <section>
           <h2 className="font-semibold mb-2">Overview</h2>
           <p>
-            By accessing or using the TubVilla website, you agree to be bound by
+            By accessing or using the AutoMPW website, you agree to be bound by
             these Terms & Conditions. If you do not agree, please do not use our
             website.
           </p>
@@ -59,9 +59,8 @@ export default function TermsAndConditions() {
         <section>
           <h2 className="font-semibold mb-2">Limitation of Liability</h2>
           <p>
-            TubVilla is not liable for any indirect, incidental, or
-            consequential damages resulting from the use of our website or
-            products.
+            AutoMPW is not liable for any indirect, incidental, or consequential
+            damages resulting from the use of our website or products.
           </p>
         </section>
 
@@ -72,9 +71,9 @@ export default function TermsAndConditions() {
             contact us:
             <br />
             <br />
-            Email: sales@tubvilla.com
+            Email: autompwsupport@gmail.com
             <br />
-            Phone: 707-315-6575
+            Phone: 510-977-0587
           </p>
         </section>
       </div>

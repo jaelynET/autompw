@@ -15,27 +15,26 @@ export default function FAQPage() {
             How long does shipping take?
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
-            All orders are processed upon receipt. Delivery times vary based on
-            location and freight carrier scheduling.
+            All orders are processed upon receipt. Delivery times: 4-8 days .
           </p>
         </div>
 
         <div className="border-b pb-5">
           <h2 className="font-semibold text-base mb-2">
-            Are bathtub faucets included?
+            Are all items in photo's included?
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
-            Faucets are sold separately unless otherwise stated on the product
-            page.
+            Auto parts are sold separately unless otherwise stated on the
+            product page.
           </p>
         </div>
 
         <div className="border-b pb-5">
           <h2 className="font-semibold text-base mb-2">
-            Do freestanding tubs require professional installation?
+            Do parts require professional installation?
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
-            We recommend professional installation for all bathtubs
+            We recommend professional installation for auto parts
           </p>
         </div>
 
@@ -50,9 +49,7 @@ export default function FAQPage() {
         </div>
 
         <div className="border-b pb-5">
-          <h2 className="font-semibold text-base mb-2">
-            Can I return a bathtub?
-          </h2>
+          <h2 className="font-semibold text-base mb-2">Can I return a part?</h2>
           <p className="text-sm text-gray-600 leading-relaxed">
             Returns may be accepted on unused products in original packaging
             within the return window outlined in our Return Policy.

@@ -9,6 +9,6 @@ export default function robots() {
         "/cart/", // Block shopping cart pages
       ],
     },
-    sitemap: "https://www.tubvilla.com",
+    sitemap: "https://www.autompw.com",
   };
 }

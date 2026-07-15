@@ -11,11 +11,11 @@ import Link from "next/link";
 import SignOutButton from "./SignOutButton";
 //import { createClient } from "../utils/supabase/client";
 import { createClient } from "../utils/supabase/server";
-import { useCart } from "./CartContext";
+// import { useCart } from "./CartContext";
 // import ShoppingCart from "./ShoppingCart";
-import Menu from "./Menu";
+// import Menu from "./Menu";
 import Banner from "./Banner";
-import { getCategories } from "../_lib/data-service";
+
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 // import ShoppingCart from "./ShoppingCart";
@@ -28,7 +28,7 @@ export default async function Header() {
   // const session = await auth();
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getUser();
-  const categories = await getCategories();
+
   console.log(data);
 
   // const { full_name: fullName } = data.user.user_metadata;
@@ -38,17 +38,17 @@ export default async function Header() {
 
   // sticky top-0 z-50
   return (
-    <header className="flex w-full justify-between items-center shadow-sm bg-white min-h-[90px] md:min-h-[110px]">
-      <Menu categories={categories} />
+    <header className="relative flex w-full justify-between items-center shadow-sm bg-white min-h-[90px] md:min-h-[110px]">
+      {/* <Menu categories={categories} /> */}
 
       <Logo />
 
-      {data?.user ? (
+      {/* {data?.user ? (
         <div className=" flex gap-5">
           <Link href="/account" className="flex gap-4 cursor-pointer ">
             <UserIcon width={22} height={22} />
           </Link>
-          {/* <SignOutButton /> */}
+          {/* <SignOutButton /> 
 
           <SafeCart />
         </div>
@@ -59,11 +59,11 @@ export default async function Header() {
               Sign In{" "}
             </span>
             <UserCircleIcon className=" w-6 h-6  text-icon" />
-          </Link>
+          </Link> */}
 
-          <SafeCart />
+      {/* <SafeCart /> 
         </div>
-      )}
+      )}*/}
 
       {/* <div className="aboslute rounded-full bg-red-500" />  */}
       {/* <Navigation /> */}

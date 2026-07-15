@@ -18,24 +18,11 @@ export const getBathtubs = async function () {
 export async function getBathtub(slug) {
   const { data, error } = await supabaseAdmin
     .from("products")
-    .select(
-      `*,  product_variants(
-        *,
-        inventory(
-          quantity,
-          in_stock,
-          discontinued
-        )
-      )`,
-    )
+    .select("id")
     .eq("slug", slug)
-    .order("overall_length", {
-      referencedTable: "product_variants",
-      ascending: true,
-    })
     .single();
+  console.log(slug);
   if (error) {
-    console.error(error);
     throw new Error("Bathtub could not be loaded");
   }
   return data;
