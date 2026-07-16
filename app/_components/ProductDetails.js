@@ -44,7 +44,7 @@ function ProductDetails({ product }) {
           <div>
             <span>
               Save {formatPrice(pricing.compareAt - pricing.price)} · In stock ·
-              Ships in 2-4 Business Days
+              Ships in 1-2 Business Days
             </span>
           </div>
 
