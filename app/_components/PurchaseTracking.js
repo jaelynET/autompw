@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { sendGtagEvent } from "../utils/gtag";
-("use client");
 
 export default function PurchaseTracking({ amountTotal, currency }) {
   useEffect(() => {
