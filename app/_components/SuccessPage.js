@@ -3,72 +3,58 @@ import { Suspense, useEffect } from "react";
 import { useCart } from "./CartContext";
 import Link from "next/link";
 
-function SuccessPage({ customerEmail }) {
-  useEffect(function () {
-    // 1. Grab the cart data before it gets wiped out
-    const savedCart = localStorage.getItem("cart");
+import {
+  CheckCircleIcon,
+  EnvelopeIcon,
+  ArrowRightIcon,
+} from "@heroicons/react/24/outline";
 
-    if (savedCart) {
-      try {
-        const cartItems = JSON.parse(savedCart);
-
-        // 2. Calculate the total value dynamically
-        // Adjust 'item.price' and 'item.quantity' to match your cart's exact object keys
-        const totalValue = cartItems.reduce(
-          (sum, item) => sum + item.regularPrice * item.quantity,
-          0,
-        );
-
-        // 3. Generate a random or timestamped order ID if you don't have one from a backend
-        const orderId = "ORD-" + Date.now();
-        const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
-        const conversionLabel = process.env.NEXT_PUBLIC_GOOGLE_CONVERSION_LABEL;
-
-        // 4. Safely verify that gtag exists before running
-        if (
-          typeof window !== "undefined" &&
-          typeof window.gtag !== "undefined"
-        ) {
-          window.gtag("event", "purchase", {
-            // Links the event to your Google Ads configuration
-            send_to: `AW-${adsId}/${conversionLabel}`,
-            transaction_id: orderId,
-            value: totalValue,
-            currency: "USD", // Change to your local currency code if needed
-
-            // Required parameters for Dynamic Remarketing Retail feeds
-            google_business_vertical: "retail",
-            items: cartItems.map((item) => ({
-              id: item.manufacturer_part_number, // MUST match your Google Merchant Center Feed ID exactly
-              price: item.regularPrice,
-              quantity: item.quantity,
-            })),
-          });
-        }
-      } catch (error) {
-        console.error("Failed to parse cart data for Google tracking:", error);
-      }
-    }
-
-    // 5. Now that the tracking has fired, safely clear the cart
-    localStorage.removeItem("cart");
-  }, []);
-
+export default function SuccessPage({ customerEmail }) {
   return (
-    <div className=" flex flex-col gap-3">
-      <p>
-        We appreciate your business! A confirmation email will be sent to{" "}
-        {customerEmail}. If you have any questions, please email{" "}
-      </p>
-      <a href="mailto:sales@tubvilla.com">sales@tubvilla.com</a>
-      <Link
-        href="/"
-        className="w-xs rounded-md bg-button py-3 px-3 cursor-pointer block mt-4 "
-      >
-        Continue shopping
-      </Link>
+    <div className="max-w-xl mx-auto my-8 bg-neutral-900 border border-neutral-800 rounded-xl p-8 text-neutral-200 shadow-2xl">
+      {/* Visual Success Indicator */}
+      <div className="flex items-center gap-4 border-b border-neutral-800 pb-6 mb-6">
+        <div className="p-3 bg-emerald-500/10 rounded-lg text-emerald-400">
+          <CheckCircleIcon className="w-8 h-8" />
+        </div>
+        <div>
+          <h1 className="text-xl font-bold tracking-tight uppercase text-white">
+            Order Confirmed
+          </h1>
+          <p className="text-sm text-neutral-400">Thank you for your order</p>
+        </div>
+      </div>
+
+      {/* Main Confirmation Content */}
+      <div className="space-y-6 text-sm leading-relaxed text-neutral-300">
+        <p>
+          We appreciate your business! A confirmation email containing your
+          receipt, tracking information, and order breakdown will be sent to{" "}
+          <strong className="text-emerald-400 font-medium">
+            {customerEmail}
+          </strong>{" "}
+          shortly.
+        </p>
+
+        {/* Support Callout Box */}
+        <div className="bg-neutral-950 border border-neutral-800 rounded-lg p-4 flex flex-col gap-3">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-400">
+            <EnvelopeIcon className="w-4 h-4 text-emerald-400" /> Need Technical
+            Support?
+          </div>
+          <p className="text-xs text-neutral-400 m-0">
+            For modifications, fitment questions, or shipping updates, reach out
+            to our team:
+          </p>
+          <a
+            href="mailto:autompwsupport@gmail.com"
+            className="text-sm font-medium text-white hover:text-emerald-400 transition-colors flex items-center gap-1 group self-start"
+          >
+            autompwsupport@gmail.com
+            <ArrowRightIcon className="w-3 h-3 transform group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default SuccessPage;

@@ -2,14 +2,16 @@
 
 import { useEffect } from "react";
 
-export default function PurchaseTracking({ session }) {
+export default function PurchaseTracking({ amountTotal, currency }) {
   useEffect(() => {
-    window.gtag("event", "conversion", {
-      send_to: "AW-18204020684/NaIACLrR9cYcEMyfrehD",
-      value: session.amount_total / 100,
-      currency: session.currency.toUpperCase(),
-    });
-  }, [session]);
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18204020684/NaIACLrR9cYcEMyfrehD",
+        value: amountTotal / 100,
+        currency: currency.toUpperCase(),
+      });
+    }
+  }, [amountTotal, currency]);
 
   return null;
 }
