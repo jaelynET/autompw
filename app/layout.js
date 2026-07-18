@@ -1,6 +1,6 @@
 // app/layout.js
 import "@/app/globals.css";
-
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script"; //
 export const metadata = {
   title: {
@@ -20,33 +20,30 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      {/* 1. Kept the head clean */}
       <head />
+
+      {/* 2. Placed all child scripts and pages safely inside the body boundary */}
       <body>
         {children}
 
-        {/* 1. We remove <GoogleAnalytics /> because we are initializing it natively below */}
+        {gaId && <GoogleAnalytics gaId={gaId} />}
 
-        {/* 2. Combined Native Initialization Script */}
-        {(gaId || adsId) && (
+        {(adsId || gaId) && (
           <script
             dangerouslySetInnerHTML={{
               __html: `
-                // Inject the main Google Tag script loader using your GA4 ID
-                const script = document.createElement('script');
-                script.async = true;
-                script.src = 'https://googletagmanager.com{gaId || adsId}';
-                document.head.appendChild(script);
-
                 window.dataLayer = window.dataLayer || [];
                 if (typeof gtag === 'undefined') {
                   function gtag(){dataLayer.push(arguments);}
                   window.gtag = gtag;
                 }
-
-                // Initialize tracking configurations safely
-                gtag('js', new Date());
-                ${gaId ? `gtag('config', '${gaId}');` : ""}
+                
+                // 1. Core Google Ads configuration
                 ${adsId ? `gtag('config', 'AW-${adsId}');` : ""}
+                
+                // 2. THIS IS THE FIX: Connects window.gtag to GA4 so sendGtagEvent works for purchases
+                ${gaId ? `gtag('config', '${gaId}');` : ""}
               `,
             }}
           />
