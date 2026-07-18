@@ -4,10 +4,12 @@ import { useEffect } from "react";
 
 export default function PurchaseTracking({ amountTotal, currency }) {
   useEffect(() => {
+    console.log("PurchaseTracking mounted");
+    console.log("gtag:", window.gtag);
     if (!window.gtag) return;
 
     const orderId = "ORD-" + Date.now();
-
+    console.log("Sending purchase");
     // GA4 Purchase Event
     window.gtag("event", "purchase", {
       transaction_id: orderId,
