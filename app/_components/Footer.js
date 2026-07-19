@@ -110,7 +110,7 @@ function Footer() {
           </div>
 
           {/* Socials */}
-          <div>
+          {/* <div>
             <h3 className="font-semibold mb-3 text-sm md:text-base">
               Follow Us
             </h3>
@@ -124,13 +124,13 @@ function Footer() {
                 <FaInstagram className="w-5 h-5" />
               </Link>
 
-              {/* <Link
+               <Link
                 href="https://www.facebook.com/profile.php?id=61589861829653&mibextid=ZbWKwL"
                 aria-label="Facebook"
                 className="hover:opacity-70 transition"
-              > */}
+              > 
               <FaFacebook className="w-5 h-5" />
-              {/* </Link> */}
+              {/* </Link> 
 
               <Link
                 href="https://www.pinterest.com/autompw"
@@ -140,11 +140,11 @@ function Footer() {
                 <FaPinterest className="w-5 h-5" />
               </Link>
             </div>
-          </div>
+          </div> */}
         </nav>
 
         <div className="border-t mt-10 pt-5 text-xs text-gray-500 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} All rights reserved to Jaelyn.</p>
+          <p>© {new Date().getFullYear()} AutoMPW. All rights reserved.</p>
         </div>
       </div>
     </footer>

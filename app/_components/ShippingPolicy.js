@@ -23,7 +23,7 @@ export default function ShippingPolicy() {
         <section>
           <h2 className="font-semibold mb-2">Delivery Time</h2>
           <p>
-            Transit times are usually 5–7 business days depending on your
+            Transit times are usually 4–8 business days depending on your
             location, excluding weekends and holidays.
           </p>
         </section>
