@@ -1,12 +1,17 @@
-// import HomePage from "@/app/_components/HomePage";
+import { product } from "@/app/constants";
+import ProductBox from "@/app/_components/ProductBox";
 
-import { redirect } from "next/navigation";
+export async function generateMetadata() {
+  return {
+    title: product.seo.meta_title,
+    description: product.seo.meta_description,
+  };
+}
 
 export default function Page() {
-  redirect("/2003-2006-chevy-silverado-headlights");
-  // return (
-
-  //     <HomePage />
-
-  // );
+  return (
+    <main className="flex-1 min-h-screen">
+      <ProductBox />
+    </main>
+  );
 }

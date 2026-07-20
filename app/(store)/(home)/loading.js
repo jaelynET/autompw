@@ -1,5 +1,5 @@
-import HomePageSkeleton from "@/app/_components/HomepageSkeleton";
+import ProductPageSkeleton from "@/app/_components/ProductPageSkeleton";
 
 export default function Loading() {
-  return <HomePageSkeleton />;
+  return <ProductPageSkeleton />
 }
