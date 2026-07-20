@@ -1,10 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/ampwlgo-1.1.svg";
-// import logo from "@/public/logo.svg";
-//  import logo from "@/public/.png";
-
-//import logo from "@/public/tubvillalgo-5.jpg";
 
 export default function Logo() {
   return (
@@ -22,5 +18,3 @@ export default function Logo() {
     </div>
   );
 }
-// Mi <span className="text-main">Casa</span> Mi
-//     <span className="text-main">Tub</span>
