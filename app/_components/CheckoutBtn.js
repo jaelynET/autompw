@@ -34,8 +34,10 @@ function CheckoutBtn({ product }) {
             content_name: product.title,
           });
         }
-
-        window.location.href = data.url;
+        //WAIT exactly 150 miliseconds so the browser can send the network request before redirecting
+        setTimeout(() => {
+          window.location.href = data.url;
+        }, 150);
         return;
       }
 
@@ -56,7 +58,9 @@ function CheckoutBtn({ product }) {
         loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
       }`}
     >
-      <p className="text-white">{loading ? "Processing..." : "Buy now"}</p>
+      <span className="text-white">
+        {loading ? "Processing..." : "Buy now"}
+      </span>
     </button>
   );
 }
