@@ -37,13 +37,13 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="mt-10 flex flex-col items-center text-center">
+      {/* <section className="mt-10 flex flex-col items-center text-center">
         <address className="not-italic text-xs md:text-sm text-gray-600">
           177 W Buchanan Rd
           <br />
           Pittsburg, CA 94565
-        </address>
-      </section>
+        </address> 
+      </section>*/}
 
       {/* Optional message form 
       <section className="border-t pt-10">

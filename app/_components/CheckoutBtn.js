@@ -24,16 +24,16 @@ function CheckoutBtn({ product }) {
       const data = JSON.parse(text);
 
       if (data.url) {
-        sendGtagEvent("add_to_cart", {
-          value: product.pricing.price / 100,
-          currency: "USD",
-          items: [
-            {
-              id: product.specifications.mpn,
-              name: product.title,
-            },
-          ],
-        });
+        // Track the Facebook Pixel InitiateCheckout or AddToCart event safely
+        if (typeof window !== "undefined" && window.fbq) {
+          window.fbq("track", "AddToCart", {
+            value: product.pricing.price / 100,
+            currency: "USD",
+            content_type: "product",
+            content_ids: [product.specifications.mpn],
+            content_name: product.title,
+          });
+        }
 
         window.location.href = data.url;
         return;

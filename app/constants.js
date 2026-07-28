@@ -23,7 +23,7 @@ export const product = {
   inStock: true,
 
   pricing: {
-    price: 12999,
+    price: 14999,
     compareAt: 24999,
   },
 
@@ -80,13 +80,13 @@ export const product = {
     installationNote: "Fits Avalanche models without factory cladding only.",
   },
   sellingPoints: [
-    "Direct OEM-style replacement",
+    "Crystal Clear Vision",
     "Premium Chrome housing with clear lens",
     "DOT & SAE compliant",
     "Fast shipping from the USA",
   ],
   description:
-    "Upgrade your 2003–2006 Chevy Silverado with chrome replacement headlights designed for OEM fitment and improved crystal-clear nighttime visibility.",
+    "Comfortably drive at night with complete peace of mind. You no longer have to worry about unseen hazards on dark backroads. These ultra-bright halogen headlights ensure a powerful, crisp beam pattern that illuminates everything on the road ahead of you.",
   seo: {
     meta_title:
       "2003-2006 Chevy Silverado Headlights | Driver & Passenger Side Replacement",

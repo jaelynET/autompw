@@ -103,18 +103,66 @@ function ProductDetails({ product }) {
 
         <div className="space-y-8">
           {/* Description */}
-          <section>
+          <section className="mt-5">
             <h2 className="mb-3 text-lg font-semibold text-gray-900">
-              Product Description
+              Enjoy Long Night Drives Again 💡
             </h2>
 
             <p className="leading-7 text-gray-600">{product.description}</p>
+            <div className="mt-6">
+              <h2 className="text-lg font-semibold text-gray-900">
+                Why Truck Owners Are Upgrading
+              </h2>
+
+              <ul className="mt-4 space-y-4">
+                <li>
+                  <span className="font-semibold text-gray-900">
+                    Crystal Clear Vision:
+                  </span>{" "}
+                  <span className="text-gray-600">
+                    Advanced lens design maximizes your nighttime visibility,
+                    making deer, road signs, and hazards easy to spot from a
+                    distance.
+                  </span>
+                </li>
+
+                <li>
+                  <span className="font-semibold text-gray-900">
+                    Aggressive Modern Styling:
+                  </span>{" "}
+                  <span className="text-gray-600">
+                    Replaces your old, faded, yellowed factory housings with a
+                    sharp, crystal-clear front-end look.
+                  </span>
+                </li>
+
+                <li>
+                  <span className="font-semibold text-gray-900">
+                    Direct Plug-and-Play:
+                  </span>{" "}
+                  <span className="text-gray-600">
+                    100% direct OEM fitment. No wiring modifications or splicing
+                    needed—drops straight into your factory mounting brackets.
+                  </span>
+                </li>
+
+                <li>
+                  <span className="font-semibold text-gray-900">
+                    Weatherproof Protection:
+                  </span>{" "}
+                  <span className="text-gray-600">
+                    Fully sealed housing prevents moisture, dust, and rain from
+                    leaking inside
+                  </span>
+                </li>
+              </ul>
+            </div>
           </section>
 
           {/* Specifications */}
           <section>
             <h2 className="mb-4 text-lg font-semibold text-gray-900">
-              Specifications
+              Vehicle Specifications
             </h2>
 
             <div className="overflow-hidden rounded-lg border border-gray-200">
@@ -167,11 +215,13 @@ function ProductDetails({ product }) {
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-200 font-semibold text-gray-700">
                       {reviewer.name.charAt(0)}
                     </div>
-
                     <div>
                       <p className="font-semibold text-gray-900">
                         {reviewer.name}
                       </p>
+                      <div className="mt-1 inline-flex items-center gap-1 rounded-md bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                        <span>Verified Purchase</span>
+                      </div>
                     </div>
                   </div>
 
