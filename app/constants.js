@@ -77,7 +77,8 @@ export const product = {
       "Chevrolet Silverado 2500",
       "Chevrolet Avalanche (without factory cladding)",
     ],
-    installationNote: "Fits Avalanche models without factory cladding only.",
+    installationNote:
+      "Fits Avalanche models without factory cladding only. Use your trucks factory bulbs - 100% plug and play setup (Bulbs not included)",
   },
   sellingPoints: [
     "Crystal Clear Vision",
