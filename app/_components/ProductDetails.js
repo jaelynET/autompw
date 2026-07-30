@@ -83,12 +83,18 @@ function ProductDetails({ product }) {
                 {product.fitment.years.join(", ")}
               </p>
 
-              <p className="mt-2 text-sm text-gray-600">
+              <div className="mt-2 text-sm text-gray-600">
                 <span className="font-semibold text-gray-900">
                   Installation Note:
                 </span>{" "}
-                {product.fitment.installationNote}
-              </p>
+                <ul className="mt-3 space-y-2">
+                  {product.fitment.installationNote.map((note) => (
+                    <li key={note}>
+                      <span>{note}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>
