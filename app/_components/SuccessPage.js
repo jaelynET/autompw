@@ -51,7 +51,7 @@ export default function SuccessPage({ customerEmail }) {
             className="text-sm font-medium text-white hover:text-emerald-400 transition-colors flex items-center gap-1 group self-start"
           >
             support@autompw.com
-            <ArrowRightIcon className="w-3 h-3 transform group-hover:translate-x-1 transition-transform" />
+            {/* <ArrowRightIcon className="w-3 h-3 transform group-hover:translate-x-1 transition-transform" /> */}
           </a>
         </div>
       </div>
