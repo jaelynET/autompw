@@ -15,7 +15,7 @@ export default function FAQPage() {
             How long does shipping take?
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
-            All orders are processed upon receipt. Delivery times: 4-8 days .
+            All orders are processed upon receipt. Delivery times: 2-4 days .
           </p>
         </div>
 
