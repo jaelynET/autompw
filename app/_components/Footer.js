@@ -147,7 +147,7 @@ function Footer() {
           {/* <p>© {new Date().getFullYear()} AutoMPW. All rights reserved.</p> */}
           <p>
             © {new Date().getFullYear()} AutoMPW is owned and operated by JAELYN
-            ELIZABETH VENTURES.
+            ELIZABETH VENTURES, JAELYN E THOMAS SOLE MBR
           </p>
         </div>
       </div>
