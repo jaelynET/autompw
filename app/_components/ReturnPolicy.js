@@ -31,6 +31,17 @@ export default function ReturnPolicy() {
           </p>
         </section>
 
+        <section>
+          <h2 className="font-semibold mb-2">Return Process & Destination</h2>
+          <p>
+            To ensure your return is processed acurately, do not mail items back
+            to the address on your shipping label. Once your return is approved
+            and you recieve your Return Authorization (RA) number, our support
+            team will provide you the exact designated US warehouse return
+            address and a prepaid or customer-provided shipping label.
+          </p>
+        </section>
+
         {/* <section>
           <h2 className="font-semibold mb-2">Restocking Fee</h2>
           <p>
