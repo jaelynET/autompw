@@ -17,8 +17,7 @@ async function ProductBox() {
   // const features = await productFeatures(bathtubId);
   // const featureImages = await getProductFeatureImages(bathtubId);
   const { gallery: productImages, specifications } = product;
-  const image1 = "/chevyhero.png";
-  console.log(productImages);
+  const image1 = "/clean-supplier-front-view.jpg";
 
   return (
     <>

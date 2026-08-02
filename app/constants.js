@@ -1,7 +1,9 @@
-import { chevyHero } from "@/public/chevyhero.png";
-import { chevyDetails } from "@/public/chevydetails.jpg";
-import { chevyBA } from "@/public/chevy-ba.jpg";
-import { chevyBeam } from "@/public/chevy-beam.jpg";
+// import { chevyHero } from "@/public/chevyhero.png";
+// import { chevyDetails } from "@/public/chevydetails.jpg";
+// import { chevyBA } from "@/public/chevy-ba.jpg";
+// import { chevyBeam } from "@/public/chevy-beam.jpg";
+import { image1 } from "@/public/clean-supplier-front-view.jpg";
+import { image2 } from "@/public/clean-supplier-view-2.jpg";
 
 export const PAGE_SIZE = 12;
 export const PAGE_WINDOW = 5;
@@ -28,32 +30,32 @@ export const product = {
   gallery: [
     {
       id: 1,
-      image: "/chevyhero.png",
+      image: "/clean-supplier-front-view.jpg",
       alt_text:
         "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado front view hero image",
       position: 1,
     },
     {
       id: 2,
-      image: "/chevydetails.jpg",
+      image: "/clean-supplier-view-2.jpg",
       alt_text:
         "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado side angle assembly details",
       position: 2,
     },
-    {
-      id: 3,
-      image: "/chevy-ba.jpg",
-      alt_text:
-        "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado before and after comparison",
-      position: 3,
-    },
-    {
-      id: 4,
-      image: "/chevy-beam.jpg",
-      alt_text:
-        "Chrome Lens Headlight Set Compatible with 03 04 05 06 Chevy Silverado powerful crisp night beam view at night",
-      position: 4,
-    },
+    // {
+    //   id: 3,
+    //   image: "/chevy-ba.jpg",
+    //   alt_text:
+    //     "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado before and after comparison",
+    //   position: 3,
+    // },
+    // {
+    //   id: 4,
+    //   image: "/chevy-beam.jpg",
+    //   alt_text:
+    //     "Chrome Lens Headlight Set Compatible with 03 04 05 06 Chevy Silverado powerful crisp night beam view at night",
+    //   position: 4,
+    // },
 
     // images
   ],
