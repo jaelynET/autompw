@@ -29,26 +29,29 @@ export const product = {
     {
       id: 1,
       image: "/chevyhero.png",
-      alt_text: "2003-2006 Chevy Silverado headlights front view",
+      alt_text:
+        "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado front view hero image",
       position: 1,
     },
     {
       id: 2,
       image: "/chevydetails.jpg",
-      alt_text: "2003-2006 Chevy Silverado headlights side angle",
+      alt_text:
+        "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado side angle assembly details",
       position: 2,
     },
     {
       id: 3,
       image: "/chevy-ba.jpg",
       alt_text:
-        "2003-2006 Chevy Silverado 1500 headlights before and after lights view",
+        "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado before and after comparison",
       position: 3,
     },
     {
       id: 4,
       image: "/chevy-beam.jpg",
-      alt_text: "03 04 05 06 Chevy Silverado headlights beam view at night",
+      alt_text:
+        "Chrome Lens Headlight Set Compatible with 03 04 05 06 Chevy Silverado powerful crisp night beam view at night",
       position: 4,
     },
 
