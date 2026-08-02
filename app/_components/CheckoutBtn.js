@@ -2,6 +2,7 @@
 import {
   sendGtagEvent,
   ADS_TRACKING_ID,
+  GA_TRACKING_ID
   CONVERSION_LABEL,
 } from "../utils/gtag";
 
@@ -44,7 +45,7 @@ function CheckoutBtn({ product }) {
           typeof window.gtag === "function"
         ) {
           sendGtagEvent("add_to_cart", {
-            send_to: `AW-${ADS_TRACKING_ID}/${CONVERSION_LABEL}`, // Directs event to your Google Ads pixel
+            send_to: [GA_TRACKING_ID,`AW-${ADS_TRACKING_ID}/${CONVERSION_LABEL}`], // Directs event to your Google Ads pixel
             value: product.pricing.price / 100,
             currency: "USD",
             items: [

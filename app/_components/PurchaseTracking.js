@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import {
   sendGtagEvent,
   ADS_TRACKING_ID,
+  GA_TRACKING_ID,
   CONVERSION_LABEL,
 } from "../utils/gtag";
 
@@ -27,7 +28,7 @@ export default function PurchaseTracking({ amountTotal, currency }) {
     // 2. Google Analytics 4 & Google Ads Purchase Event
     if (typeof window !== "undefined" && typeof window.gtag === "function") {
       sendGtagEvent("purchase", {
-        send_to: `AW-${ADS_TRACKING_ID}/${CONVERSION_LABEL}`,
+        send_to: [GA_TRACKING_ID, `AW-${ADS_TRACKING_ID}/${CONVERSION_LABEL}`],
         // Routes data directly to Google Ads conversion pixel
         transaction_id: orderId, // Crucial for deduplication and matching
         value: formattedAmount,

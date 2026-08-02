@@ -44,7 +44,7 @@ export default function AboutPage() {
         </p>
 
         <div className="mt-3 text-sm md:text-base">
-          <p>📧 autompwsupport@gmail.com</p>
+          <p>📧 support@autompw.com</p>
           <p>📞 707-310-6845</p>
         </div>
       </section>
