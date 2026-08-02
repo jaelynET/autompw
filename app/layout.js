@@ -8,7 +8,7 @@ export const metadata = {
     template: "%s / AutoMPW",
     default: "AutoMPW",
   },
-  description: "Find the right part replacement for your car",
+  description: "Shop reliable aftermarket replacement headlight assemblies and lighting components at AutoMPW. Proudly owned and operated by JAELYN ELIZABETH VENTURES, featuring fast shipping and direct vehicle compatibility ",
 };
 
 export default function RootLayout({ children }) {

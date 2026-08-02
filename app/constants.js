@@ -17,8 +17,6 @@ export const SORT_OPTIONS = [
 ];
 
 export const product = {
-  slug: "2003-2006-chevy-silverado-headlights",
-
   title: "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado",
   inStock: true,
 
@@ -92,8 +90,8 @@ export const product = {
     "Comfortably drive at night with complete peace of mind. You no longer have to worry about unseen hazards on dark backroads. These ultra-bright halogen headlights ensure a powerful, crisp beam pattern that illuminates everything on the road ahead of you.",
   seo: {
     meta_title:
-      "2003-2006 Chevy Silverado Headlights | Driver & Passenger Side Replacement",
+      "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado",
     meta_description:
-      "Shop 2003-2006 Chevy Silverado replacement headlights. Quality driver and passenger side headlight assemblies with OEM-style fitment, fast shipping, and secure checkout.",
+      "Upgrade your truck with high-quality replacement headlight assemblies compatible with 2003-2006 Chevy Silverado. Direct aftermarket fitment, fast shipping, and secure checkout.",
   },
 };
