@@ -1,5 +1,9 @@
 "use client";
-import { sendGtagEvent, ADS_TRACKING_ID } from "../utils/gtag";
+import {
+  sendGtagEvent,
+  ADS_TRACKING_ID,
+  CONVERSION_LABEL,
+} from "../utils/gtag";
 
 import { useState } from "react";
 
@@ -32,6 +36,25 @@ function CheckoutBtn({ product }) {
             content_type: "product",
             content_ids: [product.specifications.mpn],
             content_name: product.title,
+          });
+        }
+        // 2. Google Analytics 4 (GA4) & Google Ads Tracking
+        if (
+          typeof window !== "undefined" &&
+          typeof window.gtag === "function"
+        ) {
+          sendGtagEvent("add_to_cart", {
+            send_to: `AW-${ADS_TRACKING_ID}/${CONVERSION_LABEL}`, // Directs event to your Google Ads pixel
+            value: product.pricing.price / 100,
+            currency: "USD",
+            items: [
+              {
+                item_id: product.specifications.mpn,
+                item_name: product.title,
+                price: product.pricing.price / 100,
+                quantity: 1,
+              },
+            ],
           });
         }
         //WAIT exactly 150 miliseconds so the browser can send the network request before redirecting

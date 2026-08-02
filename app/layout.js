@@ -13,7 +13,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const fbPixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
-
+  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ID;
+  const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
   return (
     <html lang="en">
       {/* 1. Kept the head clean */}
@@ -30,6 +31,26 @@ export default function RootLayout({ children }) {
               fbq('set', 'autoConfig', false, '${fbPixelId}'); 
 
               fbq('init', '${fbPixelId}'); fbq('track', 'PageView'); `,
+            }}
+          />
+        )}
+
+        {gaId && <GoogleAnalytics gaId={gaId} />}
+
+        {/* 3. Link Google Ads to the existing tracking script */}
+        {adsId && (
+          <Script
+            id="google-ads"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                if (typeof window.gtag !== 'function') {
+                window.gtag = function(){window.dataLayer.push(arguments);}
+                }
+                window.gtag('js', new Date());
+              window.gtag('config', 'AW-${adsId}');
+              `,
             }}
           />
         )}

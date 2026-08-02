@@ -19,13 +19,13 @@ export default function ContactPage() {
             Email us for the fastest response:
           </p>
 
-          <p className="text-sm font-medium">autompwsupport@gmail.com</p>
+          <p className="text-sm font-medium">support@autompw.com</p>
         </div>
 
         <div className="border p-6 rounded-lg">
           <h2 className="font-semibold text-lg mb-3">Phone Support</h2>
 
-          <p className="text-sm font-medium mb-2">510-977-0587</p>
+          <p className="text-sm font-medium mb-2">707-310-6845</p>
 
           <p className="text-sm text-gray-600">
             Phone Hours: Mon, Wed, Fri • 11:00 AM – 1:00 PM PT
@@ -37,13 +37,13 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* <section className="mt-10 flex flex-col items-center text-center">
+      <section className="mt-10 flex flex-col items-center text-center">
         <address className="not-italic text-xs md:text-sm text-gray-600">
           177 W Buchanan Rd
           <br />
           Pittsburg, CA 94565
-        </address> 
-      </section>*/}
+        </address>
+      </section>
 
       {/* Optional message form 
       <section className="border-t pt-10">

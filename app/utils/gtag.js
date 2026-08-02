@@ -1,5 +1,6 @@
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ID;
 export const ADS_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+export const CONVERSION_LABEL = process.env.NEXT_PUBLIC_GOOGLE_CONVERSION_LABEL;
 
 // Core engine to pass safe window events to Google
 export const sendGtagEvent = (eventName, params) => {

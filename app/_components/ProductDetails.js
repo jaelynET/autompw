@@ -14,7 +14,7 @@ import ProductSpecs from "./ProductSpecs";
 import ProductDimensions from "./ProductDimensions";
 import ProductInstallDocs from "./ProductInstallDocs";
 import ProductVariant from "./ProductVariant";
-import { reviews } from "../constants";
+
 import CheckoutBtn from "./CheckoutBtn";
 
 function ProductDetails({ product }) {
@@ -27,9 +27,6 @@ function ProductDetails({ product }) {
         <h1 className="text-2xl font-bold tracking-tight text-stone-900 sm:text-3xl md:text-4xl leading-tight">
           {title}
         </h1>
-        <span className="inline-flex items-center gap-x-1.5 rounded-md bg-red-600 px-2 py-1 text-xs font-bold text-white shadow-sm">
-          <span>🔥</span> Best Seller
-        </span>
 
         <div className="mt-3 flex flex-col gap-1 ">
           <div>
@@ -147,8 +144,8 @@ function ProductDetails({ product }) {
                     Direct Plug-and-Play:
                   </span>{" "}
                   <span className="text-gray-600">
-                    100% direct OEM fitment. No wiring modifications or splicing
-                    needed—drops straight into your factory mounting brackets.
+                    No wiring modifications or splicing needed—drops straight
+                    into your factory mounting brackets.
                   </span>
                 </li>
 
@@ -209,47 +206,6 @@ function ProductDetails({ product }) {
             />
           </ExpandableSection>
         </div> */}
-        <section>
-          <h2 className="mb-4 mt-5 text-lg font-semibold text-gray-900">
-            Customer Reviews
-          </h2>
-          <div className="mt-6 divide-y divide-gray-200">
-            {reviews.map((reviewer) => (
-              <div key={reviewer.id} className="py-6">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-200 font-semibold text-gray-700">
-                      {reviewer.name.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">
-                        {reviewer.name}
-                      </p>
-                      <div className="mt-1 inline-flex items-center gap-1 rounded-md bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                        <span>Verified Purchase</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="text-yellow-500 text-sm">
-                    {"★".repeat(reviewer.rating)}
-                    <span className="text-gray-300">
-                      {"★".repeat(5 - reviewer.rating)}
-                    </span>
-                  </div>
-                </div>
-
-                <h3 className="mt-4 font-semibold text-gray-900">
-                  {reviewer.title}
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-gray-600">
-                  {reviewer.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </>
   );

@@ -14,11 +14,6 @@ export default function ReturnPolicy() {
         </section>
 
         <section>
-          <h2 className="font-semibold mb-2">Non-Returnable Items</h2>
-          <p>TCUS are final sale and cannot be returned or refunded.</p>
-        </section>
-
-        <section>
           <h2 className="font-semibold mb-2">Return Authorization</h2>
           <p>
             To start a return, please contact our customer support team to
