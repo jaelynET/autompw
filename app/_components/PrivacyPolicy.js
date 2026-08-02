@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
             us at:
             <br />
             <br />
-            Email: autompwsupport@gmail.com
+            Email: support@autompw.com
           </p>
         </section>
       </div>
