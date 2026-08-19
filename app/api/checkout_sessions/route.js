@@ -12,11 +12,11 @@ export async function POST(req) {
     const headersList = await headers();
     const origin = headersList.get("origin");
 
-    // const shippingRate = await stripe.shippingRates.create({
-    //   display_name: "Insured Express Courier",
-    //   type: "fixed_amount",
-    //   fixed_amount: { amount: 1295, currency: "usd" },
-    // });
+    const shippingRate = await stripe.shippingRates.create({
+      display_name: "Insured Express Courier",
+      type: "fixed_amount",
+      fixed_amount: { amount: 1295, currency: "usd" },
+    });
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -28,7 +28,7 @@ export async function POST(req) {
         {
           price_data: {
             currency: "usd",
-            unit_amount: 100,
+            unit_amount: 12999,
             product_data: {
               name: "The Porsche 918 Levitation Display",
               description: `Finish: ${selectedColor === "gray" ? "Crayon Gray" : "Guards Red"}`,
@@ -40,11 +40,11 @@ export async function POST(req) {
           quantity: 1,
         },
       ],
-      // shipping_options: [
-      //   {
-      //     shipping_rate: shippingRate.id,
-      //   },
-      // ],
+      shipping_options: [
+        {
+          shipping_rate: shippingRate.id,
+        },
+      ],
 
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/`,
