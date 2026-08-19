@@ -37,7 +37,6 @@ export async function POST(req) {
     if (!session?.id) {
       return new NextResponse("No session", { status: 400 });
     }
-  
 
     // Prevent duplicates
     const { data: existing } = await supabaseAdmin
@@ -59,12 +58,13 @@ export async function POST(req) {
       checkOutSession.customer_details?.address ||
       null;
     const billing = checkOutSession.customer_details?.address;
-  // Add this temporary log right before you query the database
+    // Add this temporary log right before you query the database
     console.log("DEBUG: Target Supabase URL is:", supabaseAdmin.supabaseUrl);
     // Insert order
     const { error: orderError } = await supabaseAdmin.from("orders").insert({
       stripe_session_id: session.id,
       product: session.metadata?.product,
+      variant_color: session.metadata?.variant_color || "red",
       total_amount: session.amount_total,
       currency: session.currency,
       status: "paid",

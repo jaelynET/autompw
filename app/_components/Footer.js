@@ -92,7 +92,7 @@ function Footer() {
             </h3>
 
             <ul className="space-y-2">
-              <li className="text-xs md:text-sm">707-310-6845</li>
+              <li className="text-xs md:text-sm">510-977-0587</li>
 
               <li className="text-xs md:text-sm break-all">
                 support@autompw.com
@@ -101,11 +101,6 @@ function Footer() {
               <li className="text-xs md:text-sm">
                 Mon, Wed, Fri / 11AM – 1PM PST
               </li>
-              <address className="not-italic text-xs md:text-sm">
-                177 W Buchanan Rd
-                <br />
-                Pittsburg, CA 94565
-              </address>
             </ul>
           </div>
 
@@ -144,11 +139,7 @@ function Footer() {
         </nav>
 
         <div className="border-t mt-10 pt-5 text-xs text-gray-500 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          {/* <p>© {new Date().getFullYear()} AutoMPW. All rights reserved.</p> */}
-          <p>
-            © {new Date().getFullYear()} AutoMPW is owned and operated by JAELYN
-            ELIZABETH VENTURES, JAELYN E THOMAS SOLE MBR
-          </p>
+          <p>© {new Date().getFullYear()} AutoMPW. All rights reserved.</p>
         </div>
       </div>
     </footer>

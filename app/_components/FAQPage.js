@@ -19,7 +19,7 @@ export default function FAQPage() {
           </p>
         </div>
 
-        <div className="border-b pb-5">
+        {/* <div className="border-b pb-5">
           <h2 className="font-semibold text-base mb-2">
             Are all items in photo&apos;s included?
           </h2>
@@ -27,16 +27,16 @@ export default function FAQPage() {
             Auto parts are sold separately unless otherwise stated on the
             product page.
           </p>
-        </div>
+        </div> */}
 
-        <div className="border-b pb-5">
+        {/* <div className="border-b pb-5">
           <h2 className="font-semibold text-base mb-2">
             Do parts require professional installation?
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
             We recommend professional installation for auto parts
           </p>
-        </div>
+        </div> */}
 
         <div className="border-b pb-5">
           <h2 className="font-semibold text-base mb-2">

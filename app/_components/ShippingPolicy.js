@@ -15,15 +15,13 @@ export default function ShippingPolicy() {
 
         <section>
           <h2 className="font-semibold mb-2">Processing Time</h2>
-          <p>
-            Orders are typically processed and shipped within 1–2 business days.
-          </p>
+          <p>Orders are processed and shipped within 1–2 business days.</p>
         </section>
 
         <section>
           <h2 className="font-semibold mb-2">Delivery Time</h2>
           <p>
-            Transit times are usually 2–4 business days depending on your
+            Transit times are usually 5–10 business days depending on your
             location, excluding weekends and holidays.
           </p>
         </section>
@@ -32,8 +30,7 @@ export default function ShippingPolicy() {
           <h2 className="font-semibold mb-2">Shipping Method</h2>
           <p>
             Smaller items are shipped via parcel carriers such as UPS, FedEx,
-            USPS, or DHL. Larger items (over 100 lbs) are shipped via freight
-            (LTL carriers).
+            USPS, or DHL.
           </p>
         </section>
 

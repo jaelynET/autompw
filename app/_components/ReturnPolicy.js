@@ -7,9 +7,29 @@ export default function ReturnPolicy() {
         <section>
           <h2 className="font-semibold mb-2">Returns</h2>
           <p>
-            We accept returns on most items within 30 days of delivery for a
-            refund. Items must be unused, in original condition, and returned in
-            original packaging.
+            We accept returns on items within 30 days of delivery for a refund.
+            To be eligible for a return, your item must be unused, in its
+            original condition, and returned in the original packaging with all
+            electromagnetic components included.
+          </p>
+        </section>
+        <section>
+          <h2 className="font-semibold mb-2">
+            Defective or Transit-Damaged Items (Required Protocol)
+          </h2>
+          <p>
+            Because our high-ticket displays involve sensitive, premium
+            electromagnetic components, every unit is carefully inspected and
+            video-tested before leaving the warehouse.
+          </p>
+          <br />
+          <p>
+            In the rare event that your package is handled roughly or damaged
+            during transit, **we require an uninterrupted unboxing and initial
+            usage video** (showing the parcel opening and the initial plug-in
+            test) to process an immediate, free replacement. This raw video file
+            acts as our verification for shipping insurance claims. Please
+            forward this media to support within 48 hours of delivery.
           </p>
         </section>
 
@@ -18,7 +38,7 @@ export default function ReturnPolicy() {
           <p>
             To start a return, please contact our customer support team to
             receive a Return Authorization (RA) number. Returns sent without an
-            RA number cannot be accepted.
+            RA number cannot be accepted or processed.
           </p>
         </section>
 
@@ -52,8 +72,10 @@ export default function ReturnPolicy() {
         <section>
           <h2 className="font-semibold mb-2">Refunds</h2>
           <p>
-            Once your return is received and inspected, we will issue a refund
-            for the product price minus shipping costs.
+            Once your return is received, inspected, and verified by our
+            warehouse team, we will issue a refund for the product price minus
+            original shipping fees. Refunds will be applied directly back to
+            your original method of payment within 3-5 business days.
           </p>
         </section>
       </div>

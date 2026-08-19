@@ -8,7 +8,7 @@ import {
 
 import { useState } from "react";
 
-function CheckoutBtn({ product }) {
+function CheckoutBtn({ product, selectedColor }) {
   const [loading, setLoading] = useState(false);
   async function handleCheckout() {
     if (loading) return;
@@ -20,6 +20,7 @@ function CheckoutBtn({ product }) {
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({ selectedColor: selectedColor }),
       });
 
       const text = await res.text(); // 👈 IMPORTANT DEBUG STEP
@@ -35,32 +36,32 @@ function CheckoutBtn({ product }) {
             value: product.pricing.price / 100,
             currency: "USD",
             content_type: "product",
-            content_ids: [product.specifications.mpn],
+            content_ids: [product.seo.meta_title],
             content_name: product.title,
           });
         }
-        // 2. Google Analytics 4 (GA4) & Google Ads Tracking
-        if (
-          typeof window !== "undefined" &&
-          typeof window.gtag === "function"
-        ) {
-          sendGtagEvent("add_to_cart", {
-            send_to: [
-              GA_TRACKING_ID,
-              `AW-${ADS_TRACKING_ID}/${CONVERSION_LABEL}`,
-            ], // Directs event to your Google Ads pixel
-            value: product.pricing.price / 100,
-            currency: "USD",
-            items: [
-              {
-                item_id: product.specifications.mpn,
-                item_name: product.title,
-                price: product.pricing.price / 100,
-                quantity: 1,
-              },
-            ],
-          });
-        }
+        // // 2. Google Analytics 4 (GA4) & Google Ads Tracking
+        // if (
+        //   typeof window !== "undefined" &&
+        //   typeof window.gtag === "function"
+        // ) {
+        //   sendGtagEvent("add_to_cart", {
+        //     send_to: [
+        //       GA_TRACKING_ID,
+        //       `AW-${ADS_TRACKING_ID}/${CONVERSION_LABEL}`,
+        //     ], // Directs event to your Google Ads pixel
+        //     value: product.pricing.price / 100,
+        //     currency: "USD",
+        //     items: [
+        //       {
+        //         item_id: product.specifications.mpn,
+        //         item_name: product.title,
+        //         price: product.pricing.price / 100,
+        //         quantity: 1,
+        //       },
+        //     ],
+        //   });
+        // }
         //WAIT exactly 150 miliseconds so the browser can send the network request before redirecting
         setTimeout(() => {
           window.location.href = data.url;

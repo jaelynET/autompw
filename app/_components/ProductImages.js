@@ -1,7 +1,7 @@
 "use client";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
-import { useRef, useState, use, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Keyboard,
@@ -22,32 +22,33 @@ import ProductGridSkeleton from "./ProductGridSkeleton";
 import ThumbnailsSkeleton from "./ThumbnailsSkeleton";
 import { useDom } from "./DomContext";
 
-function ProductImages({ mainImage, productImages }) {
+function ProductImages({ mainImage, productImages, selectedColor = "red" }) {
   const { domLoaded } = useDom();
-
-  // if (!domLoaded) return <ProductSwipeSkeleton count={2} />;
-  const firstPic = productImages.find((product) => product.position === 1);
-
-  const { id, image, position } = firstPic;
-
-  const [displayImage, setDisplayImage] = useState(productImages);
-
-  const [slides, setslides] = useState(productImages);
-  const [current, setCurrent] = useState(0);
-  const paginationRef = useRef(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [mainSwiper, setMainSwiper] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  // if (!domLoaded) return <ProductSwipeSkeleton count={2} />;
+
+  // 1. Strict Mutually Exclusive Filters using your position mapping
+  const filteredImages = productImages
+    .filter((img) => img.color === selectedColor)
+    .sort((a, b) => a.position - b.position);
+
+  // 2. Clear out index memory instantly on variation swap
+  useEffect(() => {
+    if (mainSwiper && !mainSwiper.destroyed) {
+      mainSwiper.slideTo(0, 0); // Force jump to index 0 instantly with 0ms transition delay
+      mainSwiper.update(); // Remeasure the dynamic array size changes
+    }
+    if (thumbsSwiper && !thumbsSwiper.destroyed) {
+      thumbsSwiper.slideTo(0, 0);
+      thumbsSwiper.update();
+    }
+    setActiveIndex(0);
+  }, [selectedColor, mainSwiper, thumbsSwiper]);
 
   // FULLSCREEN
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  function nextSlide() {
-    setCurrent((prev) => (prev + 1) % slides.length);
-  }
-  function prevSlide() {
-    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
-  }
 
   const VISIBLE_THUMBS = 5; // full thumbnails visible
   const SCROLL_OFFSET = 2; // how close to edge before scrolling
@@ -68,16 +69,17 @@ function ProductImages({ mainImage, productImages }) {
     }
   }, [activeIndex, thumbsSwiper]);
 
-  // GO OVER THIS WHEN YOU ADD VARIANTS
-  //   useEffect(() => {
-  //   if (!mainSwiper || !thumbsSwiper) return;
+  // // GO OVER THIS WHEN YOU ADD VARIANTS
+  // useEffect(() => {
+  //   if (mainSwiper) mainSwiper.slideTo(0, 300);
+  //   if (thumbsSwiper) thumbsSwiper.slideTo(0, 300);
 
-  //   mainSwiper.slideTo(0, 0);
-  //   thumbsSwiper.slideTo(0, 0);
+  //   // mainSwiper.slideTo(0, 0);
+  //   // thumbsSwiper.slideTo(0, 0);
 
-  //   mainSwiper.update();
-  //   thumbsSwiper.update();
-  // }, [productImages]);
+  //   // mainSwiper.update();
+  //   // thumbsSwiper.update();
+  // }, [selectedColor, mainSwiper, thumbsSwiper]);
 
   return (
     <>
@@ -98,21 +100,33 @@ function ProductImages({ mainImage, productImages }) {
               watchSlidesProgress
               className="w-20 h-[470px] hidden md:block"
             >
-              {productImages.map((product, index) => (
+              {filteredImages.map((product, index) => (
                 <SwiperSlide
-                  key={product.id}
+                  key={product.id || index}
                   onMouseEnter={() => mainSwiper?.slideTo(index)}
-                  className="cursor-pointer border  overflow-hidden transition !h-20 "
+                  className={`cursor-pointer border overflow-hidden transition !h-20 rounded-lg ${
+                    activeIndex === index
+                      ? "border-stone-900"
+                      : "border-stone-200"
+                  }`}
                 >
-                  <div className="relative w-full h-20">
-                    <Image
-                      src={product.image}
-                      alt={
-                        product.alt_text || product.products.product_title_seo
-                      }
-                      fill
-                      className="object-cover"
-                    />
+                  <div className="relative w-full h-full bg-stone-950">
+                    {product.type === "video" ? (
+                      /* Minimal Video Thumbnail Placeholder */
+                      <video
+                        src={product.image}
+                        muted
+                        playsInline
+                        className="h-full w-full object-cover opacity-60"
+                      />
+                    ) : (
+                      <Image
+                        src={product.image}
+                        alt="Thumbnail view"
+                        fill
+                        className="object-cover"
+                      />
+                    )}
                   </div>
                 </SwiperSlide>
               ))}
@@ -129,26 +143,43 @@ function ProductImages({ mainImage, productImages }) {
           }}
           onSwiper={setMainSwiper} // 👈 store the main swiper
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          thumbs={{ swiper: thumbsSwiper }}
-          allowTouchMove={false}
+          thumbs={{
+            swiper:
+              thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+          }}
+          allowTouchMove={true}
           slidesPerView={1}
-          className="w-full h-150"
+          className="w-full h-150 overflow-hidden rounded-2xl border border-stone-200"
         >
-          {productImages.map((product, index) => (
-            <SwiperSlide key={product.id}>
-              <button
-                type="button"
-                onClick={() => setIsOpen(true)}
-                className="relative w-full h-full cursor-zoom-in"
-              >
-                <Image
-                  src={product.image}
-                  alt={product.alt_text || product.products.product_title_seo}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                />
-              </button>
+          {filteredImages.map((product, index) => (
+            <SwiperSlide key={product.id || index} className="bg-stone-950">
+              {product.type === "video" ? (
+                /* Main Page Autoplay Video Loop */
+                <div className="w-full h-full relative">
+                  <video
+                    src={product.image}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(true)}
+                  className="relative w-full h-full cursor-zoom-in"
+                >
+                  <Image
+                    src={product.image}
+                    alt="Porsche display view"
+                    fill
+                    className="object-cover"
+                    priority={index === 1} // High-priority loading for the primary variant image
+                  />
+                </button>
+              )}
             </SwiperSlide>
           ))}
         </Swiper>
@@ -157,7 +188,7 @@ function ProductImages({ mainImage, productImages }) {
       {isOpen && (
         <>
           <DesktopFullscreenGallery
-            images={productImages}
+            images={filteredImages}
             startIndex={activeIndex}
             onClose={() => setIsOpen(false)}
           />
@@ -165,7 +196,10 @@ function ProductImages({ mainImage, productImages }) {
       )}
 
       <div className="md:hidden">
-        <MobileGallery productImages={productImages} />
+        <MobileGallery
+          productImages={filteredImages}
+          selectedColor={selectedColor}
+        />
       </div>
 
       {/* <div className="relative">

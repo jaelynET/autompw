@@ -72,8 +72,6 @@ export default function TermsAndConditions() {
             <br />
             <br />
             Email: support@autompw.com
-            <br />
-            Phone: 707-310-6845
           </p>
         </section>
       </div>
