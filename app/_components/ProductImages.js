@@ -158,9 +158,11 @@ function ProductImages({ mainImage, productImages, selectedColor = "red" }) {
                 <div className="w-full h-full relative">
                   <video
                     src={product.image}
+                    poster="/red-porsche-2.jpg"
                     autoPlay
                     loop
                     muted
+                    preload="auto"
                     playsInline
                     className="h-full w-full object-cover"
                   />

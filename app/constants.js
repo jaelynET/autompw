@@ -27,7 +27,7 @@ export const product = {
       id: "vid_red",
       type: "video",
       alt_text: "porsche",
-      image: "/red-porsche-loop.mp4",
+      image: "/porsche-loop-video.mp4",
       color: "red",
       position: 1,
     },
