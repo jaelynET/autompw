@@ -67,6 +67,8 @@ function MobileGallery({ productImages, selectedColor }) {
                     <div className="relative w-full h-full">
                       <video
                         src={mediaSrc}
+                        poster="/red-porsche-2.jpg"
+                        preload="auto"
                         autoPlay
                         loop
                         muted
