@@ -105,7 +105,8 @@ function FAQList() {
               Not at all. We engineered the tracking tracks with calibrated
               rare-earth magnets. The spheres glide smoothly when you
               intentionally move them with your fingers, but they lock firmly
-              into place and won't dislodge if the desk is bumped or shaken.
+              into place and won&apos;t dislodge if the desk is bumped or
+              shaken.
             </div>
           </details>
         </div>
