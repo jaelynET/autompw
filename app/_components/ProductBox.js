@@ -25,7 +25,9 @@ async function ProductBox() {
         <h1 className="text-2xl font-bold tracking-tight text-stone-900 sm:text-3xl md:text-4xl leading-tight md:hidden ">
           {title}
         </h1>
-        <span className="text-xs ">Watch it float. Watch it Spin.</span>
+        <span className="text-xs ">
+          Time, Suspended in Motion. Free Shipping.
+        </span>
       </div>
 
       {/* <ProductImages mainImage={image1} productImages={productImages} /> */}

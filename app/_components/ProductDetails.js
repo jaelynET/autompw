@@ -30,9 +30,9 @@ function ProductDetails({ product }) {
     description,
     sellingPoints,
   } = product;
-  const [selectedColor, setSelectedColor] = useState("red");
+  const [selectedColor, setSelectedColor] = useState("black");
 
-  const image1 = "/gray-porsche-2.jpg";
+  const image1 = "/magnetic-calendar-main-lfs.jpg";
 
   return (
     <div className="md:grid md:grid-cols-2 md:mt-8 md:ml-30 ">
@@ -59,29 +59,29 @@ function ProductDetails({ product }) {
                 {/* Guards Red Button */}
                 <button
                   type="button"
-                  onClick={() => setSelectedColor("red")}
+                  onClick={() => setSelectedColor("black")}
                   className={`flex items-center gap-2 rounded-full border py-1.5 pl-2 pr-3 text-xs font-semibold transition ${
-                    selectedColor === "red"
+                    selectedColor === "black"
                       ? "border-stone-900 bg-stone-950 text-white"
                       : "border-stone-200 bg-white text-stone-950 hover:border-stone-400"
                   }`}
                 >
-                  <span className="h-3.5 w-3.5 rounded-full bg-red-600 border border-black/10 block" />
-                  Guards Red
+                  <span className="h-3.5 w-3.5 rounded-full bg-black border border-black/10 block" />
+                  Black
                 </button>
 
                 {/* Crayon Gray Button */}
                 <button
                   type="button"
-                  onClick={() => setSelectedColor("gray")}
+                  onClick={() => setSelectedColor("white")}
                   className={`flex items-center gap-2 rounded-full border py-1.5 pl-2 pr-3 text-xs font-semibold transition ${
-                    selectedColor === "gray"
-                      ? "border-stone-900 bg-stone-950 text-white"
+                    selectedColor === "white"
+                      ? "border-stone-950 bg-stone-100 text-stone-950 ring-2 ring-stone-950/10"
                       : "border-stone-200 bg-white text-stone-950 hover:border-stone-400"
                   }`}
                 >
-                  <span className="h-3.5 w-3.5 rounded-full bg-stone-400 border border-black/10 block" />
-                  Crayon Gray
+                  <span className="h-3.5 w-3.5 rounded-full bg-white-100 border border-black/10 block" />
+                  White
                 </button>
               </div>
             </div>
@@ -170,13 +170,14 @@ function ProductDetails({ product }) {
           <div className="mb-8">
             <h2 className="text-2xl font-black tracking-tight text-stone-950 sm:text-3xl">
               <span className="block sm:inline">
-                Experience the Extraordinary
+                A Modern Take on Time
               </span>{" "}
             </h2>
 
             <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600 sm:text-base">
-              Designed to grab attention from the moment it starts floating.
-              Explore what makes this levitating display truly stand out.
+              Designed to break the mold of traditional desk setups. Explore the
+              features that make this interactive magnetic calendar a true
+              masterpiece.
             </p>
           </div>
 
@@ -187,8 +188,8 @@ function ProductDetails({ product }) {
               {/* Image Block */}
               <div className="relative w-full overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 h-[320px] md:h-auto md:w-1/2 min-h-[280px]">
                 <Image
-                  src="/desk-image.png"
-                  alt="Magnetic levitating car floating close-up"
+                  src="/magnetic-calendar-black-lfs-2.jpg"
+                  alt="Close-up of the black magnetic perpetual calendar with floating sphere"
                   fill
                   className="object-cover"
                   priority
@@ -198,21 +199,24 @@ function ProductDetails({ product }) {
               {/* Features Block */}
               <div className="flex w-full flex-col justify-center rounded-2xl border border-stone-200 bg-white p-6 sm:p-8 md:w-1/2 space-y-6">
                 <div>
-                  <h3 className="font-bold text-stone-950">Defies Gravity</h3>
+                  <h3 className="font-bold text-stone-950">
+                    Perpetual Magnetic Design
+                  </h3>
                   <p className="mt-1.5 text-sm leading-6 text-stone-600">
-                    Magnetically suspended above the base, the car appears to
-                    float in mid-air for a futuristic display that instantly
-                    grabs attention.
+                    Utilizes custom magnetic spheres that glide along the
+                    tracking rings to display the month, day, and date without
+                    ever needing battery power.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-bold text-stone-950">
-                    Illuminated LED Base
+                    Sleek Minimalist Aesthetic
                   </h3>
                   <p className="mt-1.5 text-sm leading-6 text-stone-600">
-                    Built-in lighting adds a premium glow that makes the
-                    floating car stand out on your desk or shelf.
+                    Crafted with a stark matte black finish and precise geometry
+                    to complement modern home offices, studio spaces, and
+                    minimalist workspaces.
                   </p>
                 </div>
               </div>
@@ -224,22 +228,23 @@ function ProductDetails({ product }) {
               <div className="flex w-full flex-col justify-center rounded-2xl border border-stone-200 bg-white p-6 sm:p-8 md:w-1/2 space-y-6">
                 <div>
                   <h3 className="font-bold text-stone-950">
-                    360° Rotating Display
+                    Tactile Interaction
                   </h3>
                   <p className="mt-1.5 text-sm leading-6 text-stone-600">
-                    Watch the car smoothly rotate while suspended, giving you a
-                    dynamic view from every angle.
+                    Turn your daily routine into a satisfying sensory
+                    experience. Manually move the magnetic indicators each
+                    morning to snap into the next day.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-bold text-stone-950">
-                    A Conversation Piece
+                    Timeless Desk Centerpiece
                   </h3>
                   <p className="mt-1.5 text-sm leading-6 text-stone-600">
-                    More than a model car&mdash;it&apos;s a unique display
-                    designed to make people stop and ask, “How is that
-                    floating?”
+                    Never buy a paper calendar again. This infinite, zero-waste
+                    tracker acts as both a highly functional scheduling tool and
+                    an artistic sculpture.
                   </p>
                 </div>
               </div>
@@ -247,8 +252,8 @@ function ProductDetails({ product }) {
               {/* Image Block */}
               <div className="relative w-full overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 h-[320px] md:h-auto md:w-1/2 min-h-[280px]">
                 <Image
-                  src="/red-porsche-2.jpg"
-                  alt="Porsche levitating display on an office desk setup"
+                  src="/magnetic-calendar-main.jpg"
+                  alt="Magnetic Perpetual Calendar styled on a modern office desk setup"
                   fill
                   className="object-cover"
                 />
@@ -256,6 +261,7 @@ function ProductDetails({ product }) {
             </div>
           </div>
         </section>
+
         <FAQList />
         <Reviews />
       </div>

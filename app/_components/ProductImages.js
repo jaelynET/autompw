@@ -22,7 +22,7 @@ import ProductGridSkeleton from "./ProductGridSkeleton";
 import ThumbnailsSkeleton from "./ThumbnailsSkeleton";
 import { useDom } from "./DomContext";
 
-function ProductImages({ mainImage, productImages, selectedColor = "red" }) {
+function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
   const { domLoaded } = useDom();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [mainSwiper, setMainSwiper] = useState(null);

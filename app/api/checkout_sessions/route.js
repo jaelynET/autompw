@@ -13,27 +13,27 @@ export async function POST(req) {
     const origin = headersList.get("origin");
 
     const shippingRate = await stripe.shippingRates.create({
-      display_name: "Insured Express Courier",
+      display_name: "Insured Tracked Shipping (Free)",
       type: "fixed_amount",
-      fixed_amount: { amount: 1295, currency: "usd" },
+      fixed_amount: { amount: 0, currency: "usd" },
     });
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       metadata: {
         product: "magnetic-levitating-porsche",
-        variant_color: selectedColor || "red",
+        variant_color: selectedColor || "black",
       },
       line_items: [
         {
           price_data: {
             currency: "usd",
-            unit_amount: 12999,
+            unit_amount: 3995,
             product_data: {
-              name: "The Porsche 918 Levitation Display",
-              description: `Finish: ${selectedColor === "gray" ? "Crayon Gray" : "Guards Red"}`,
+              name: "The AuraArc Magnetic Perpetual Calendar",
+              description: `Finish: ${selectedColor === "black" ? "Black" : "White"}`,
               images: [
-                "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX3Rlc3RfbXdWdDZkeE1aWktYTmVWN2tEV3F6YmZB00IdTcRJ27",
+              "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfVTk4Z1l4czlncjdDWW41dXNNUGVWckVx00EfDbxMZD"
               ],
             },
           },

@@ -12,11 +12,11 @@ export const SORT_OPTIONS = [
 ];
 
 export const product = {
-  title: "The Porsche 918 Levitation Display",
+  title: "The AuraArc Magnetic Perpetual Calendar",
   inStock: true,
 
   pricing: {
-    price: 12999,
+    price: 3995,
     compareAt: 14999,
   },
 
@@ -24,21 +24,23 @@ export const product = {
     //RED IMAGES
 
     {
-      id: "vid_red",
-      type: "video",
-      alt_text: "porsche",
-      image: "/porsche-loop-video.mp4",
-      color: "red",
+      id: "cal-img-1",
+      alt_text: "Magnetic Calendar",
+      type: "image",
+      image: "/magnetic-calendar-main-lfs.jpg",
+      color: "black",
       position: 1,
     },
 
     //  GRAY IMAGES
     {
-      id: "gray_pic1",
-      image: "/gray-porsche-2.jpg",
-      alt_text: "porsche",
+      id: "cal-img-1",
+      type: "image",
+      alt_text: "Magnetic Calendar",
 
-      color: "gray",
+      image: "/magnetic-calendar-white-main.jpg",
+
+      color: "white",
       position: 1,
     },
     // {
@@ -49,14 +51,14 @@ export const product = {
     //   color: "gray",
     //   position: 2,
     // },
-    {
-      id: "gray_pic2",
-      image: "/gray-porsche-lfs.jpg",
-      alt_text: "porsche",
+    // {
+    //   id: "gray_pic2",
+    //   image: "/magnetic-calendar-black-lfs-2",
+    //   alt_text: "porsche",
 
-      color: "gray",
-      position: 2,
-    },
+    //   color: "gray",
+    //   position: 2,
+    // },
 
     // {
     //   id: 3,
@@ -79,8 +81,8 @@ export const product = {
   // description:
   //   "Comfortably drive at night with complete peace of mind. You no longer have to worry about unseen hazards on dark backroads. These ultra-bright halogen headlights ensure a powerful, crisp beam pattern that illuminates everything on the road ahead of you.",
   seo: {
-    meta_title: "The Porsche 918 Levitation Display",
-    meta_description: "The Porsche 918 Levitation Display",
+    meta_title: "The AuraArc Magnetic Perpetual Calendar",
+    meta_description: "The AuraArc Magnetic Perpetual Calendar",
   },
 
   reviews: [
@@ -105,7 +107,7 @@ export const product = {
       avatar: "MG",
       title: "Solid quality",
       comment:
-        "Took about 30 seconds to find the sweet spot to float. Super smooth rotation.",
+        "The rare-earth magnets feel premium. The spheres click satisfyingly into place for the days and months.",
       image: "",
     },
     {
@@ -117,7 +119,7 @@ export const product = {
       avatar: "AP",
       title: "Best gift I've bought all year",
       comment:
-        "Bought this for my brother's garage setup. The glowing LEDs under the Porsche chassis look incredible at night. Worth every penny.",
+        "Bought this for my brother's office setup. The minimal matte black structure looks incredible against wood grain. Worth every penny.",
       image: "/review-desk-2.jpg",
     },
     {
@@ -128,7 +130,8 @@ export const product = {
       verified: true,
       avatar: "CT",
       title: "Super cool gadget",
-      comment: "Works just like the video. Very happy.",
+      comment:
+        "Exceeded my expectations. It looks incredibly sleek and functions beautifully.",
       image: "",
     },
     {
@@ -138,9 +141,9 @@ export const product = {
       date: "1 month ago",
       verified: true,
       avatar: "SR",
-      title: "Failsafe works!",
+      title: "Brilliant engineering",
       comment:
-        "Accidentally kicked the cord and unplugged the base. The car just safely snapped to the bottom instead of crashing down. Great engineering.",
+        "I love that it works purely on mechanical magnetism. No charging, no cords, and zero battery waste.",
       image: "",
     },
     {
@@ -150,8 +153,9 @@ export const product = {
       date: "1 month ago",
       verified: true,
       avatar: "KM",
-      title: "Silent and sleek",
-      comment: "Zero noise when it spins. Perfect for my gaming desk setup.",
+      title: "Sleek and tactile",
+      comment:
+        "It has become part of my daily routine to move the dates forward. Perfect touch for my clean setup.",
       image: "",
     },
   ],
