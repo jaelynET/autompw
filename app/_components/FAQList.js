@@ -1,43 +1,44 @@
 function FAQList() {
   return (
-    <section className="mt-16 border-t border-stone-200 pt-12 mb-16">
-      {/* Section Heading */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-black tracking-tight text-stone-950 sm:text-3xl">
+    <section className="mt-20 border-t border-stone-200 pt-12 mb-20 font-sans mx-4 min-[375px]:mx-8 min-[425px]:mx-11">
+      {/* Section Heading - Balanced and Clean */}
+      <div className="mb-10">
+        <h2 className="text-xl font-normal tracking-tight text-stone-950 sm:text-2xl">
           Frequently Asked Questions
         </h2>
-        <p className="mt-2 text-sm text-stone-600">
-          Everything you need to know about setting up and using your magnetic
-          perpetual calendar.
+        <p className="mt-2 text-xs leading-relaxed text-stone-500 font-normal">
+          Technical specifications, configuration parameters, and spatial
+          mounting details.
         </p>
       </div>
 
-      {/* FAQ Accordion List */}
-      <div className="space-y-4">
+      {/* FAQ Accordion List - Converted into an Architectural Row System */}
+      <div className="divide-y divide-stone-100 border-t border-b border-stone-100">
         {/* Question 1 */}
-        <div className="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6">
+        <div className="py-5 bg-transparent">
           <details className="group">
-            <summary className="flex cursor-pointer items-center justify-between list-none">
-              <span className="font-bold text-stone-950 sm:text-lg">
+            <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
+              <span className="text-sm font-medium text-stone-950 tracking-wide">
                 How do the calendar spheres work?
               </span>
-              <span className="transition group-open:rotate-180 text-stone-500">
+              <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
+                {/* Minimal cross '+' icon that transforms into an 'x' on open */}
                 <svg
-                  className="h-5 w-5"
+                  className="h-4 w-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth="2.5"
+                  strokeWidth="1.5"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
+                    d="M12 4.5v15m7.5-7.5h-15"
                   />
                 </svg>
               </span>
             </summary>
-            <div className="mt-4 text-sm leading-6 text-stone-600 border-t border-stone-100 pt-3">
+            <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
               The calendar features embedded magnetic tracking lines. Small,
               textured steel spheres snap cleanly into designated slots along
               the outer frame, precisely marking the current month, numerical
@@ -47,29 +48,29 @@ function FAQList() {
         </div>
 
         {/* Question 2 */}
-        <div className="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6">
+        <div className="py-5 bg-transparent">
           <details className="group">
-            <summary className="flex cursor-pointer items-center justify-between list-none">
-              <span className="font-bold text-stone-950 sm:text-lg">
+            <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
+              <span className="text-sm font-medium text-stone-950 tracking-wide">
                 Does it require batteries or power cords?
               </span>
-              <span className="transition group-open:rotate-180 text-stone-500">
+              <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
-                  className="h-5 w-5"
+                  className="h-4 w-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth="2.5"
+                  strokeWidth="1.5"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
+                    d="M12 4.5v15m7.5-7.5h-15"
                   />
                 </svg>
               </span>
             </summary>
-            <div className="mt-4 text-sm leading-6 text-stone-600 border-t border-stone-100 pt-3">
+            <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
               No, this calendar is entirely manual and operates without any
               electronics. The core mechanisms rely completely on physical
               magnetism, meaning you will never have to charge it, replace
@@ -79,62 +80,61 @@ function FAQList() {
         </div>
 
         {/* Question 3 */}
-        <div className="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6">
+        <div className="py-5 bg-transparent">
           <details className="group">
-            <summary className="flex cursor-pointer items-center justify-between list-none">
-              <span className="font-bold text-stone-950 sm:text-lg">
+            <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
+              <span className="text-sm font-medium text-stone-950 tracking-wide">
                 Do the magnetic spheres fall off easily?
               </span>
-              <span className="transition group-open:rotate-180 text-stone-500">
+              <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
-                  className="h-5 w-5"
+                  className="h-4 w-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth="2.5"
+                  strokeWidth="1.5"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
+                    d="M12 4.5v15m7.5-7.5h-15"
                   />
                 </svg>
               </span>
             </summary>
-            <div className="mt-4 text-sm leading-6 text-stone-600 border-t border-stone-100 pt-3">
-              Not at all. We engineered the tracking tracks with calibrated
-              rare-earth magnets. The spheres glide smoothly when you
-              intentionally move them with your fingers, but they lock firmly
-              into place and won&apos;t dislodge if the desk is bumped or
-              shaken.
+            <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
+              Not at all. We engineered the tracks with calibrated rare-earth
+              magnets. The spheres glide smoothly when you intentionally move
+              them with your fingers, but they lock firmly into place and
+              won&apos;t dislodge if the desk is bumped or shaken.
             </div>
           </details>
         </div>
 
         {/* Question 4 */}
-        <div className="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6">
+        <div className="py-5 bg-transparent">
           <details className="group">
-            <summary className="flex cursor-pointer items-center justify-between list-none">
-              <span className="font-bold text-stone-950 sm:text-lg">
+            <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
+              <span className="text-sm font-medium text-stone-950 tracking-wide">
                 Can this be mounted on a wall?
               </span>
-              <span className="transition group-open:rotate-180 text-stone-500">
+              <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
-                  className="h-5 w-5"
+                  className="h-4 w-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth="2.5"
+                  strokeWidth="1.5"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
+                    d="M12 4.5v15m7.5-7.5h-15"
                   />
                 </svg>
               </span>
             </summary>
-            <div className="mt-4 text-sm leading-6 text-stone-600 border-t border-stone-100 pt-3">
+            <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
               Yes. The calendar features an integrated flush-mount keyhole slot
               on the rear panel. It can easily hang flat against any wall
               surface using a standard drywall screw, or sit stably on a desktop
@@ -146,4 +146,5 @@ function FAQList() {
     </section>
   );
 }
+
 export default FAQList;

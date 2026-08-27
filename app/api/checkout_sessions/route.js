@@ -30,10 +30,10 @@ export async function POST(req) {
             currency: "usd",
             unit_amount: 3995,
             product_data: {
-              name: "The AuraArc Magnetic Perpetual Calendar",
+              name: "Magnetic Perpetual Calendar",
               description: `Finish: ${selectedColor === "black" ? "Black" : "White"}`,
               images: [
-              "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfVTk4Z1l4czlncjdDWW41dXNNUGVWckVx00EfDbxMZD"
+                "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfVTk4Z1l4czlncjdDWW41dXNNUGVWckVx00EfDbxMZD",
               ],
             },
           },

@@ -32,17 +32,18 @@ function MobileGallery({ productImages, selectedColor }) {
   return (
     <>
       <div className="relative">
+        {/* Crisp Minimalist Skeletons - Using square indicator dots */}
         {!isReady && (
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-            <Skeleton className="h-2 w-2 rounded-full" />
-            <Skeleton className="h-2 w-2 rounded-full" />
-            <Skeleton className="h-2 w-2 rounded-full" />
+            <Skeleton className="h-1.5 w-1.5 rounded-none" />
+            <Skeleton className="h-1.5 w-1.5 rounded-none" />
+            <Skeleton className="h-1.5 w-1.5 rounded-none" />
           </div>
         )}
 
         <Swiper
           modules={[Navigation, Pagination]}
-          onSwiper={setMobileSwiper} // 👈 Storing instance tracking reference locally
+          onSwiper={setMobileSwiper}
           slidesPerView={1}
           onInit={() => setIsReady(true)}
           className={isReady ? "opacity-100" : "opacity-0"}
@@ -53,47 +54,33 @@ function MobileGallery({ productImages, selectedColor }) {
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         >
           {safeImages.map((product, i) => {
-            const isVideo =
-              product.type === "video" ||
-              (typeof product.image === "string" &&
-                product.image.endsWith(".mp4"));
+            // REMOVED: All video check calculations completely gone
             const mediaSrc = product.image || product;
 
             return (
               <SwiperSlide key={product.id || i}>
-                <div className="w-full aspect-square sm:aspect-4/3 overflow-hidden rounded-xl bg-stone-950 border border-stone-200/40">
-                  {isVideo ? (
-                    /* 🎥 Mobile Video Slide Engine */
-                    <div className="relative w-full h-full">
-                      <video
-                        src={mediaSrc}
-                        poster="/red-porsche-2.jpg"
-                        preload="auto"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  ) : (
-                    /* 🖼️ Standard Image Slide Engine */
+                {/* REMOVED: Fixed height constraints on container that caused cropping */}
+                <div className="w-full overflow-hidden">
+                  <div className="w-full max-w-2xl mx-auto">
                     <button
                       type="button"
                       onClick={() => setIsOpen(true)}
-                      className="relative w-full h-full cursor-zoom-in block outline-none transition-transform duration-300 active:scale-[0.99]"
+                      className="relative w-full h-auto cursor-zoom-in block outline-none transition-transform duration-300 active:scale-[0.99]"
                       aria-label={`View enlarged image ${i + 1}`}
                     >
                       <Image
                         src={mediaSrc}
-                        alt={product.alt_text || "Product display view"}
-                        fill
+                        alt="Magnetic Calendar"
+                        width={1080}
+                        height={1350}
                         sizes="(max-width: 640px) 100vw, 50vw"
-                        className="object-cover object-center"
-                        priority={i === 1} // Index 0 is the video, Index 1 becomes your high-priority primary product image LCP
+                        className="w-full h-auto object-contain object-center rounded-none"
+                        priority={i === 0 || i === 1} // Index 0 is now your primary hero image, optimized for instant LCP loading
                       />
+
+                      <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
                     </button>
-                  )}
+                  </div>
                 </div>
               </SwiperSlide>
             );

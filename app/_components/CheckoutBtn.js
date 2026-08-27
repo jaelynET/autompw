@@ -82,13 +82,13 @@ function CheckoutBtn({ product, selectedColor }) {
     <button
       onClick={handleCheckout}
       disabled={loading}
-      className={`w-full max-w-md mx-auto block mt-4 py-3.5 px-6 font-bold text-base text-center rounded-full bg-red-600 hover:bg-red-700  active:scale-[0.99] transition-all cursor-pointer uppercase mb-3 ${
-        loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+      className={`w-full max-w-md mx-auto block mt-5 py-4 px-6 font-medium text-sm text-center uppercase tracking-widest transition-colors duration-200 border rounded-none ${
+        loading
+          ? "bg-stone-300 text-stone-500 border-stone-300 cursor-not-allowed"
+          : "bg-stone-950 text-white border-stone-950 hover:bg-stone-800 active:bg-black cursor-pointer"
       }`}
     >
-      <span className="text-white">
-        {loading ? "Processing..." : "Buy now"}
-      </span>
+      {loading ? "Processing..." : "Purchase"}
     </button>
   );
 }

@@ -20,6 +20,7 @@ import CheckoutBtn from "./CheckoutBtn";
 import FAQList from "./FAQList";
 import Reviews from "./Reviews";
 import ProductImages from "./ProductImages";
+import FeatureBox from "./FeatureBox";
 
 function ProductDetails({ product }) {
   const {
@@ -35,236 +36,96 @@ function ProductDetails({ product }) {
   const image1 = "/magnetic-calendar-main-lfs.jpg";
 
   return (
-    <div className="md:grid md:grid-cols-2 md:mt-8 md:ml-30 ">
+    <div className="md:grid md:grid-cols-2  md:mt-8 md:ml-30 ">
       <ProductImages
         mainImage={image1}
         productImages={productImages}
         selectedColor={selectedColor}
       />
-      <div className="mx-4 mb-5 min-[375px]:mx-8 min-[425px]:mx-11 ">
-        <div>
-          <div className="mt-4 w-full rounded-xl border border-stone-200 bg-stone-50/50 p-5 sm:p-6">
-            {/* Price */}
-            <div>
-              <span className="text-2xl font-black tracking-tight text-stone-950 sm:text-3xl md:text-4xl">
-                {formatPrice(pricing.price)}
-              </span>
-            </div>
-            {/* Interactive Premium Variant Selector */}
-            <div className="mt-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-stone-500">
-                Select Finish
-              </span>
-              <div className="mt-2 flex gap-3">
-                {/* Guards Red Button */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedColor("black")}
-                  className={`flex items-center gap-2 rounded-full border py-1.5 pl-2 pr-3 text-xs font-semibold transition ${
-                    selectedColor === "black"
-                      ? "border-stone-900 bg-stone-950 text-white"
-                      : "border-stone-200 bg-white text-stone-950 hover:border-stone-400"
-                  }`}
-                >
-                  <span className="h-3.5 w-3.5 rounded-full bg-black border border-black/10 block" />
-                  Black
-                </button>
+      {/* Clean, left-aligned wrapper matching the grid boundaries of your image and buy box */}
+      <div className="mx-4 mt-6 mb-2 min-[375px]:mx-8 min-[425px]:mx-11 md:hidden">
+        <h1 className="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl leading-tight">
+          {product.title}
+        </h1>
+      </div>
 
-                {/* Crayon Gray Button */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedColor("white")}
-                  className={`flex items-center gap-2 rounded-full border py-1.5 pl-2 pr-3 text-xs font-semibold transition ${
-                    selectedColor === "white"
-                      ? "border-stone-950 bg-stone-100 text-stone-950 ring-2 ring-stone-950/10"
-                      : "border-stone-200 bg-white text-stone-950 hover:border-stone-400"
-                  }`}
-                >
-                  <span className="h-3.5 w-3.5 rounded-full bg-white-100 border border-black/10 block" />
-                  White
-                </button>
-              </div>
-            </div>
-
-            {/* Klarna */}
-            <div className="mt-3 min-h-[40px] w-full">
-              <KlarnaMessage amount={pricing.price} />
-            </div>
-
-            {/* Buy button */}
-            <div className="mt-4">
-              <CheckoutBtn product={product} selectedColor={selectedColor} />
-            </div>
-
-            {/* Premium Trust & Reassurance Points */}
-            <div className="mt-5 border-t border-stone-200 pt-4 space-y-3">
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-stone-700">
-                <svg
-                  className="h-4 w-4 text-stone-900"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span>In Stock · Ships in 1-2 business days</span>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-stone-700">
-                <svg
-                  className="h-4 w-4 text-stone-900"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-                <span>100% Insured Delivery with Real-Time Tracking</span>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-stone-700">
-                <svg
-                  className="h-4 w-4 text-stone-900"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 3.89L21 13.91"
-                  />
-                </svg>
-                <span>30-Day Money-Back Guarantee Included</span>
-              </div>
-            </div>
-          </div>
-
-          {/* <h1 className="text-2xl font-bold tracking-tight text-stone-900 sm:text-3xl md:text-4xl leading-tight ">
-          {title}
-        </h1> */}
-
-          {/* <div className="mt-3 flex flex-col gap-1 ">
+      <div className="mx-4 mb-5 min-[375px]:mx-8 min-[425px]:mx-11 font-sans">
+        <div className="mt-4 w-full bg-white py-2">
+          {/* 1. Price Container - Clean, elegant, and light text */}
           <div>
-            <span className="text-2xl font-black text-stone-950 sm:text-3xl md:text-4xl tracking-tight">
+            <span className="text-3xl font-light tracking-tight text-stone-950 sm:text-4xl">
               {formatPrice(pricing.price)}
             </span>
+          </div>
 
-            {/* <span className="ml-2 text-lg text-stone-500 line-through">
-              {formatPrice(pricing.compareAt)}
-            </span> */}
+          {/* 2. Variant Selector - Perfectly readable asymmetry */}
+          <div className="mt-8 border-t border-stone-100 pt-5">
+            <span className="text-[10px] font-medium uppercase tracking-widest text-stone-400 font-mono block">
+              Finish Selection
+            </span>
+
+            <div className="mt-3 flex gap-6">
+              {/* Matte Black Button */}
+              <button
+                type="button"
+                onClick={() => setSelectedColor("black")}
+                className={`flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase transition rounded-none bg-transparent cursor-pointer ${
+                  selectedColor === "black"
+                    ? "text-stone-950 border-b-2 border-stone-950"
+                    : "text-stone-400 hover:text-stone-700 border-b-2 border-transparent"
+                }`}
+              >
+                <span className="h-2 w-2 bg-stone-950 rounded-none block" />
+                Matte Black
+              </button>
+
+              {/* Pure White Button */}
+              <button
+                type="button"
+                onClick={() => setSelectedColor("white")}
+                className={`flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase transition rounded-none bg-transparent cursor-pointer ${
+                  selectedColor === "white"
+                    ? "text-stone-950 border-b-2 border-stone-950"
+                    : "text-stone-400 hover:text-stone-700 border-b-2 border-transparent"
+                }`}
+              >
+                <span className="h-2 w-2 bg-white border border-stone-300 rounded-none block" />
+                Pure White
+              </button>
+            </div>
+          </div>
+
+          {/* 3. Primary Purchase Action (Undisputed Focal Point) */}
+          <div className="mt-8">
+            <CheckoutBtn product={product} selectedColor={selectedColor} />
+          </div>
+
+          {/* 4. Fine-Print Logistics - Demoted underneath the main goal */}
+          {/* 4. Fine-Print Logistics - Tailored for US Designer Market */}
+          <div className="mt-8 border-t border-stone-100 pt-5 space-y-2.5 font-sans">
+            {/* The Shipping Hook (US Focused) */}
+            <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-600">
+              <span className="h-1 w-1 bg-stone-900 rounded-none block" />
+              <span className="font-medium text-stone-950">
+                Complimentary US shipping included
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-500">
+              <span className="h-1 w-1 bg-stone-400 rounded-none block" />
+              <span>Dispatched within 24–48 hours with live tracking</span>
+            </div>
+
+            <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-500">
+              <span className="h-1 w-1 bg-stone-400 rounded-none block" />
+              <span>30-day architectural return guarantee</span>
+            </div>
+          </div>
         </div>
-        <section className="mt-12">
-          {/* Section Heading */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-black tracking-tight text-stone-950 sm:text-3xl">
-              <span className="block sm:inline">
-                A Modern Take on Time
-              </span>{" "}
-            </h2>
-
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600 sm:text-base">
-              Designed to break the mold of traditional desk setups. Explore the
-              features that make this interactive magnetic calendar a true
-              masterpiece.
-            </p>
-          </div>
-
-          {/* Features Rows Container */}
-          <div className="space-y-6">
-            {/* Row 1: Image Left, Features Right */}
-            <div className="flex flex-col gap-6 md:flex-row md:items-stretch">
-              {/* Image Block */}
-              <div className="relative w-full overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 h-[320px] md:h-auto md:w-1/2 min-h-[280px]">
-                <Image
-                  src="/magnetic-calendar-black-lfs-2.jpg"
-                  alt="Close-up of the black magnetic perpetual calendar with floating sphere"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-
-              {/* Features Block */}
-              <div className="flex w-full flex-col justify-center rounded-2xl border border-stone-200 bg-white p-6 sm:p-8 md:w-1/2 space-y-6">
-                <div>
-                  <h3 className="font-bold text-stone-950">
-                    Perpetual Magnetic Design
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-6 text-stone-600">
-                    Utilizes custom magnetic spheres that glide along the
-                    tracking rings to display the month, day, and date without
-                    ever needing battery power.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-stone-950">
-                    Sleek Minimalist Aesthetic
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-6 text-stone-600">
-                    Crafted with a stark matte black finish and precise geometry
-                    to complement modern home offices, studio spaces, and
-                    minimalist workspaces.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Row 2: Features Left, Image Right (Alternating Layout) */}
-            <div className="flex flex-col-reverse gap-6 md:flex-row md:items-stretch">
-              {/* Features Block */}
-              <div className="flex w-full flex-col justify-center rounded-2xl border border-stone-200 bg-white p-6 sm:p-8 md:w-1/2 space-y-6">
-                <div>
-                  <h3 className="font-bold text-stone-950">
-                    Tactile Interaction
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-6 text-stone-600">
-                    Turn your daily routine into a satisfying sensory
-                    experience. Manually move the magnetic indicators each
-                    morning to snap into the next day.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-stone-950">
-                    Timeless Desk Centerpiece
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-6 text-stone-600">
-                    Never buy a paper calendar again. This infinite, zero-waste
-                    tracker acts as both a highly functional scheduling tool and
-                    an artistic sculpture.
-                  </p>
-                </div>
-              </div>
-
-              {/* Image Block */}
-              <div className="relative w-full overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 h-[320px] md:h-auto md:w-1/2 min-h-[280px]">
-                <Image
-                  src="/magnetic-calendar-main.jpg"
-                  alt="Magnetic Perpetual Calendar styled on a modern office desk setup"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <FAQList />
-        <Reviews />
       </div>
+      <FeatureBox />
+      <FAQList />
+      <Reviews />
     </div>
   );
 }

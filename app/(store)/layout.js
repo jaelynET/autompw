@@ -1,5 +1,6 @@
 import Header from "@/app/_components/Header";
-import { Rubik } from "next/font/google";
+import { Inter } from "next/font/google";
+
 import { CartProvider } from "../_components/CartContext";
 
 import { FilterProvider } from "../_components/FilterContext";
@@ -8,17 +9,18 @@ import Footer from "../_components/Footer";
 import StripeElementsProvider from "../_components/StripeElementsProvider";
 import { DomProvider } from "../_components/DomContext";
 
-const rubik = Rubik({
-  variable: "--font-rubik",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: "400",
+  // Import clean, versatile weights for a premium layout hierarchy
+  weight: ["300", "400", "500", "600"],
 });
 
 export default function StoreLayout({ children }) {
   const gaId = process.env.NEXT_PUBLIC_GOOGLE_ID;
   return (
     <div
-      className={`${rubik.className} antialiased flex flex-col min-h-screen w-full `}
+      className={`${inter.className} antialiased flex flex-col min-h-screen w-full `}
     >
       <CartProvider>
         <Header />

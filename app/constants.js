@@ -12,7 +12,7 @@ export const SORT_OPTIONS = [
 ];
 
 export const product = {
-  title: "The AuraArc Magnetic Perpetual Calendar",
+  title: "Magnetic Perpetual Calendar",
   inStock: true,
 
   pricing: {
@@ -32,6 +32,23 @@ export const product = {
       position: 1,
     },
 
+    {
+      id: "cal-img-2",
+      alt_text: "Magnetic Calendar",
+      type: "image",
+      image: "/magnetic-calendar-black-lfs-2.jpg",
+      color: "black",
+      position: 2,
+    },
+    {
+      id: "cal-img-3",
+      alt_text: "Magnetic Calendar",
+      type: "image",
+      image: "/magnetic-calendar-main.jpg",
+      color: "black",
+      position: 3,
+    },
+
     //  GRAY IMAGES
     {
       id: "cal-img-1",
@@ -42,6 +59,16 @@ export const product = {
 
       color: "white",
       position: 1,
+    },
+    {
+      id: "cal-img-2",
+      type: "image",
+      alt_text: "Magnetic Calendar",
+
+      image: "/magnetic-calendar-white-lfs-2.jpg",
+
+      color: "white",
+      position: 2,
     },
     // {
     //   id: "gray_pic2",
@@ -81,8 +108,8 @@ export const product = {
   // description:
   //   "Comfortably drive at night with complete peace of mind. You no longer have to worry about unseen hazards on dark backroads. These ultra-bright halogen headlights ensure a powerful, crisp beam pattern that illuminates everything on the road ahead of you.",
   seo: {
-    meta_title: "The AuraArc Magnetic Perpetual Calendar",
-    meta_description: "The AuraArc Magnetic Perpetual Calendar",
+    meta_title: "Magnetic Perpetual Calendar",
+    meta_description: "Magnetic Perpetual Calendar",
   },
 
   reviews: [

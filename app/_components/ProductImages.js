@@ -83,8 +83,8 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
 
   return (
     <>
-      {/* THUMBNAILS */}
-      <div className=" hidden md:flex md:gap-4">
+      {/* DESKTOP THUMBNAILS & MAIN GALLERY CONTAINER */}
+      <div className="hidden md:flex md:gap-4 font-sans">
         {!domLoaded ? (
           <ThumbnailsSkeleton />
         ) : (
@@ -104,29 +104,19 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
                 <SwiperSlide
                   key={product.id || index}
                   onMouseEnter={() => mainSwiper?.slideTo(index)}
-                  className={`cursor-pointer border overflow-hidden transition !h-20 rounded-lg ${
+                  className={`cursor-pointer border overflow-hidden transition !h-20 rounded-none ${
                     activeIndex === index
                       ? "border-stone-900"
                       : "border-stone-200"
                   }`}
                 >
-                  <div className="relative w-full h-full bg-stone-950">
-                    {product.type === "video" ? (
-                      /* Minimal Video Thumbnail Placeholder */
-                      <video
-                        src={product.image}
-                        muted
-                        playsInline
-                        className="h-full w-full object-cover opacity-60"
-                      />
-                    ) : (
-                      <Image
-                        src={product.image}
-                        alt="Thumbnail view"
-                        fill
-                        className="object-cover"
-                      />
-                    )}
+                  <div className="relative w-full h-full bg-white">
+                    <Image
+                      src={product.image}
+                      alt="Thumbnail view"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 </SwiperSlide>
               ))}
@@ -134,14 +124,14 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
           </div>
         )}
 
-        {/* MAIN IMAGE */}
+        {/* MAIN GALLERY DISPLAY */}
         <Swiper
           modules={[Thumbs, Keyboard]}
           keyboard={{
             enabled: true,
             onlyInViewport: true,
           }}
-          onSwiper={setMainSwiper} // 👈 store the main swiper
+          onSwiper={setMainSwiper}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
           thumbs={{
             swiper:
@@ -149,156 +139,51 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
           }}
           allowTouchMove={true}
           slidesPerView={1}
-          className="w-full h-150 overflow-hidden rounded-2xl border border-stone-200"
+          className="w-full h-auto overflow-hidden rounded-none border border-stone-100 bg-white"
         >
           {filteredImages.map((product, index) => (
-            <SwiperSlide key={product.id || index} className="bg-stone-950">
-              {product.type === "video" ? (
-                /* Main Page Autoplay Video Loop */
-                <div className="w-full h-full relative">
-                  <video
-                    src={product.image}
-                    poster="/red-porsche-2.jpg"
-                    autoPlay
-                    loop
-                    muted
-                    preload="auto"
-                    playsInline
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              ) : (
+            <SwiperSlide key={product.id || index} className="bg-white">
+              {/* REMOVED: Video loop section is entirely gone. Only rendering clean images */}
+              <div className="w-full max-w-2xl mx-auto">
                 <button
                   type="button"
                   onClick={() => setIsOpen(true)}
-                  className="relative w-full h-full cursor-zoom-in"
+                  className="relative w-full aspect-square cursor-zoom-in block outline-none transition-transform duration-300 hover:scale-[1.01] active:scale-[0.99]"
                 >
                   <Image
                     src={product.image}
-                    alt="Porsche display view"
+                    alt="Magnetic Calendar"
                     fill
-                    className="object-cover"
-                    priority={index === 1} // High-priority loading for the primary variant image
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority={index === 0 || index === 1}
+                    className="object-cover object-center rounded-none"
                   />
+
+                  {/* The 1px architectural overlay ring */}
+                  <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
                 </button>
-              )}
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
+      {/* FULLSCREEN EXPANDED OVERLAY */}
       {isOpen && (
-        <>
-          <DesktopFullscreenGallery
-            images={filteredImages}
-            startIndex={activeIndex}
-            onClose={() => setIsOpen(false)}
-          />
-        </>
+        <DesktopFullscreenGallery
+          images={filteredImages}
+          startIndex={activeIndex}
+          onClose={() => setIsOpen(false)}
+        />
       )}
 
+      {/* MOBILE COMPONENT FALLBACK */}
       <div className="md:hidden">
         <MobileGallery
           productImages={filteredImages}
           selectedColor={selectedColor}
         />
       </div>
-
-      {/* <div className="relative">
-        <Swiper
-          modules={[Navigation, Pagination]}
-          // spaceBetween={10}
-          slidesPerView={1}
-          loop={true}
-          pagination={{
-            el: paginationRef.current,
-            clickable: true,
-          }}
-
-          // pagination={{ clickable: true, el: ".swiper-pagination" }}
-        >
-          {productImages.map((product, i) => (
-            <SwiperSlide key={product.id}>
-              <div className="relative h-64  mb-3 w-full md:ml-4 md:h-130 ">
-                <Image
-                  src={product.image}
-                  alt="Product"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <div className="text-center lg:hidden" ref={paginationRef}></div>
-      </div> */}
-      {/* 
-
-      <div className="relative h-100 w-full mt-8">
-        <Image
-          // src={slides}
-          src={slides[current].image}
-          className="object-cover "
-          fill
-          alt={"Product"}
-        />
-        {current < 5 && (
-          <div className="absolute top-0 left-[90%] transform translate-y-[600%] cursor-pointer">
-            <ChevronRightIcon
-              width={40}
-              height={40}
-              className="text-red-600 "
-              onClick={nextSlide}
-            />
-          </div>
-        )}
-
-        {current > 0 && (
-          <div className="absolute top-0 right-[90%] transform translate-y-[600%] cursor-pointer">
-            <ChevronLeftIcon
-              width={40}
-              height={40}
-              className="text-red-600 "
-              onClick={prevSlide}
-            />
-          </div>
-        )}
-      </div>
-
-      <div className=" flex gap-2 justify-center  mt-5 ">
-        {productImages.map((product, i) => (
-          <>
-            {/* <div
-              className={`rounded-full w-3  h-3 bg-main ${
-                product.image === slides[current].image
-                  ? "border-2 border-red-400"
-                  : ""
-              }`}
-              key={product.id}
-            ></div> 
-
-            <div
-              key={product.id}
-              onClick={() => setCurrent(i)}
-              className={`cursor-pointer ${
-                product.image === slides[current].image
-                  ? "border-8 border-main"
-                  : ""
-              }`}
-            >
-              <Image
-                src={product.image}
-                width={70}
-                height={70}
-                alt="Product"
-                // className="rounded-sm"
-              />
-            </div>
-          </>
-        ))}
-      </div>
-*/}
     </>
   );
 }
