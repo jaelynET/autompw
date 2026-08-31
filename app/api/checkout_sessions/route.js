@@ -28,7 +28,7 @@ export async function POST(req) {
         {
           price_data: {
             currency: "usd",
-            unit_amount: 3995,
+            unit_amount: 5995,
             product_data: {
               name: "Magnetic Perpetual Calendar",
               description: `Finish: ${selectedColor === "black" ? "Black" : "White"}`,
