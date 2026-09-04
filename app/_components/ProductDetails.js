@@ -31,9 +31,9 @@ function ProductDetails({ product }) {
     description,
     sellingPoints,
   } = product;
-  const [selectedColor, setSelectedColor] = useState("black");
+  const [selectedColor, setSelectedColor] = useState("brushed steel");
 
-  const image1 = "/magnetic-calendar-main-lfs.jpg";
+  const image1 = "/loop2.mp4";
 
   return (
     <div className="md:grid md:grid-cols-2  md:mt-8 md:ml-30 ">
@@ -57,15 +57,28 @@ function ProductDetails({ product }) {
               {formatPrice(pricing.price)}
             </span>
           </div>
+          {/* 2. Variant Selector - Cleaned up to display a single, authoritative premium variant */}
+          <div className="mt-6 border-t border-stone-100 pt-5 ">
+            <span className="text-[10px] font-medium uppercase tracking-widest text-stone-400 font-mono block">
+              Material Finish
+            </span>
 
-          {/* 2. Variant Selector - Perfectly readable asymmetry */}
+            <div className="mt-2.5 flex gap-6">
+              <div className="flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase text-stone-950 border-b-2 border-stone-950">
+                {/* Small, raw metal indicator dot matching the theme */}
+                <span className="h-1.5 w-1.5 bg-stone-400 rounded-none block" />
+                Brushed Steel / Ace Edition
+              </div>
+            </div>
+          </div>
+          {/* 2. Variant Selector - Perfectly readable asymmetry 
           <div className="mt-8 border-t border-stone-100 pt-5">
             <span className="text-[10px] font-medium uppercase tracking-widest text-stone-400 font-mono block">
               Finish Selection
             </span>
 
             <div className="mt-3 flex gap-6">
-              {/* Matte Black Button */}
+              {/* Matte Black Button 
               <button
                 type="button"
                 onClick={() => setSelectedColor("black")}
@@ -79,7 +92,7 @@ function ProductDetails({ product }) {
                 Matte Black
               </button>
 
-              {/* Pure White Button */}
+             
               <button
                 type="button"
                 onClick={() => setSelectedColor("white")}
@@ -94,6 +107,7 @@ function ProductDetails({ product }) {
               </button>
             </div>
           </div>
+          */}
 
           {/* 3. Primary Purchase Action (Undisputed Focal Point) */}
           <div className="mt-8">
@@ -118,7 +132,7 @@ function ProductDetails({ product }) {
 
             <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-500">
               <span className="h-1 w-1 bg-stone-400 rounded-none block" />
-              <span>30-day architectural return guarantee</span>
+              <span>30-day tactile satisfaction return guarantee</span>
             </div>
           </div>
         </div>

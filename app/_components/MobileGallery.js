@@ -9,6 +9,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import MobileFullscreenGallery from "./MobileFullscreenGallery";
 import Skeleton from "./Skeleton";
+import VideoSlide from "./VideoSlide";
 
 function MobileGallery({ productImages, selectedColor }) {
   const paginationRef = useRef(null);
@@ -32,7 +33,6 @@ function MobileGallery({ productImages, selectedColor }) {
   return (
     <>
       <div className="relative">
-        {/* Crisp Minimalist Skeletons - Using square indicator dots */}
         {!isReady && (
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
             <Skeleton className="h-1.5 w-1.5 rounded-none" />
@@ -54,32 +54,35 @@ function MobileGallery({ productImages, selectedColor }) {
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         >
           {safeImages.map((product, i) => {
-            // REMOVED: All video check calculations completely gone
-            const mediaSrc = product.image || product;
+            const mediaSrc = product.image;
 
             return (
               <SwiperSlide key={product.id || i}>
-                {/* REMOVED: Fixed height constraints on container that caused cropping */}
                 <div className="w-full overflow-hidden">
                   <div className="w-full max-w-2xl mx-auto">
-                    <button
-                      type="button"
-                      onClick={() => setIsOpen(true)}
-                      className="relative w-full h-auto cursor-zoom-in block outline-none transition-transform duration-300 active:scale-[0.99]"
-                      aria-label={`View enlarged image ${i + 1}`}
-                    >
-                      <Image
-                        src={mediaSrc}
-                        alt="Magnetic Calendar"
-                        width={1080}
-                        height={1350}
-                        sizes="(max-width: 640px) 100vw, 50vw"
-                        className="w-full h-auto object-contain object-center rounded-none"
-                        priority={i === 0 || i === 1} // Index 0 is now your primary hero image, optimized for instant LCP loading
-                      />
-
-                      <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
-                    </button>
+                    {/* FIXED: Check if the element is your looping video */}
+                    {product.type === "video" ? (
+                      <VideoSlide src={mediaSrc} />
+                    ) : (
+                      /* Standard Picture Element Layout Track */
+                      <button
+                        type="button"
+                        onClick={() => setIsOpen(true)}
+                        className="relative w-full h-auto cursor-zoom-in block outline-none transition-transform duration-300 active:scale-[0.99]"
+                        aria-label={`View enlarged image ${i + 1}`}
+                      >
+                        <Image
+                          src={mediaSrc}
+                          alt="Haptic Slider View"
+                          width={1080}
+                          height={1350}
+                          sizes="(max-width: 640px) 100vw, 50vw"
+                          className="w-full h-auto object-contain object-center rounded-none"
+                          priority={i === 0 || i === 1} // Index 0 (video) and Index 1 load immediately
+                        />
+                        <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
+                      </button>
+                    )}
                   </div>
                 </div>
               </SwiperSlide>

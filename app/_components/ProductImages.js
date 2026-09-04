@@ -111,12 +111,22 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
                   }`}
                 >
                   <div className="relative w-full h-full bg-white">
-                    <Image
-                      src={product.image}
-                      alt="Thumbnail view"
-                      fill
-                      className="object-cover"
-                    />
+                    {/* Conditional check handling your thumbnail rendering engine */}
+                    {product.type === "video" ? (
+                      <video
+                        src={product.image}
+                        muted
+                        playsInline
+                        className="h-full w-full object-cover opacity-70"
+                      />
+                    ) : (
+                      <Image
+                        src={product.image}
+                        alt="Thumbnail view"
+                        fill
+                        className="object-cover"
+                      />
+                    )}
                   </div>
                 </SwiperSlide>
               ))}
@@ -143,25 +153,39 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
         >
           {filteredImages.map((product, index) => (
             <SwiperSlide key={product.id || index} className="bg-white">
-              {/* REMOVED: Video loop section is entirely gone. Only rendering clean images */}
               <div className="w-full max-w-2xl mx-auto">
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(true)}
-                  className="relative w-full aspect-square cursor-zoom-in block outline-none transition-transform duration-300 hover:scale-[1.01] active:scale-[0.99]"
-                >
-                  <Image
-                    src={product.image}
-                    alt="Magnetic Calendar"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority={index === 0 || index === 1}
-                    className="object-cover object-center rounded-none"
-                  />
-
-                  {/* The 1px architectural overlay ring */}
-                  <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
-                </button>
+                {/* FIXED: Programmatic parsing route separating video from normal image logic */}
+                {product.type === "video" ? (
+                  <div className="relative w-full aspect-square overflow-hidden bg-stone-50">
+                    <video
+                      src={product.image}
+                      autoPlay
+                      loop
+                      muted // 💡 Keeps desktop landing pages professional & silent
+                      playsInline
+                      preload="auto"
+                      className="h-full w-full object-cover rounded-none"
+                    />
+                    {/* 1px Architectural structural border mask framing overlay */}
+                    <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(true)}
+                    className="relative w-full aspect-square cursor-zoom-in block outline-none transition-transform duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                  >
+                    <Image
+                      src={product.image}
+                      alt={product.alt_text || "Magnetic Product Gallery"}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority={index === 0 || index === 1}
+                      className="object-cover object-center rounded-none"
+                    />
+                    <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
+                  </button>
+                )}
               </div>
             </SwiperSlide>
           ))}
