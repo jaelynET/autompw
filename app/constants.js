@@ -16,7 +16,7 @@ export const product = {
   inStock: true,
 
   pricing: {
-    price: 3495,
+    price: 3995,
     compareAt: 14999,
   },
 
