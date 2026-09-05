@@ -32,29 +32,14 @@ function MobileFullscreenGallery({ images, startIndex, onClose }) {
         {images.map((img, i) => (
           <SwiperSlide key={img.id || i}>
             <div className="relative w-full h-full flex items-center justify-center bg-black">
-              {/* FIXED: Check if the element is your looping video */}
-              {img.type === "video" ? (
-                <div className="w-full aspect-square relative">
-                  <video
-                    src={img.image}
-                    autoPlay
-                    loop
-                    playsInline
-                    preload="auto"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ) : (
-                /* Standard Fullscreen Image View Layer */
-                <Image
-                  src={img.image}
-                  alt={img.alt_text || "Product View Detail"}
-                  fill
-                  sizes="100vw"
-                  className="object-contain"
-                  priority={i === startIndex} // Prioritizes loading the exact image they clicked on first
-                />
-              )}
+              <Image
+                src={img.image}
+                alt={img.alt_text || "Product View Detail"}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority={i === startIndex} // Prioritizes loading the exact image they clicked on first
+              />
             </div>
           </SwiperSlide>
         ))}

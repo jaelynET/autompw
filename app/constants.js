@@ -12,7 +12,7 @@ export const SORT_OPTIONS = [
 ];
 
 export const product = {
-  title: "The MPW-01 Tactile Core",
+  title: "Magnetic Perpetual Calendar",
   inStock: true,
 
   pricing: {
@@ -21,99 +21,56 @@ export const product = {
   },
 
   gallery: [
-    //RED IMAGES
-
+    // BLACK VARIANT IMAGES
     {
-      id: "video-1",
-      alt_text: "Kinetic Haptic Slider Loop",
-      type: "video",
-      image: "/loop2.mp4",
-      // color: "black",
-      color: "brushed steel",
+      id: "cal-img-3",
+      alt_text: "Magnetic Calendar Carbon Black Edition",
+      type: "image",
+      image: "/magnetic-calendar-main.jpg",
 
+      color: "black",
+      position: 3,
+    },
+    {
+      id: "cal-img-2",
+      alt_text: "Magnetic Calendar Minimalist Office Desk Layout",
+      type: "image",
+      image: "/magnetic-calendar-black-lfs-2.jpg",
+
+      color: "black",
+      position: 2,
+    },
+    {
+      id: "cal-img-1",
+      alt_text: "Magnetic Calendar Minimalist Office Desk Layout",
+      type: "image",
+      image: "/magnetic-calendar-main-lfs-1.jpg",
+
+      color: "black",
       position: 1,
     },
 
+    // WHITE VARIANT IMAGES
     {
-      id: "cal-img-2",
-      alt_text: "Kinetic Haptic Slider Loop",
+      id: "cal-img-1",
+      alt_text: "Magnetic Calendar Pure White Edition Still Frame",
       type: "image",
-      image: "/spade-blackground2.avif",
-      // color: "black",
-      color: "brushed steel",
-
+      image: "/magnetic-calendar-white-main.jpg",
+      color: "white",
+      position: 1,
+    },
+    {
+      id: "cal-img-4",
+      alt_text: "Magnetic Calendar Flat Lay Geometric Studio View",
+      type: "image",
+      image: "/magnetic-calendar-white-lfs-2.jpg",
+      color: "white",
       position: 2,
     },
-    // {
-    //   id: "cal-img-3",
-    //   alt_text: "Magnetic Calendar",
-    //   type: "image",
-    //   image: "/magnetic-calendar-main.jpg",
-    //   color: "black",
-    //   position: 3,
-    // },
-
-    //  GRAY IMAGES
-    // {
-    //   id: "cal-img-1",
-    //   type: "image",
-    //   alt_text: "Magnetic Calendar",
-
-    //   image: "/magnetic-calendar-white-main.jpg",
-
-    //   color: "white",
-    //   position: 1,
-    // },
-    // {
-    //   id: "cal-img-2",
-    //   type: "image",
-    //   alt_text: "Magnetic Calendar",
-
-    //   image: "/magnetic-calendar-white-lfs-2.jpg",
-
-    //   color: "white",
-    //   position: 2,
-    // },
-    // {
-    //   id: "gray_pic2",
-    //   image: "/gray-porsche-3.jpg",
-    //   alt_text: "porsche",
-
-    //   color: "gray",
-    //   position: 2,
-    // },
-    // {
-    //   id: "gray_pic2",
-    //   image: "/magnetic-calendar-black-lfs-2",
-    //   alt_text: "porsche",
-
-    //   color: "gray",
-    //   position: 2,
-    // },
-
-    // {
-    //   id: 3,
-    //   image: "/chevy-ba.jpg",
-    //   alt_text:
-    //     "Chrome Lens Headlight Set Compatible with 2003-2006 Chevy Silverado before and after comparison",
-    //   position: 3,
-    // },
-    // {
-    //   id: 4,
-    //   image: "/chevy-beam.jpg",
-    //   alt_text:
-    //     "Chrome Lens Headlight Set Compatible with 03 04 05 06 Chevy Silverado powerful crisp night beam view at night",
-    //   position: 4,
-    // },
-
-    // images
   ],
-
-  // description:
-  //   "Comfortably drive at night with complete peace of mind. You no longer have to worry about unseen hazards on dark backroads. These ultra-bright halogen headlights ensure a powerful, crisp beam pattern that illuminates everything on the road ahead of you.",
   seo: {
-    meta_title: "The MPW-01 Tactile Core",
-    meta_description: "The MPW-01 Tactile Core",
+    meta_title: "Magnetic Perpetual Calendar",
+    meta_description: "Magnetic Perpetual Calendar",
   },
 
   reviews: [
@@ -126,7 +83,7 @@ export const product = {
       avatar: "DK",
       title: "Insane desk piece",
       comment:
-        "Looks unreal in person. It has a really nice heavy weight to it since it's solid metal. Everyone who walks into my office ends up messing with it.",
+        "Looks unreal in person. Everyone who walks into my office stops to look at it.",
       image: "/review-desk-1.jpg",
     },
     {
@@ -138,7 +95,7 @@ export const product = {
       avatar: "MG",
       title: "Solid quality",
       comment:
-        "The magnets are super strong. The metal plates slide back and forth with a really loud, satisfying click. Definitely helps me focus while working.",
+        "The rare-earth magnets feel premium. The spheres click satisfyingly into place for the days and months.",
       image: "",
     },
     {
@@ -150,7 +107,7 @@ export const product = {
       avatar: "AP",
       title: "Best gift I've bought all year",
       comment:
-        "Got this for my brother's desk setup. The matte steel look looks amazing next to his keyboard. He's obsessed with it.",
+        "Bought this for my brother's office setup. The minimal matte black structure looks incredible against wood grain. Worth every penny.",
       image: "/review-desk-2.jpg",
     },
     {
@@ -162,7 +119,7 @@ export const product = {
       avatar: "CT",
       title: "Super cool gadget",
       comment:
-        "Exceeded my expectations. Honestly keeps my hands busy so I stop picking up my phone and scrolling every 5 minutes while working.",
+        "Exceeded my expectations. It looks incredibly sleek and functions beautifully.",
       image: "",
     },
     {
@@ -174,7 +131,7 @@ export const product = {
       avatar: "SR",
       title: "Brilliant engineering",
       comment:
-        "I love that it's completely mechanical. No charging, no cords, just pure magnets. Feels like it'll last forever.",
+        "I love that it works purely on mechanical magnetism. No charging, no cords, and zero battery waste.",
       image: "",
     },
     {
@@ -186,7 +143,7 @@ export const product = {
       avatar: "KM",
       title: "Sleek and tactile",
       comment:
-        "It can be a little loud if you snap it fast, but if you hold the edges tighter you can slide it completely silent. Perfect for boring zoom meetings.",
+        "It has become part of my daily routine to move the dates forward. Perfect touch for my clean setup.",
       image: "",
     },
   ],

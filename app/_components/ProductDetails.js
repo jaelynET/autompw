@@ -31,7 +31,7 @@ function ProductDetails({ product }) {
     description,
     sellingPoints,
   } = product;
-  const [selectedColor, setSelectedColor] = useState("brushed steel");
+  const [selectedColor, setSelectedColor] = useState("black");
 
   const image1 = "/loop2.mp4";
 
@@ -58,17 +58,32 @@ function ProductDetails({ product }) {
             </span>
           </div>
           {/* 2. Variant Selector - Cleaned up to display a single, authoritative premium variant */}
-          <div className="mt-6 border-t border-stone-100 pt-5 ">
+          <div className="mt-8 border-t border-stone-100 pt-5 ">
             <span className="text-[10px] font-medium uppercase tracking-widest text-stone-400 font-mono block">
-              Material Finish
+              Select Finish
             </span>
 
-            <div className="mt-2.5 flex gap-6">
-              <div className="flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase text-stone-950 border-b-2 border-stone-950">
-                {/* Small, raw metal indicator dot matching the theme */}
-                <span className="h-1.5 w-1.5 bg-stone-400 rounded-none block" />
-                Brushed Steel / Ace Edition
-              </div>
+            <div className="mt-3 flex gap-6">
+              {/* Carbon Black Option */}{" "}
+              <button
+                type="button"
+                onClick={() => setSelectedColor("black")}
+                className={`flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase transition-all outline-none ${selectedColor === "black" ? "text-stone-950 border-b-2 border-stone-950" : "text-stone-400 hover:text-stone-600 border-b-2 border-transparent"}`}
+              >
+                {" "}
+                <span className="h-2 w-2 bg-stone-950 rounded-none block" />{" "}
+                Carbon Black{" "}
+              </button>{" "}
+              {/* Pure White Option */}{" "}
+              <button
+                type="button"
+                onClick={() => setSelectedColor("white")}
+                className={`flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase transition-all outline-none ${selectedColor === "white" ? "text-stone-950 border-b-2 border-stone-950" : "text-stone-400 hover:text-stone-600 border-b-2 border-transparent"}`}
+              >
+                {" "}
+                <span className="h-2 w-2 bg-stone-100 border border-stone-200 rounded-none block" />{" "}
+                Pure White{" "}
+              </button>{" "}
             </div>
           </div>
           {/* 2. Variant Selector - Perfectly readable asymmetry 
@@ -116,7 +131,7 @@ function ProductDetails({ product }) {
 
           {/* 4. Fine-Print Logistics - Demoted underneath the main goal */}
           {/* 4. Fine-Print Logistics - Tailored for US Designer Market */}
-          <div className="mt-8 border-t border-stone-100 pt-5 space-y-2.5 font-sans">
+          <div className="mt-8 border-t border-stone-100 pt-5 space-y-2.5 ">
             {/* The Shipping Hook (US Focused) */}
             <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-600">
               <span className="h-1 w-1 bg-stone-900 rounded-none block" />
@@ -132,7 +147,7 @@ function ProductDetails({ product }) {
 
             <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-500">
               <span className="h-1 w-1 bg-stone-400 rounded-none block" />
-              <span>30-day tactile satisfaction return guarantee</span>
+              <span>30-day spatial satisfaction return guarantee</span>
             </div>
           </div>
         </div>

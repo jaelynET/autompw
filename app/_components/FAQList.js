@@ -1,27 +1,28 @@
 function FAQList() {
   return (
     <section className="mt-20 border-t border-stone-200 pt-12 mb-20 font-sans mx-4 min-[375px]:mx-8 min-[425px]:mx-11">
-      {/* Section Heading — Clean, Balanced and Technical */}
+      {/* Section Heading - Balanced and Clean */}
       <div className="mb-10">
         <h2 className="text-xl font-normal tracking-tight text-stone-950 sm:text-2xl">
           Frequently Asked Questions
         </h2>
         <p className="mt-2 text-xs leading-relaxed text-stone-500 font-normal">
-          Mechanical specifications, tactile operation parameters, and acoustic
-          details.
+          Technical specifications, configuration parameters, and spatial
+          mounting details.
         </p>
       </div>
 
-      {/* FAQ Accordion List — Minimalist Architectural Divider Stack */}
+      {/* FAQ Accordion List - Converted into an Architectural Row System */}
       <div className="divide-y divide-stone-100 border-t border-b border-stone-100">
-        {/* Question 1: Core Mechanical Operation */}
+        {/* Question 1 */}
         <div className="py-5 bg-transparent">
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
               <span className="text-sm font-medium text-stone-950 tracking-wide">
-                How does the sliding mechanism work?
+                How do the calendar spheres work?
               </span>
               <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
+                {/* Minimal cross '+' icon that transforms into an 'x' on open */}
                 <svg
                   className="h-4 w-4"
                   fill="none"
@@ -38,21 +39,20 @@ function FAQList() {
               </span>
             </summary>
             <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
-              The slider is built using two precision-machined steel plates with
-              powerful magnets hidden inside them. When you push the top card
-              with your thumb, the internal magnetic tracks pull and resist
-              against each other, snapping perfectly into place like a real deck
-              of cards.
+              The calendar features embedded magnetic tracking lines. Small,
+              textured steel spheres snap cleanly into designated slots along
+              the outer frame, precisely marking the current month, numerical
+              date, and day of the week.
             </div>
           </details>
         </div>
 
-        {/* Question 2: The Sound / Stealth Objection Handle */}
+        {/* Question 2 */}
         <div className="py-5 bg-transparent">
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
               <span className="text-sm font-medium text-stone-950 tracking-wide">
-                Will the clicking sound disturb others in a quiet office?
+                Does it require batteries or power cords?
               </span>
               <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
@@ -71,22 +71,20 @@ function FAQList() {
               </span>
             </summary>
             <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
-              When slid freely, the steel plates create a crisp, solid
-              mechanical click that is highly satisfying for home workspace
-              focus. If you need to use it in a quiet meeting or shared office
-              space, simply wrap your fingers a bit firmer around the metal
-              edges to dampen the impact, converting it into a totally silent,
-              stealthy vibration.
+              No, this calendar is entirely manual and operates without any
+              electronics. The core mechanisms rely completely on physical
+              magnetism, meaning you will never have to charge it, replace
+              batteries, or plug it into a wall.
             </div>
           </details>
         </div>
 
-        {/* Question 3: Power Requirements */}
+        {/* Question 3 */}
         <div className="py-5 bg-transparent">
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
               <span className="text-sm font-medium text-stone-950 tracking-wide">
-                Does it require batteries or maintenance?
+                Do the magnetic spheres fall off easily?
               </span>
               <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
@@ -105,20 +103,20 @@ function FAQList() {
               </span>
             </summary>
             <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
-              No. This tool is completely mechanical and operates without any
-              wires, charging, or electronics. The core system relies entirely
-              on permanent physical magnetism, meaning it will never lose its
-              snap or require spare parts.
+              Not at all. We engineered the tracks with calibrated rare-earth
+              magnets. The spheres glide smoothly when you intentionally move
+              them with your fingers, but they lock firmly into place and
+              won&apos;t dislodge if the desk is bumped or shaken.
             </div>
           </details>
         </div>
 
-        {/* Question 4: Materials & Wear Durability */}
+        {/* Question 4 */}
         <div className="py-5 bg-transparent">
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
               <span className="text-sm font-medium text-stone-950 tracking-wide">
-                Will the steel plates scratch or wear down over time?
+                Can this be mounted on a wall?
               </span>
               <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
@@ -137,11 +135,10 @@ function FAQList() {
               </span>
             </summary>
             <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
-              Not at all. The slider is machined from heavy, solid stainless
-              steel alloy and treated with a raw sandblasted finish. It is
-              highly resistant to surface scratches, impact damage, and drop
-              wear, ensuring it maintains its pristine metal appearance directly
-              on your desk for years.
+              Yes. The calendar features an integrated flush-mount keyhole slot
+              on the rear panel. It can easily hang flat against any wall
+              surface using a standard drywall screw, or sit stably on a desktop
+              using its removable bottom stand.
             </div>
           </details>
         </div>

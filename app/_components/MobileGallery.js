@@ -61,28 +61,24 @@ function MobileGallery({ productImages, selectedColor }) {
                 <div className="w-full overflow-hidden">
                   <div className="w-full max-w-2xl mx-auto">
                     {/* FIXED: Check if the element is your looping video */}
-                    {product.type === "video" ? (
-                      <VideoSlide src={mediaSrc} />
-                    ) : (
-                      /* Standard Picture Element Layout Track */
-                      <button
-                        type="button"
-                        onClick={() => setIsOpen(true)}
-                        className="relative w-full h-auto cursor-zoom-in block outline-none transition-transform duration-300 active:scale-[0.99]"
-                        aria-label={`View enlarged image ${i + 1}`}
-                      >
-                        <Image
-                          src={mediaSrc}
-                          alt="Haptic Slider View"
-                          width={1080}
-                          height={1350}
-                          sizes="(max-width: 640px) 100vw, 50vw"
-                          className="w-full h-auto object-contain object-center rounded-none"
-                          priority={i === 0 || i === 1} // Index 0 (video) and Index 1 load immediately
-                        />
-                        <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
-                      </button>
-                    )}
+
+                    <button
+                      type="button"
+                      onClick={() => setIsOpen(true)}
+                      className="relative w-full h-auto cursor-zoom-in block outline-none transition-transform duration-300 active:scale-[0.99]"
+                      aria-label={`View enlarged image ${i + 1}`}
+                    >
+                      <Image
+                        src={mediaSrc}
+                        alt="Magnetic Calendar View"
+                        width={1080}
+                        height={1350}
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        className="w-full h-auto object-contain object-center rounded-none"
+                        priority={i === 0 || i === 1} // Index 0 (video) and Index 1 load immediately
+                      />
+                      <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
+                    </button>
                   </div>
                 </div>
               </SwiperSlide>
