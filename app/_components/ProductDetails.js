@@ -145,7 +145,7 @@ function ProductDetails({ product }) {
 
             <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-500">
               <span className="h-1 w-1 bg-stone-400 rounded-none block" />
-              <span>30-day spatial satisfaction return guarantee</span>
+              <span>30-day tactile satisfaction return guarantee</span>
             </div>
           </div>
         </div>
