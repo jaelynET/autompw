@@ -12,65 +12,65 @@ export const SORT_OPTIONS = [
 ];
 
 export const product = {
-  title: "Magnetic Perpetual Calendar",
+  title: "The MPW-01 Tactile Core",
   inStock: true,
 
   pricing: {
-    price: 3995,
+    price: 3495,
     compareAt: 14999,
   },
 
   gallery: [
     // BLACK VARIANT IMAGES
-    {
-      id: "cal-img-3",
-      alt_text: "Magnetic Calendar Carbon Black Edition",
-      type: "image",
-      image: "/magnetic-calendar-main.jpg",
+    // {
+    //   id: "cal-img-3",
+    //   alt_text: "Magnetic Calendar Carbon Black Edition",
+    //   type: "image",
+    //   image: "/magnetic-calendar-main.jpg",
 
-      color: "black",
-      position: 3,
-    },
-    {
-      id: "cal-img-2",
-      alt_text: "Magnetic Calendar Minimalist Office Desk Layout",
-      type: "image",
-      image: "/magnetic-calendar-black-lfs-2.jpg",
+    //   color: "black",
+    //   position: 3,
+    // },
+    // {
+    //   id: "cal-img-2",
+    //   alt_text: "Magnetic Calendar Minimalist Office Desk Layout",
+    //   type: "image",
+    //   image: "/magnetic-calendar-black-lfs-2.jpg",
 
-      color: "black",
-      position: 2,
-    },
+    //   color: "black",
+    //   position: 2,
+    // },
     {
       id: "cal-img-1",
       alt_text: "Magnetic Calendar Minimalist Office Desk Layout",
       type: "image",
-      image: "/magnetic-calendar-main-lfs-1.jpg",
+      image: "/spade-blackground2.avif",
 
       color: "black",
       position: 1,
     },
 
-    // WHITE VARIANT IMAGES
-    {
-      id: "cal-img-1",
-      alt_text: "Magnetic Calendar Pure White Edition Still Frame",
-      type: "image",
-      image: "/magnetic-calendar-white-main.jpg",
-      color: "white",
-      position: 1,
-    },
-    {
-      id: "cal-img-4",
-      alt_text: "Magnetic Calendar Flat Lay Geometric Studio View",
-      type: "image",
-      image: "/magnetic-calendar-white-lfs-2.jpg",
-      color: "white",
-      position: 2,
-    },
+    // // WHITE VARIANT IMAGES
+    // {
+    //   id: "cal-img-1",
+    //   alt_text: "Magnetic Calendar Pure White Edition Still Frame",
+    //   type: "image",
+    //   image: "/magnetic-calendar-white-main.jpg",
+    //   color: "white",
+    //   position: 1,
+    // },
+    // {
+    //   id: "cal-img-4",
+    //   alt_text: "Magnetic Calendar Flat Lay Geometric Studio View",
+    //   type: "image",
+    //   image: "/magnetic-calendar-white-lfs-2.jpg",
+    //   color: "white",
+    //   position: 2,
+    // },
   ],
   seo: {
-    meta_title: "Magnetic Perpetual Calendar",
-    meta_description: "Magnetic Perpetual Calendar",
+    meta_title: "The MPW-01 Tactile Core",
+    meta_description: "The MPW-01 Tactile Core",
   },
 
   reviews: [
@@ -83,7 +83,7 @@ export const product = {
       avatar: "DK",
       title: "Insane desk piece",
       comment:
-        "Looks unreal in person. Everyone who walks into my office stops to look at it.",
+        "Looks unreal in person. It has a really nice heavy weight to it since it's solid metal. Everyone who walks into my office ends up messing with it.",
       image: "/review-desk-1.jpg",
     },
     {
@@ -95,7 +95,7 @@ export const product = {
       avatar: "MG",
       title: "Solid quality",
       comment:
-        "The rare-earth magnets feel premium. The spheres click satisfyingly into place for the days and months.",
+        "The magnets are super strong. The metal plates slide back and forth with a really loud, satisfying click. Definitely helps me focus while working.",
       image: "",
     },
     {
@@ -107,7 +107,7 @@ export const product = {
       avatar: "AP",
       title: "Best gift I've bought all year",
       comment:
-        "Bought this for my brother's office setup. The minimal matte black structure looks incredible against wood grain. Worth every penny.",
+        "Got this for my brother's desk setup. The matte steel look looks amazing next to his keyboard. He's obsessed with it.",
       image: "/review-desk-2.jpg",
     },
     {
@@ -119,7 +119,7 @@ export const product = {
       avatar: "CT",
       title: "Super cool gadget",
       comment:
-        "Exceeded my expectations. It looks incredibly sleek and functions beautifully.",
+        "Exceeded my expectations. Honestly keeps my hands busy so I stop picking up my phone and scrolling every 5 minutes while working.",
       image: "",
     },
     {
@@ -131,7 +131,7 @@ export const product = {
       avatar: "SR",
       title: "Brilliant engineering",
       comment:
-        "I love that it works purely on mechanical magnetism. No charging, no cords, and zero battery waste.",
+        "I love that it's completely mechanical. No charging, no cords, just pure magnets. Feels like it'll last forever.",
       image: "",
     },
     {
@@ -143,7 +143,7 @@ export const product = {
       avatar: "KM",
       title: "Sleek and tactile",
       comment:
-        "It has become part of my daily routine to move the dates forward. Perfect touch for my clean setup.",
+        "It can be a little loud if you snap it fast, but if you hold the edges tighter you can slide it completely silent. Perfect for boring zoom meetings.",
       image: "",
     },
   ],

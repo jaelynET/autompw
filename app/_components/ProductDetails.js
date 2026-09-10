@@ -47,6 +47,20 @@ function ProductDetails({ product }) {
         <h1 className="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl leading-tight">
           {product.title}
         </h1>
+
+        <div className="mt-2 flex items-center gap-1.5 text-stone-950">
+          <div className="flex gap-0.5">
+            {/* 5 Structural Star Shapes (Use sharp, thin vector SVGs or simple characters) */}
+            {[...Array(5)].map((_, i) => (
+              <span key={i} className="text-xs">
+                ★
+              </span>
+            ))}
+          </div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 font-medium pt-0.5">
+            (4.9 / 6 Reviews)
+          </span>
+        </div>
       </div>
 
       <div className="mx-4 mb-5 min-[375px]:mx-8 min-[425px]:mx-11 font-sans">
@@ -57,33 +71,17 @@ function ProductDetails({ product }) {
               {formatPrice(pricing.price)}
             </span>
           </div>
-          {/* 2. Variant Selector - Cleaned up to display a single, authoritative premium variant */}
-          <div className="mt-8 border-t border-stone-100 pt-5 ">
+          <div className="mt-8 border-t border-stone-100 pt-5 font-sans">
             <span className="text-[10px] font-medium uppercase tracking-widest text-stone-400 font-mono block">
-              Select Finish
+              Material Finish
             </span>
 
             <div className="mt-3 flex gap-6">
-              {/* Carbon Black Option */}{" "}
-              <button
-                type="button"
-                onClick={() => setSelectedColor("black")}
-                className={`flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase transition-all outline-none ${selectedColor === "black" ? "text-stone-950 border-b-2 border-stone-950" : "text-stone-400 hover:text-stone-600 border-b-2 border-transparent"}`}
-              >
-                {" "}
-                <span className="h-2 w-2 bg-stone-950 rounded-none block" />{" "}
-                Carbon Black{" "}
-              </button>{" "}
-              {/* Pure White Option */}{" "}
-              <button
-                type="button"
-                onClick={() => setSelectedColor("white")}
-                className={`flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase transition-all outline-none ${selectedColor === "white" ? "text-stone-950 border-b-2 border-stone-950" : "text-stone-400 hover:text-stone-600 border-b-2 border-transparent"}`}
-              >
-                {" "}
-                <span className="h-2 w-2 bg-stone-100 border border-stone-200 rounded-none block" />{" "}
-                Pure White{" "}
-              </button>{" "}
+              <div className="flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase text-stone-950 border-b-2 border-stone-950">
+                {/* Small, raw metal indicator dot matching the theme */}
+                <span className="h-2 w-2 bg-stone-400 rounded-none block" />
+                Brushed Steel / Ace Edition
+              </div>
             </div>
           </div>
           {/* 2. Variant Selector - Perfectly readable asymmetry 

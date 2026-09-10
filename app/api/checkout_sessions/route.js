@@ -21,19 +21,19 @@ export async function POST(req) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       metadata: {
-        product: "magnetic-calendar",
+        product: "ace-pushslider",
         variant_color: selectedColor || "black",
       },
       line_items: [
         {
           price_data: {
             currency: "usd",
-            unit_amount: 3995,
+            unit_amount: 3495,
             product_data: {
-              name: "Magnetic Perpetual Calendar",
-              description: `Finish: ${selectedColor === "black" ? "Carbon Black" : "Pure White"}`,
+              name: "The MPW-01 Tactile Core",
+              description: `Finish: ${selectedColor === "black" ? "       Brushed Steel / Ace Edition" : ""}`,
               images: [
-                "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfVTk4Z1l4czlncjdDWW41dXNNUGVWckVx00EfDbxMZD",
+                "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfb0ZPdkQ1OUVnNTZvS0NwcnVUbWkzVW1F00KozyWYIK",
               ],
             },
           },
