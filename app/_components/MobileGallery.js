@@ -70,7 +70,7 @@ function MobileGallery({ productImages, selectedColor }) {
                     >
                       <Image
                         src={mediaSrc}
-                        alt="Magnetic Calendar View"
+                        alt="Tactile Core View"
                         width={1080}
                         height={1350}
                         sizes="(max-width: 640px) 100vw, 50vw"
