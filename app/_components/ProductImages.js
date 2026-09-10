@@ -151,7 +151,7 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
                 >
                   <Image
                     src={product.image}
-                    alt={product.alt_text || "Magnetic Product Gallery"}
+                    alt={product.alt_text || "Tactile Core Product Gallery"}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     priority={index === 0 || index === 1}

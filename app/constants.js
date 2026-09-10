@@ -41,8 +41,8 @@ export const product = {
     //   position: 2,
     // },
     {
-      id: "cal-img-1",
-      alt_text: "Magnetic Calendar Minimalist Office Desk Layout",
+      id: "tac-img-1",
+      alt_text: "The MPW-01 Tactile Core",
       type: "image",
       image: "/spade-blackground2.avif",
 
