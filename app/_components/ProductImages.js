@@ -111,12 +111,22 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
                   }`}
                 >
                   <div className="relative w-full h-full bg-white">
-                    <Image
-                      src={product.image}
-                      alt="Thumbnail view"
-                      fill
-                      className="object-cover"
-                    />
+                    {/* FIXED: Checks for video to avoid thumbnail loading crash */}
+                    {product.type === "video" ? (
+                      <video
+                        src={product.image}
+                        muted
+                        playsInline
+                        className="h-full w-full object-cover opacity-70"
+                      />
+                    ) : (
+                      <Image
+                        src={product.image}
+                        alt="Thumbnail view"
+                        fill
+                        className="object-cover"
+                      />
+                    )}
                   </div>
                 </SwiperSlide>
               ))}
@@ -144,21 +154,38 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
           {filteredImages.map((product, index) => (
             <SwiperSlide key={product.id || index} className="bg-white">
               <div className="w-full max-w-2xl mx-auto">
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(true)}
-                  className="relative w-full aspect-square cursor-zoom-in block outline-none transition-transform duration-300 hover:scale-[1.01] active:scale-[0.99]"
-                >
-                  <Image
-                    src={product.image}
-                    alt={product.alt_text || "Tactile Core Product Gallery"}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority={index === 0 || index === 1}
-                    className="object-cover object-center rounded-none"
-                  />
-                  <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
-                </button>
+                {/* FIXED: Conditional parser separation handling the video timeline preview */}
+                {product.type === "video" ? (
+                  <div className="relative w-full aspect-square overflow-hidden bg-stone-50">
+                    <video
+                      src={product.image}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                      className="h-full w-full object-cover rounded-none"
+                    />
+                    <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
+                  </div>
+                ) : (
+                  /* Standard Zoomable Button Matrix for images */
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(true)}
+                    className="relative w-full aspect-square cursor-zoom-in block outline-none transition-transform duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                  >
+                    <Image
+                      src={product.image}
+                      alt={product.alt_text || "Tactile Core Product Gallery"}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority={index === 0 || index === 1}
+                      className="object-cover object-center rounded-none"
+                    />
+                    <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
+                  </button>
+                )}
               </div>
             </SwiperSlide>
           ))}

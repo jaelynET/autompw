@@ -88,7 +88,7 @@ function CheckoutBtn({ product, selectedColor }) {
           : "bg-stone-950 text-white border-stone-950 hover:bg-stone-800 active:bg-black cursor-pointer"
       }`}
     >
-      {loading ? "Processing..." : "Purchase"}
+      {loading ? "Processing..." : "Buy Now"}
     </button>
   );
 }

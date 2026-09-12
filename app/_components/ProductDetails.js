@@ -134,18 +134,18 @@ function ProductDetails({ product }) {
             <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-600">
               <span className="h-1 w-1 bg-stone-900 rounded-none block" />
               <span className="font-medium text-stone-950">
-                Complimentary US shipping included
+                Free US Shipping Included
               </span>
             </div>
 
             <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-500">
               <span className="h-1 w-1 bg-stone-400 rounded-none block" />
-              <span>Dispatched within 24–48 hours with live tracking</span>
+              <span>Ships within 24-48 Hours</span>
             </div>
 
             <div className="flex items-center gap-3 text-[11px] font-normal tracking-wide text-stone-500">
               <span className="h-1 w-1 bg-stone-400 rounded-none block" />
-              <span>30-day tactile satisfaction return guarantee</span>
+              <span>30-Day Risk-Free Return Guarantee</span>
             </div>
           </div>
         </div>

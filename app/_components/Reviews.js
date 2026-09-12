@@ -7,7 +7,7 @@ function Reviews() {
       <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-baseline">
         <div>
           <h2 className="text-xl font-normal tracking-tight text-stone-950 sm:text-2xl">
-            Customer Registry
+            Customer Reviews
           </h2>
           <div className="mt-2.5 flex items-center gap-3">
             {/* Minimalist Stark Black Stars (No cheap gold/amber colors) */}
@@ -26,7 +26,7 @@ function Reviews() {
             <div className="flex items-center gap-2 text-xs font-normal text-stone-500 tracking-wide">
               <span className="font-semibold text-stone-950">4.9 / 5.0</span>
               <span className="text-stone-200 font-light">|</span>
-              <span>Verified studio allocations</span>
+              <span>Verified Purchases </span>
             </div>
           </div>
         </div>

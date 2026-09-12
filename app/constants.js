@@ -47,6 +47,15 @@ export const product = {
       image: "/spade-blackground2.avif",
 
       color: "black",
+      position: 2,
+    },
+    {
+      id: "tac-video-1",
+      alt_text: "The MPW-01 Tactile Core Loop",
+      type: "video",
+      image: "/looop3.mp4",
+
+      color: "black",
       position: 1,
     },
 
