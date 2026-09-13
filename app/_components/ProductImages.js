@@ -92,19 +92,20 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
                   }`}
                 >
                   <div className="relative w-full h-full bg-white">
-                    {/* FIXED: Checks for video to avoid thumbnail loading crash */}
                     {product.type === "video" ? (
                       <video
                         src={product.image}
                         muted
                         playsInline
-                        className="h-full w-full object-cover opacity-70"
+                        preload="none" // STOP THUMBNAILS FROM LOADING AUTOMATICALLY
+                        className="h-full w-full object-cover opacity-70 pointer-events-none"
                       />
                     ) : (
                       <Image
                         src={product.image}
                         alt="Thumbnail view"
-                        fill
+                        width={80} // Avoid layout calculation overhead by using precise dimensions instead of 'fill' layout loops where possible
+                        height={80}
                         className="object-cover"
                       />
                     )}
@@ -132,44 +133,50 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
           slidesPerView={1}
           className="w-full h-auto overflow-hidden rounded-none border border-stone-100 bg-white"
         >
-          {filteredImages.map((product, index) => (
-            <SwiperSlide key={product.id || index} className="bg-white">
-              <div className="w-full max-w-2xl mx-auto">
-                {/* FIXED: Conditional parser separation handling the video timeline preview */}
-                {product.type === "video" ? (
-                  <div className="relative w-full aspect-square overflow-hidden bg-stone-50">
-                    <video
-                      src={product.image}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="auto"
-                      className="h-full w-full object-cover rounded-none"
-                    />
-                    <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
-                  </div>
-                ) : (
-                  /* Standard Zoomable Button Matrix for images */
-                  <button
-                    type="button"
-                    onClick={() => setIsOpen(true)}
-                    className="relative w-full aspect-square cursor-zoom-in block outline-none transition-transform duration-300 hover:scale-[1.01] active:scale-[0.99]"
-                  >
-                    <Image
-                      src={product.image}
-                      alt={product.alt_text || "Tactile Core Product Gallery"}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      priority={index === 0 || index === 1}
-                      className="object-cover object-center rounded-none"
-                    />
-                    <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
-                  </button>
-                )}
-              </div>
-            </SwiperSlide>
-          ))}
+          {filteredImages.map((product, index) => {
+            // Crucial Optimization: Determine if this specific item is visible above-the-fold right now
+            const isPrimaryHero = index === 0;
+
+            return (
+              <SwiperSlide key={product.id || index} className="bg-white">
+                <div className="w-full max-w-2xl mx-auto">
+                  {product.type === "video" ? (
+                    <div className="relative w-full aspect-square overflow-hidden bg-stone-50">
+                      <video
+                        src={product.image}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        // Optimization: Never auto-preload streams; use high priority only if it is the immediate hero element
+                        preload={isPrimaryHero ? "metadata" : "none"}
+                        {...(isPrimaryHero ? { fetchpriority: "high" } : {})}
+                        className="h-full w-full object-cover rounded-none"
+                      />
+                      <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setIsOpen(true)}
+                      className="relative w-full aspect-square cursor-zoom-in block outline-none transition-transform duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                    >
+                      <Image
+                        src={product.image}
+                        alt={product.alt_text || "Tactile Core Product Gallery"}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        // Only pass priority to index 0. Preloading index 1 chokes the network thread during FCP.
+                        priority={isPrimaryHero}
+                        className="object-cover object-center rounded-none"
+                      />
+                      <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
+                    </button>
+                  )}
+                </div>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
 
