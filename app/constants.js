@@ -1,16 +1,3 @@
-export const PAGE_SIZE = 12;
-export const PAGE_WINDOW = 5;
-
-export const ADDED_DISCOUNT = 30;
-
-export const SORT_OPTIONS = [
-  { label: "Best Sellers", value: "best_sellers", default: true },
-  { label: "Price: Lowest to Highest", value: "price_asc" },
-  { label: "Price: Highest to Lowest", value: "price_desc" },
-  { label: "Newest", value: "newest" },
-  { label: "Highest Rated", value: "rating" },
-];
-
 export const product = {
   title: "The MPW-01 Tactile Core",
   inStock: true,
@@ -20,63 +7,6 @@ export const product = {
     compareAt: 14999,
   },
 
-  gallery: [
-    // BLACK VARIANT IMAGES
-    // {
-    //   id: "cal-img-3",
-    //   alt_text: "Magnetic Calendar Carbon Black Edition",
-    //   type: "image",
-    //   image: "/magnetic-calendar-main.jpg",
-
-    //   color: "black",
-    //   position: 3,
-    // },
-    // {
-    //   id: "cal-img-2",
-    //   alt_text: "Magnetic Calendar Minimalist Office Desk Layout",
-    //   type: "image",
-    //   image: "/magnetic-calendar-black-lfs-2.jpg",
-
-    //   color: "black",
-    //   position: 2,
-    // },
-    {
-      id: "tac-img-1",
-      alt_text: "The MPW-01 Tactile Core",
-      type: "image",
-      image: "/spade-blackground2.avif",
-
-      color: "black",
-      position: 2,
-    },
-    {
-      id: "tac-video-1",
-      alt_text: "The MPW-01 Tactile Core Loop",
-      type: "video",
-      image: "/looop3.mp4",
-
-      color: "black",
-      position: 1,
-    },
-
-    // // WHITE VARIANT IMAGES
-    // {
-    //   id: "cal-img-1",
-    //   alt_text: "Magnetic Calendar Pure White Edition Still Frame",
-    //   type: "image",
-    //   image: "/magnetic-calendar-white-main.jpg",
-    //   color: "white",
-    //   position: 1,
-    // },
-    // {
-    //   id: "cal-img-4",
-    //   alt_text: "Magnetic Calendar Flat Lay Geometric Studio View",
-    //   type: "image",
-    //   image: "/magnetic-calendar-white-lfs-2.jpg",
-    //   color: "white",
-    //   position: 2,
-    // },
-  ],
   seo: {
     meta_title: "The MPW-01 Tactile Core",
     meta_description: "The MPW-01 Tactile Core",

@@ -23,7 +23,7 @@ export default function ProductHeroMedia() {
       <video
         ref={videoRef}
         autoPlay
-        src="/looop3.mp4"
+        src="/loop-vid.mp4"
         loop
         muted
         playsInline
