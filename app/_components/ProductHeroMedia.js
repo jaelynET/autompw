@@ -24,6 +24,7 @@ export default function ProductHeroMedia() {
         ref={videoRef}
         autoPlay
         src="/loop-vid.mp4"
+        poster="/edc-pic.webp"
         loop
         muted
         playsInline
