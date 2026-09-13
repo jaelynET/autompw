@@ -7,7 +7,7 @@ import { formatPrice } from "../utils/format";
 import CheckoutBtn from "./CheckoutBtn";
 import FAQList from "./FAQList";
 import Reviews from "./Reviews";
-import ProductImages from "./ProductImages";
+import ProductHeroMedia from "./ProductHeroMedia";
 import FeatureBox from "./FeatureBox";
 
 function ProductDetails({ product }) {
@@ -22,7 +22,7 @@ function ProductDetails({ product }) {
 
   return (
     <div className="md:grid md:grid-cols-2  md:mt-8 md:ml-30 ">
-      <ProductImages
+      <ProductHeroMedia
         mainImage={image1}
         productImages={productImages}
         selectedColor={selectedColor}
