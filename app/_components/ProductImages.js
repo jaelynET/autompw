@@ -3,14 +3,21 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Keyboard, Thumbs, Mousewheel, FreeMode } from "swiper/modules";
+import { Keyboard, Thumbs, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import MobileGallery from "./MobileGallery";
 
-import DesktopFullscreenGallery from "./DesktopFullscreenGallery";
+import dynamic from "next/dynamic";
+
+const DesktopFullscreenGallery = dynamic(
+  () => import("./DesktopFullscreenGallery"),
+  {
+    ssr: false, // Prevents server-side execution overhead
+  },
+);
 
 import ThumbnailsSkeleton from "./ThumbnailsSkeleton";
 import { useDom } from "./DomContext";
@@ -31,12 +38,18 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
   // 2. Clear out index memory instantly on variation swap
   useEffect(() => {
     if (mainSwiper && !mainSwiper.destroyed) {
-      mainSwiper.slideTo(0, 0); // Force jump to index 0 instantly with 0ms transition delay
-      mainSwiper.update(); // Remeasure the dynamic array size changes
+      mainSwiper.slideTo(0, 0);
+
+      // Defer the heavy layout recalculation by 10ms
+      setTimeout(() => {
+        if (!mainSwiper.destroyed) mainSwiper.update();
+      }, 10);
     }
     if (thumbsSwiper && !thumbsSwiper.destroyed) {
       thumbsSwiper.slideTo(0, 0);
-      thumbsSwiper.update();
+      setTimeout(() => {
+        if (!thumbsSwiper.destroyed) thumbsSwiper.update();
+      }, 10);
     }
     setActiveIndex(0);
   }, [selectedColor, mainSwiper, thumbsSwiper]);
@@ -76,8 +89,7 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
               slidesPerView="auto"
               freeMode={{ enabled: true }}
               spaceBetween={10}
-              mousewheel
-              modules={[Thumbs, Mousewheel, FreeMode]}
+              modules={[Thumbs, FreeMode]}
               watchSlidesProgress
               className="w-20 h-[470px] hidden md:block"
             >
