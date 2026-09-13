@@ -27,13 +27,6 @@ function VideoSlide({ src }) {
 
       {/* Clean, minimalist interactive audio controller badge */}
 
-      {/* <button
-        type="button"
-        onClick={toggleAudio}
-        className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 text-[9px] font-medium tracking-widest font-mono uppercase bg-stone-950 text-white py-1.5 px-3 rounded-none active:scale-95 transition-transform cursor-pointer"
-      >
-        <span>{isMuted ? "🔇 Tap to Unmute" : "🔊 Audio Active"}</span>
-      </button> */}
       <button
         type="button"
         onClick={toggleAudio}

@@ -1,9 +1,12 @@
 import { redirect } from "next/navigation";
-import { stripe } from "@/app/_lib/stripe";
+import Stripe from "stripe";
+
 import SuccessPage from "../_components/SuccessPage";
 import PurchaseTracking from "../_components/PurchaseTracking";
 
 // import { stripe } from "@app/_lib/stipe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export default async function Success({ searchParams }) {
   const { session_id } = await searchParams;

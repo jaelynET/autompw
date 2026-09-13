@@ -1,24 +1,17 @@
 "use client";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Keyboard,
-  Navigation,
-  Pagination,
-  Thumbs,
-  Mousewheel,
-  FreeMode,
-} from "swiper/modules";
+import { Keyboard, Thumbs, Mousewheel, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import MobileGallery from "./MobileGallery";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+
 import DesktopFullscreenGallery from "./DesktopFullscreenGallery";
-import ProductGridSkeleton from "./ProductGridSkeleton";
+
 import ThumbnailsSkeleton from "./ThumbnailsSkeleton";
 import { useDom } from "./DomContext";
 
@@ -68,18 +61,6 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
       thumbsSwiper.slideTo(Math.max(activeIndex - SCROLL_OFFSET, 0), 300);
     }
   }, [activeIndex, thumbsSwiper]);
-
-  // // GO OVER THIS WHEN YOU ADD VARIANTS
-  // useEffect(() => {
-  //   if (mainSwiper) mainSwiper.slideTo(0, 300);
-  //   if (thumbsSwiper) thumbsSwiper.slideTo(0, 300);
-
-  //   // mainSwiper.slideTo(0, 0);
-  //   // thumbsSwiper.slideTo(0, 0);
-
-  //   // mainSwiper.update();
-  //   // thumbsSwiper.update();
-  // }, [selectedColor, mainSwiper, thumbsSwiper]);
 
   return (
     <>
@@ -213,9 +194,3 @@ function ProductImages({ mainImage, productImages, selectedColor = "black" }) {
 }
 
 export default ProductImages;
-
-/*
-function nextSlide(){
-
-}
-*/

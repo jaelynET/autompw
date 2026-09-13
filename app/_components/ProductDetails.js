@@ -1,20 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { sendGtagEvent, ADS_TRACKING_ID } from "../utils/gtag";
+import { useState } from "react";
+
 import { formatPrice } from "../utils/format";
-import Image from "next/image";
-
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import EstimateArrival from "./EstimateArrival";
-import AddToCart from "./AddToCart";
-import KlarnaMessage from "./KlarnaMessage";
-import ExpandableSection from "./ExpandableSection";
-import ProductSpecs from "./ProductSpecs";
-
-import ProductDimensions from "./ProductDimensions";
-import ProductInstallDocs from "./ProductInstallDocs";
-import ProductVariant from "./ProductVariant";
 
 import CheckoutBtn from "./CheckoutBtn";
 import FAQList from "./FAQList";
@@ -24,12 +12,9 @@ import FeatureBox from "./FeatureBox";
 
 function ProductDetails({ product }) {
   const {
-    title,
     gallery: productImages,
-    product_title_seo,
+
     pricing,
-    description,
-    sellingPoints,
   } = product;
   const [selectedColor, setSelectedColor] = useState("black");
 
@@ -84,43 +69,6 @@ function ProductDetails({ product }) {
               </div>
             </div>
           </div>
-          {/* 2. Variant Selector - Perfectly readable asymmetry 
-          <div className="mt-8 border-t border-stone-100 pt-5">
-            <span className="text-[10px] font-medium uppercase tracking-widest text-stone-400 font-mono block">
-              Finish Selection
-            </span>
-
-            <div className="mt-3 flex gap-6">
-              {/* Matte Black Button 
-              <button
-                type="button"
-                onClick={() => setSelectedColor("black")}
-                className={`flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase transition rounded-none bg-transparent cursor-pointer ${
-                  selectedColor === "black"
-                    ? "text-stone-950 border-b-2 border-stone-950"
-                    : "text-stone-400 hover:text-stone-700 border-b-2 border-transparent"
-                }`}
-              >
-                <span className="h-2 w-2 bg-stone-950 rounded-none block" />
-                Matte Black
-              </button>
-
-             
-              <button
-                type="button"
-                onClick={() => setSelectedColor("white")}
-                className={`flex items-center gap-2.5 py-1.5 text-xs font-medium tracking-wider uppercase transition rounded-none bg-transparent cursor-pointer ${
-                  selectedColor === "white"
-                    ? "text-stone-950 border-b-2 border-stone-950"
-                    : "text-stone-400 hover:text-stone-700 border-b-2 border-transparent"
-                }`}
-              >
-                <span className="h-2 w-2 bg-white border border-stone-300 rounded-none block" />
-                Pure White
-              </button>
-            </div>
-          </div>
-          */}
 
           {/* 3. Primary Purchase Action (Undisputed Focal Point) */}
           <div className="mt-8">

@@ -1,8 +1,4 @@
-import ProductGridSkeleton from "./ProductGridSkeleton";
 import Skeleton from "./Skeleton";
-import ThumbnailsSkeleton from "./ThumbnailsSkeleton";
-// app/(store)/products/[slug]/loading.js
-
 
 export default function Loading() {
   return (
@@ -11,18 +7,22 @@ export default function Loading() {
           MAIN PRODUCT SPLIT GRID
          ================================================================= */}
       <div className="md:grid md:grid-cols-2 md:mt-8 md:ml-30">
-        
         {/* LEFT COLUMN: IMAGES SECTION (Desktop Flex layout matching ProductImages) */}
         <div className="hidden md:flex md:gap-4 w-full">
           {/* Thumbnails Column - Fixed 80px width, 470px height to perfectly mimic your Swiper */}
           <div className="w-20 h-[470px] flex flex-col gap-[10px] flex-shrink-0">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Skeleton key={i} className="w-full h-20 border rounded-none flex-shrink-0" />
+              <Skeleton
+                key={i}
+                className="w-full h-20 border rounded-none flex-shrink-0"
+              />
             ))}
           </div>
 
           {/* Main Large Image Container - Uses style height to fix the missing Tailwind h-150 class */}
-          <div className="w-full" style={{ height: "600px" }}> {/* h-150 translates to 600px if using 4px steps */}
+          <div className="w-full" style={{ height: "600px" }}>
+            {" "}
+            {/* h-150 translates to 600px if using 4px steps */}
             <Skeleton className="w-full h-full rounded-none" />
           </div>
         </div>
@@ -36,7 +36,6 @@ export default function Loading() {
         {/* RIGHT COLUMN: DETAILS SECTION */}
         {/* Uses the exact side margin configurations from ProductBox */}
         <div className="mx-4 mb-5 min-[375px]:mx-8 min-[425px]:mx-11 mt-6 md:mt-0 flex flex-col gap-4">
-
           {/* Dynamic Product Name Heading (Sizes match text-2xl sm:text-3xl md:text-4xl) */}
           <Skeleton className="h-8 w-11/12 md:h-10 leading-tight" />
 
@@ -70,6 +69,3 @@ export default function Loading() {
     </main>
   );
 }
-
-
-

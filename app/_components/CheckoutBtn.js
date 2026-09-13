@@ -1,10 +1,4 @@
 "use client";
-import {
-  sendGtagEvent,
-  ADS_TRACKING_ID,
-  GA_TRACKING_ID,
-  CONVERSION_LABEL,
-} from "../utils/gtag";
 
 import { useState } from "react";
 

@@ -1,13 +1,6 @@
 "use client";
-import { Suspense, useEffect } from "react";
-import { useCart } from "./CartContext";
-import Link from "next/link";
 
-import {
-  CheckCircleIcon,
-  EnvelopeIcon,
-  ArrowRightIcon,
-} from "@heroicons/react/24/outline";
+import { CheckCircleIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 
 export default function SuccessPage({ customerEmail }) {
   return (
