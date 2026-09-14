@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 function FeatureBox() {
   return (
     <section className="mt-20 mx-4 min-[375px]:mx-8 min-[425px]:mx-11 font-sans border-t border-stone-100 pt-12">
