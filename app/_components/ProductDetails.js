@@ -18,12 +18,9 @@ function ProductDetails({ product }) {
   } = product;
   const [selectedColor, setSelectedColor] = useState("black");
 
-  const image1 = "/loop2.mp4";
-
   return (
     <div className="md:grid md:grid-cols-2  md:mt-8 md:ml-30 ">
       <ProductHeroMedia
-        mainImage={image1}
         productImages={productImages}
         selectedColor={selectedColor}
       />
