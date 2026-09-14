@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 function FeatureBox() {
   return (
     <section className="mt-20 mx-4 min-[375px]:mx-8 min-[425px]:mx-11 font-sans border-t border-stone-100 pt-12">
@@ -15,17 +13,14 @@ function FeatureBox() {
         </p>
       </div>
 
-      {/* 🚀 FIXED FOR PAGESPEED: Calculation-free layout containment wrapper */}
-      <div className="w-full aspect-[16/9] max-h-[380px] bg-stone-100 mb-12 relative border border-stone-100 overflow-hidden pointer-events-none">
-        <Image
+      {/* 🚀 THE PAGESPEED CRUSHER: Native raw element wrapper */}
+      <div className="w-full aspect-[16/9] max-h-[380px] mb-12 relative border border-stone-100 overflow-hidden pointer-events-none">
+        <img
           src="/spade-blackground2.webp"
           alt="Premium stainless steel desk anchor focus showcase"
-          fill
-          priority={false} // Forces Next.js to explicitly treat this as a non-hero item
-          unoptimized={false} // Allows Vercel to compress this format on its global CDN edge
-          loading="lazy"
-          decoding="async"
-          className="object-cover object-center"
+          loading="lazy" // 1. Native rule: Browser completely ignores this on line 1 paint
+          decoding="async" // 2. Native rule: Decodes pixels strictly off the main thread
+          className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 ring-1 ring-black/5 rounded-none" />
       </div>
