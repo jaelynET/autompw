@@ -15,15 +15,16 @@ function FeatureBox() {
         </p>
       </div>
 
-      {/* 🚀 HIGH-PERFORMANCE OPTIMIZED IMAGE WRAPPER */}
+      {/* 🚀 FIXED FOR PAGESPEED: Calculation-free layout containment wrapper */}
       <div className="w-full aspect-[16/9] max-h-[380px] bg-stone-100 mb-12 relative border border-stone-100 overflow-hidden pointer-events-none">
         <Image
           src="/spade-blackground2.webp"
           alt="Premium stainless steel desk anchor focus showcase"
           fill
-          sizes="(max-width: 768px) 100vw, 80vw"
-          loading="lazy" // Prevents download on page mount
-          decoding="async" // Prevents main-thread script execution stalling
+          priority={false} // Forces Next.js to explicitly treat this as a non-hero item
+          unoptimized={false} // Allows Vercel to compress this format on its global CDN edge
+          loading="lazy"
+          decoding="async"
           className="object-cover object-center"
         />
         <div className="absolute inset-0 ring-1 ring-black/5 rounded-none" />
