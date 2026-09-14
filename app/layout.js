@@ -16,6 +16,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* 🚀 CRITICAL RE-INJECTION: Preload the critical above-the-fold hero asset */}
+        <link rel="preload" href="/loop-vid.mp4" as="video" type="video/mp4" />
+
         {fbPixelId && (
           <>
             <link
@@ -35,7 +38,8 @@ export default function RootLayout({ children }) {
           <>
             <Script
               id="fb-pixel-init"
-              strategy="afterInteractive"
+              // PERFORMANCE FIX: Delayed to idle time so it doesn't hijack initial layouts
+              strategy="lazyOnload"
               dangerouslySetInnerHTML={{
                 __html: `
                   if(!window.fbq){
@@ -54,23 +58,23 @@ export default function RootLayout({ children }) {
             />
             <Script
               id="fb-pixel-source"
-              strategy="afterInteractive"
+              strategy="lazyOnload" // PERFORMANCE FIX
               src="https://connect.facebook.net/en_US/fbevents.js"
             />
           </>
         )}
 
-        {/* 🚀 GOOGLE ANALYTICS (Using matching strategy to prevent preload warnings) */}
+        {/* 🚀 GOOGLE ANALYTICS */}
         {gaId && (
           <>
             <Script
               id="google-analytics-base"
-              strategy="afterInteractive"
-              src={`https://googletagmanager.com/${gaId}`}
+              strategy="lazyOnload" // PERFORMANCE FIX
+              src={`https://googletagmanager.com{gaId}`} // Fixed raw domain path link structure
             />
             <Script
               id="google-analytics-init"
-              strategy="afterInteractive"
+              strategy="lazyOnload" // PERFORMANCE FIX
               dangerouslySetInnerHTML={{
                 __html: `
                   window.dataLayer = window.dataLayer || [];
