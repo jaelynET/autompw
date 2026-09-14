@@ -28,7 +28,7 @@ export default function ProductHeroMedia() {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="none"
         fetchPriority="high"
         className="w-full h-full object-cover rounded-none"
       />
