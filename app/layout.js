@@ -1,5 +1,4 @@
-import Script from "next/script"; // 🚀 CRITICAL FIX: Imported the missing Next.js Script tag
-
+import Script from "next/script";
 import "@/app/globals.css";
 
 export const metadata = {
@@ -17,12 +16,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* 
-          🚀 THE PARALLEL PRELOADER:
-          Forces the browser to parse the 294KB local file on line 1, 
-          wiping out your remaining network latency issues completely.
-        */}
         <link rel="preload" href="/loop-vid.mp4" as="video" type="video/mp4" />
+
+        {/* 🚀 SPEED SAVER: Corrected preconnect to connect.facebook.net */}
+        {fbPixelId && (
+          <>
+            <link
+              rel="preconnect"
+              href="https://connect.facebook.net"
+              crossOrigin="anonymous"
+            />
+            <link rel="dns-prefetch" href="https://connect.facebook.net" />
+          </>
+        )}
       </head>
       <body>
         {children}
@@ -31,7 +37,7 @@ export default function RootLayout({ children }) {
         {fbPixelId && (
           <Script
             id="fb-pixel"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
                 !function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js'); 
@@ -43,11 +49,7 @@ export default function RootLayout({ children }) {
           />
         )}
 
-        {/* 
-          🚀 PERFORMANCE FIX: Replaced the blocking third-party library component 
-          with a standard lazy script tag. This ensures Google Analytics does not 
-          execute until the browser is completely idle, clearing your remaining long tasks.
-        */}
+        {/* Google Analytics */}
         {gaId && (
           <>
             <Script
@@ -70,7 +72,7 @@ export default function RootLayout({ children }) {
           </>
         )}
 
-        {/* Link Google Ads to the existing tracking script */}
+        {/* Google Ads */}
         {adsId && (
           <Script
             id="google-ads"
