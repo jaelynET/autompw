@@ -16,48 +16,61 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Optimized preconnect elements only. No heavy file preloads. */}
         {fbPixelId && (
           <>
             <link
               rel="preconnect"
-              href="https://facebook.net"
+              href="https://connect.facebook.net"
               crossOrigin="anonymous"
             />
-            <link rel="dns-prefetch" href="https://facebook.net" />
+            <link rel="dns-prefetch" href="https://connect.facebook.net" />
           </>
         )}
       </head>
       <body>
         {children}
 
-        {/* 🚀 SPEED SAVER: Runs lazily to give your hero layout maximum load priority */}
+        {/* 🚀 FACEBOOK PIXEL */}
         {fbPixelId && (
-          <Script
-            id="fb-pixel"
-            strategy="lazyOnload"
-            dangerouslySetInnerHTML={{
-              __html: `
-                !function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e); s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://facebook.net/en_US/fbevents.js'); 
-                fbq('set', 'autoConfig', false, '${fbPixelId}'); 
-                fbq('init', '${fbPixelId}'); 
-                fbq('track', 'PageView');
-              `,
-            }}
-          />
+          <>
+            <Script
+              id="fb-pixel-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  if(!window.fbq){
+                    function n(){
+                      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    };
+                    if(!window._fbq) window._fbq=n;
+                    n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+                    window.fbq=n;
+                  }
+                  fbq('set', 'autoConfig', false, '${fbPixelId}');
+                  fbq('init', '${fbPixelId}');
+                  fbq('track', 'PageView');
+                `,
+              }}
+            />
+            <Script
+              id="fb-pixel-source"
+              strategy="afterInteractive"
+              src="https://connect.facebook.net/en_US/fbevents.js"
+            />
+          </>
         )}
 
-        {/* Google Analytics */}
+        {/* 🚀 GOOGLE ANALYTICS (Using matching strategy to prevent preload warnings) */}
         {gaId && (
           <>
             <Script
               id="google-analytics-base"
-              strategy="lazyOnload"
-              src={`https://googletagmanager.com{gaId}`}
+              strategy="afterInteractive"
+              src={`https://googletagmanager.com/${gaId}`}
             />
             <Script
               id="google-analytics-init"
-              strategy="lazyOnload"
+              strategy="afterInteractive"
               dangerouslySetInnerHTML={{
                 __html: `
                   window.dataLayer = window.dataLayer || [];
@@ -70,7 +83,7 @@ export default function RootLayout({ children }) {
           </>
         )}
 
-        {/* Google Ads */}
+        {/* 🚀 GOOGLE ADS */}
         {adsId && (
           <Script
             id="google-ads"
