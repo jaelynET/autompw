@@ -15,18 +15,18 @@ function FeatureBox() {
         </p>
       </div>
 
-      {/* 🚀 HIGH-PERFORMANCE INTRODUCED IMAGE GRID LOOP */}
-      <div className="w-full aspect-[16/9] max-h-[380px] bg-stone-50 mb-12 relative border border-stone-100 overflow-hidden">
+      {/* 🚀 HIGH-PERFORMANCE OPTIMIZED IMAGE WRAPPER */}
+      <div className="w-full aspect-[16/9] max-h-[380px] bg-stone-100 mb-12 relative border border-stone-100 overflow-hidden pointer-events-none">
         <Image
-          src="/spade-blackground2.webp" // 1. CRITICAL: Save your new image file as a compressed .webp
+          src="/spade-blackground2.webp"
           alt="Premium stainless steel desk anchor focus showcase"
           fill
           sizes="(max-width: 768px) 100vw, 80vw"
-          loading="lazy" // 2. CRITICAL: Prevents download on page mount (protects FCP/LCP)
-          decoding="async" // 3. CRITICAL: Prevents main-thread script execution stalling
+          loading="lazy" // Prevents download on page mount
+          decoding="async" // Prevents main-thread script execution stalling
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5" />
+        <div className="absolute inset-0 ring-1 ring-black/5 rounded-none" />
       </div>
 
       {/* 2. Technical Features Matrix — Split into ultra-short, punchy fragments */}
