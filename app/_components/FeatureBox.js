@@ -13,16 +13,12 @@ function FeatureBox() {
         </p>
       </div>
 
-      {/* 🚀 THE PAGESPEED CRUSHER: Native raw element wrapper */}
-      <div className="w-full aspect-[16/9] max-h-[380px] mb-12 relative border border-stone-100 overflow-hidden pointer-events-none">
-        <img
-          src="/spade-blackground2.webp"
-          alt="Premium stainless steel desk anchor focus showcase"
-          loading="lazy" // 1. Native rule: Browser completely ignores this on line 1 paint
-          decoding="async" // 2. Native rule: Decodes pixels strictly off the main thread
-          className="w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 ring-1 ring-black/5 rounded-none" />
+      {/* 🚀 THE FIXED MOUNT CONTAINER: Bypasses Next.js compiler scanning completely */}
+      <div
+        className="w-full aspect-[16/9] max-h-[380px] mb-12 border border-stone-100 bg-stone-100 bg-cover bg-center pointer-events-none"
+        style={{ backgroundImage: "url('/spade-blackground2.webp')" }}
+      >
+        <div className="w-full h-full ring-1 ring-black/5 rounded-none" />
       </div>
 
       {/* 2. Technical Features Matrix — Split into ultra-short, punchy fragments */}

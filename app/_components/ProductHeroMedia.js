@@ -29,7 +29,6 @@ export default function ProductHeroMedia() {
         playsInline
         preload="metadata"
         fetchPriority="high"
-        poster="/edc-pic.webp" // Fast static preview background frame
         className="w-full h-full object-cover rounded-none"
       >
         <source src="/loop-vid.mp4" type="video/mp4" />
