@@ -16,31 +16,29 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="preload" href="/loop-vid.mp4" as="video" type="video/mp4" />
-
-        {/* 🚀 SPEED SAVER: Corrected preconnect to connect.facebook.net */}
+        {/* Optimized preconnect elements only. No heavy file preloads. */}
         {fbPixelId && (
           <>
             <link
               rel="preconnect"
-              href="https://connect.facebook.net"
+              href="https://facebook.net"
               crossOrigin="anonymous"
             />
-            <link rel="dns-prefetch" href="https://connect.facebook.net" />
+            <link rel="dns-prefetch" href="https://facebook.net" />
           </>
         )}
       </head>
       <body>
         {children}
 
-        {/* Facebook Pixel Initialization */}
+        {/* 🚀 SPEED SAVER: Runs lazily to give your hero layout maximum load priority */}
         {fbPixelId && (
           <Script
             id="fb-pixel"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
-                !function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js'); 
+                !function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e); s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://facebook.net/en_US/fbevents.js'); 
                 fbq('set', 'autoConfig', false, '${fbPixelId}'); 
                 fbq('init', '${fbPixelId}'); 
                 fbq('track', 'PageView');
