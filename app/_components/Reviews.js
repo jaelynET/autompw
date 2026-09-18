@@ -1,16 +1,16 @@
-"use client";
 import { product } from "../constants.js";
-function Reviews() {
+
+export default function Reviews() {
   return (
-    <section className="mt-20 border-t border-stone-200 pt-12 mb-24 font-sans mx-4 min-[375px]:mx-8 min-[425px]:mx-11">
+    <section className="mt-16 md:mt-24 border-t border-stone-200 pt-12 mb-24 font-sans text-stone-950 bg-white">
       {/* Section Heading & Clean Aggregate Summary */}
       <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-baseline">
         <div>
-          <h2 className="text-xl font-normal tracking-tight text-stone-950 sm:text-2xl">
+          <h2 className="text-xl font-bold tracking-tight text-stone-950 sm:text-2xl">
             Customer Reviews
           </h2>
           <div className="mt-2.5 flex items-center gap-3">
-            {/* Minimalist Stark Black Stars (No cheap gold/amber colors) */}
+            {/* Minimalist Stark Black Stars */}
             <div className="flex text-stone-950 shrink-0 gap-0.5">
               {[...Array(5)].map((_, i) => (
                 <svg
@@ -23,18 +23,19 @@ function Reviews() {
               ))}
             </div>
 
-            <div className="flex items-center gap-2 text-xs font-normal text-stone-500 tracking-wide">
-              <span className="font-semibold text-stone-950">4.9 / 5.0</span>
+            {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
+            <div className="flex items-center gap-2 text-xs font-semibold text-stone-600 tracking-wider font-mono uppercase">
+              <span className="font-bold text-stone-950">4.9 / 5.0</span>
               <span className="text-stone-200 font-light">|</span>
-              <span>Verified Purchases </span>
+              <span>Verified Purchases</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Reviews Row System - Converted from box cards to clean, flat split-rows */}
+      {/* Reviews Row System - Converted to clean, flat split-rows */}
       <div className="divide-y divide-stone-100 border-t border-b border-stone-100">
-        {product.reviews.map((review) => (
+        {(product?.reviews || reviews).map((review) => (
           <div
             key={review.id}
             className="py-8 bg-transparent flex flex-col gap-4 md:flex-row md:justify-between md:items-start"
@@ -42,18 +43,20 @@ function Reviews() {
             {/* Left Side: Curator / Buyer Meta Information */}
             <div className="w-full md:w-1/4 shrink-0">
               <div className="flex items-baseline justify-between md:flex-col md:gap-1.5">
-                <span className="block text-xs font-semibold uppercase tracking-wider text-stone-950 font-mono">
+                <span className="block text-xs font-bold uppercase tracking-wider text-stone-950 font-mono">
                   {review.name}
                 </span>
 
                 {review.verified && (
-                  <span className="flex items-center gap-1.5 text-[10px] font-medium tracking-wide uppercase text-stone-400 font-mono">
-                    <span className="h-1 w-1 bg-stone-400 rounded-none block" />
+                  /* 🌟 CONTRAST FIX: Bumped to text-stone-600 and font-bold */
+                  <span className="flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-stone-600 font-mono">
+                    <span className="h-1 w-1 bg-stone-950 rounded-none block" />
                     Verified Order
                   </span>
                 )}
 
-                <span className="text-[10px] text-stone-400 font-normal font-mono block mt-1">
+                {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
+                <span className="text-[10px] text-stone-600 font-medium font-mono block mt-1">
                   {review.date}
                 </span>
               </div>
@@ -73,26 +76,14 @@ function Reviews() {
                 ))}
               </div>
 
-              <h4 className="mt-2.5 text-sm font-medium text-stone-950 tracking-wide">
+              <h4 className="mt-2.5 text-sm font-bold text-stone-950 tracking-wide">
                 {review.title}
               </h4>
 
-              <p className="mt-2 text-xs leading-relaxed text-stone-500 font-normal">
+              {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
+              <p className="mt-2 text-xs leading-relaxed text-stone-600 font-normal">
                 {review.comment}
               </p>
-
-              {/* Optional Review Image - Styled with razor sharp edges to fit theme 
-              {review.image && (
-                <div className="relative mt-4 h-24 w-32 border border-stone-100 bg-stone-50 rounded-none overflow-hidden">
-                 <img
-                    src={review.image}
-                    alt="Customer uploaded environment setting"
-                    className="h-full w-full object-cover rounded-none"
-                  /> 
-                  <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
-                </div>
-              )}
-                */}
             </div>
           </div>
         ))}
@@ -100,5 +91,3 @@ function Reviews() {
     </section>
   );
 }
-
-export default Reviews;

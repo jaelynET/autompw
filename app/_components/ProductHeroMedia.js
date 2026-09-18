@@ -1,49 +1,40 @@
 "use client";
 
-import { useState, useRef } from "react";
+import Image from "next/image";
 
-export default function ProductHeroMedia() {
-  const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(true);
-
-  const toggleAudio = (e) => {
-    e.stopPropagation();
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
-    }
-  };
-
+export default function ProductHeroMedia({ uploadedImage }) {
   return (
     <div className="relative w-full max-w-2xl mx-auto aspect-square overflow-hidden bg-stone-50 border border-stone-100">
-      {/*
-        🚀 MAXIMUM HARCODED SPEED CONFIGURATION:
-        Bypasses React hooks entirely for rendering. Uses a native web image poster frame
-        while loading the high-priority 294KB loop script track layout container.
-      */}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        fetchPriority="high"
-        className="w-full h-full object-cover rounded-none"
-      >
-        <source src="/loop-vid.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {/* If the customer hasn't uploaded a file, show the base studio product model mockup */}
+      {!uploadedImage ? (
+        <div className="relative w-full h-full">
+          <Image
+            src="/pet-necklace-hero.webp"
+            alt="AutoMpw Custom Jewelry Box Setup"
+            fill
+            priority
+            sizes="(max-w-768px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        /*
+          🎯 THE HOOK TRAP: If they upload a picture, we display it directly.
+          This visual validation halts comparison shopping completely.
+        */
+        <div className="relative w-full h-full flex items-center justify-center bg-stone-900">
+          <img
+            src={uploadedImage}
+            alt="Your Pet Custom Engraving Preview Layout"
+            className="w-full h-full object-contain animate-fade-in"
+          />
+          <div className="absolute bottom-4 left-4 bg-stone-950/90 text-white font-mono text-[9px] px-2.5 py-1 uppercase tracking-widest backdrop-blur-sm shadow-sm">
+            ✨ Previewing Engraving Profile
+          </div>
+        </div>
+      )}
 
-      {/* Interactive Audio Unmute Toggle Button badge */}
-      <button
-        type="button"
-        onClick={toggleAudio}
-        className="absolute bottom-3 right-3 z-20 flex items-center gap-1.5 text-[9px] font-medium tracking-widest font-mono uppercase bg-stone-950/90 text-white py-1 px-2.5 rounded-none active:scale-95 transition-transform border-none outline-none cursor-pointer backdrop-blur-sm"
-      >
-        <span>{isMuted ? "TAP TO UNMUTE" : "TAP TO MUTE"}</span>
-      </button>
-
+      {/* Decorative inner ambient frame layout */}
       <div className="absolute inset-0 pointer-events-none ring-1 ring-black/5 rounded-none" />
     </div>
   );

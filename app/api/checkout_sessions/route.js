@@ -1,69 +1,63 @@
 import Stripe from "stripe";
-
-// 1. Initialize Stripe with your secret key
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
 export async function POST(req) {
   try {
-    const { selectedColor } = await req.json();
+    const { selectedFinish, pendantCount, engravingText } = await req.json();
     const headersList = await headers();
     const origin = headersList.get("origin");
 
-    const shippingRate = await stripe.shippingRates.create({
-      display_name: "Insured Tracked Shipping (Free)",
-      type: "fixed_amount",
-      fixed_amount: { amount: 0, currency: "usd" },
-    });
+    // Calculate dynamic product values server-side to prevent client tamper alterations
+    const baseAmount = 3495; // \$34.95
+    const upsellAmount =
+      pendantCount === 2 ? 1000 : pendantCount === 3 ? 2000 : 0;
+    const finalUnitAmount = baseAmount + upsellAmount;
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
+      // 🌟 SECURE INGESTION: Passes options straight into order tracking records
       metadata: {
-        product: "ace-pushslider",
-        variant_color: selectedColor || "black",
+        product: "custom-pet-necklace",
+        finish: selectedFinish || "Gold",
+        pendant_count: String(pendantCount || 1),
+        custom_engraving: engravingText || "None",
       },
       line_items: [
         {
           price_data: {
             currency: "usd",
-            unit_amount: 3495,
+            unit_amount: finalUnitAmount,
             product_data: {
-              name: "The MPW-01 Tactile Core",
-              description: `Finish: ${selectedColor === "black" ? "       Brushed Steel / Ace Edition" : ""}`,
+              name: `AutoMPW Custom Pet Keepsake Necklace`,
+              description: `Finish: ${selectedFinish || "Gold"} | Pendants: ${pendantCount || 1} | Engraving: ${engravingText || "None"}`,
+
               images: [
-                "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfb0ZPdkQ1OUVnNTZvS0NwcnVUbWkzVW1F00KozyWYIK",
+                "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfVTNJd1lKS1FGU2VFRHZJeDlzNU1IUkRI00SfJ30ZvU",
               ],
             },
           },
           quantity: 1,
         },
       ],
-      shipping_options: [
-        {
-          shipping_rate: shippingRate.id,
-        },
-      ],
-
-      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/`,
+      // 🟢 ELIMINATED LATENCY: Uses fast native Stripe toggle instead of making custom API shipping requests
       shipping_address_collection: {
-        allowed_countries: ["US"],
+        allowed_countries: ["US", "CA", "GB", "AU"],
       },
       billing_address_collection: "auto",
+      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/`,
     });
 
     return NextResponse.json({
       url: session.url,
     });
   } catch (error) {
-    console.error("Checkout route error:", error);
-
+    console.error("Checkout server compilation route error:", error);
     return NextResponse.json(
-      {
-        error: "Checkout failed",
-      },
+      { error: "Internal checkout initialization failed" },
       { status: 500 },
     );
   }

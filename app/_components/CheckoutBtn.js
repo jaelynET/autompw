@@ -2,8 +2,18 @@
 
 import { useState } from "react";
 
-function CheckoutBtn({ product, selectedColor }) {
+export default function CheckoutBtn({
+  product,
+  uploadedImage,
+  engravingText,
+  variantConfig,
+}) {
   const [loading, setLoading] = useState(false);
+
+  // Fallback defaults to protect rendering loops
+  const finish = variantConfig?.finish || "Gold";
+  const count = variantConfig?.count || 1;
+  const price = variantConfig?.price || 34.95;
 
   async function handleCheckout() {
     if (loading) return;
@@ -15,58 +25,65 @@ function CheckoutBtn({ product, selectedColor }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ selectedColor: selectedColor }),
+        body: JSON.stringify({
+          selectedFinish: finish,
+          pendantCount: count,
+          engravingText: engravingText || "None",
+          // Note: Keep actual file uploads handled via Post-Purchase webhooks
+          // or simple temporary blob references to minimize network payloads!
+        }),
       });
 
-      const text = await res.text();
-      const data = JSON.parse(text);
+      const data = await res.json();
 
       if (data.url) {
         /*
-          🚀 HIGH-SPEED TRACKING PIPELINE:
-          Using clean, flat static variables matching your $89.00 payment item.
-          This prevents object calculation loops and guarantees accurate conversion logs.
+          🚀 HIGH-SPEED META PIXEL TRACKING PIPELINE:
+          Fires immediately using dynamic cart value totals without timeouts.
         */
         if (typeof window !== "undefined" && window.fbq) {
           window.fbq("track", "AddToCart", {
-            value: 89.0, // Static price assignment matching layout pricing
+            value: Number(price),
             currency: "USD",
             content_type: "product",
-            content_ids: ["premium-desk-anchor"],
-            content_name: product?.title || "The MPW-01 Tactile Core",
+            content_ids: [`custom-pet-necklace-${count}p`],
+            content_name: `AutoMPW Custom Pet Necklace - ${count} Pendants`,
           });
         }
 
-        // 🚀 INSTANT REDIRECT STRATEGY:
-        // Modern analytics scripts execute immediately. Removing the 150ms timeout
-        // stops the payment gateway from lagging, making your checkout feel instant.
+        // 🚀 INSTANT REDIRECT STRATEGY
         window.location.href = data.url;
         return;
       }
 
       setLoading(false);
-      alert("Checkout failed");
+      alert("Checkout session compilation failed");
     } catch (err) {
       setLoading(false);
-      alert("Something went wrong");
-      console.log(err);
+      alert("Something went wrong with the payment link initialization");
+      console.error(err);
     }
   }
 
+  // 🎯 HIGH-CONVERTING CUSTOM STATUS TEXT MACHINE
+  const getButtonText = () => {
+    if (!uploadedImage) return "⚠️ Upload Pet Photo Above";
+    if (loading) return "🔒 Securing Your Custom Slot...";
+    return "Secure Your Custom Keepsake";
+  };
+
   return (
     <button
-      type="button" // HTML Best Practice: Prevent accidental parent form submissions
+      type="button"
       onClick={handleCheckout}
-      disabled={loading}
-      className={`w-full max-w-md mx-auto block mt-5 py-4 px-6 font-medium text-sm text-center uppercase tracking-widest transition-colors duration-200 border rounded-none ${
-        loading
-          ? "bg-stone-300 text-stone-500 border-stone-300 cursor-not-allowed"
-          : "bg-stone-950 text-white border-stone-950 hover:bg-stone-800 active:bg-black cursor-pointer"
+      disabled={loading || !uploadedImage}
+      className={`w-full max-w-md mx-auto block mt-5 py-4 px-6 font-bold text-xs text-center uppercase tracking-widest transition-all duration-150 border rounded-xl shadow-md ${
+        loading || !uploadedImage
+          ? "bg-stone-200 text-stone-500 border-stone-200 cursor-not-allowed"
+          : "bg-stone-950 text-white border-stone-950 hover:bg-stone-800 active:scale-[0.99] cursor-pointer"
       }`}
     >
-      {loading ? "Processing..." : "Buy Now"}
+      {getButtonText()}
     </button>
   );
 }
-
-export default CheckoutBtn;

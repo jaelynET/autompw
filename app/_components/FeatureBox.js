@@ -1,82 +1,87 @@
-function FeatureBox() {
+export default function FeatureBox() {
   return (
-    <section className="mt-20 mx-4 min-[375px]:mx-8 min-[425px]:mx-11 font-sans border-t border-stone-100 pt-12">
-      {/* 1. Main Heading — Ultra-Direct Main Life Benefit */}
-      <div className="mb-10">
-        <h2 className="text-xl font-normal tracking-tight text-stone-950 sm:text-2xl">
-          Reclaim Your Attention Span
+    <section className="mt-16 md:mt-24 font-sans border-t border-stone-100 pt-12">
+      {/* 1. Main Heading — Deep Emotional Value */}
+      <div className="mb-10 max-w-xl">
+        <h2 className="text-xl font-bold tracking-tight text-stone-950 sm:text-2xl">
+          Keep Your Best Friend Close
         </h2>
-        <p className="mt-2.5 max-w-xl text-xs leading-relaxed text-stone-500 font-normal">
-          A physical antidote to mindless phone-scrolling and desk restlessness.
-          Ground your hands with a premium stainless steel anchor so your mind
-          can lock completely into deep focus.
+        {/* 🌟 CONTRAST FIX: Bumped from text-stone-500 to text-stone-600 */}
+        <p className="mt-3 text-xs leading-relaxed text-stone-600 font-normal">
+          More than just ordinary fashion jewelry. Our custom pet pendant
+          transforms your favorite phone camera picture into a permanently
+          engraved, beautiful metallic talisman you can carry with you
+          everywhere.
         </p>
       </div>
 
-      {/* 🚀 THE FIXED MOUNT CONTAINER: Bypasses Next.js compiler scanning completely */}
-      <div
-        className="w-full aspect-[16/9] max-h-[380px] mb-12 border border-stone-100 bg-stone-100 bg-cover bg-center pointer-events-none"
-        style={{ backgroundImage: "url('/spade-blackground2.webp')" }}
-      >
-        <div className="w-full h-full ring-1 ring-black/5 rounded-none" />
+      {/* 🌟 PERFECT MOBILE VISUAL REVEAL */}
+      <div className="w-full max-w-[480px] mx-auto mb-12 overflow-hidden rounded-xl border border-stone-100 bg-stone-50 shadow-sm">
+        <img
+          src="/pet-necklace-model.webp"
+          alt="AutoMpw Custom Pet Pendant Neckline Detail"
+          className="w-full h-auto object-contain block"
+        />
       </div>
 
-      {/* 2. Technical Features Matrix — Split into ultra-short, punchy fragments */}
+      {/* 2. Technical Features Matrix — Quick Fragments */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 border-t border-stone-100 pt-8">
-        {/* Block 1: The Ace Significance */}
+        {/* Block 1: Artwork Precision */}
         <div className="space-y-1.5">
-          <h3 className="font-medium text-xs tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
+          <h3 className="font-bold text-xs tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
             <span className="h-1.5 w-1.5 bg-stone-950 block rounded-none" />
-            Stay Composed Under Pressure
+            Artisan Laser Engraving
           </h3>
-          <p className="text-xs leading-relaxed text-stone-500 pl-3.5 max-w-sm">
-            Deeply etched Ace of Spades lines turn nervous tics into a
-            confident, grounding ritual that keeps you calm and focused during
-            high-stakes work calls.
+          {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
+          <p className="text-xs leading-relaxed text-stone-600 pl-3.5 max-w-sm">
+            Our machine processes follow the exact details of your photo upload,
+            rendering high-contrast outlines that capture your pet's true
+            likeness and personality.
           </p>
         </div>
 
-        {/* Block 2: Heavy Metal Build */}
+        {/* Block 2: Durable Waterproofing */}
         <div className="space-y-1.5">
-          <h3 className="font-medium text-xs tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
-            <span className="h-1.5 w-1.5 bg-stone-400 block rounded-none" />
-            Snap Out of Screen Fatigue
+          <h3 className="font-bold text-xs tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
+            {/* 🌟 INDICATOR COLOR MATCH: Swapped to stone-950 so it scales cleanly with the heading typography */}
+            <span className="h-1.5 w-1.5 bg-stone-950 block rounded-none" />
+            100% Shower Proof Design
           </h3>
-          <p className="text-xs leading-relaxed text-stone-500 pl-3.5 max-w-sm">
-            Ditch flimsy plastic gadgets for a solid, heavy stainless steel
-            block that provides a satisfying weight to break you away from
-            virtual exhaustion.
+          {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
+          <p className="text-xs leading-relaxed text-stone-600 pl-3.5 max-w-sm">
+            Built using marine-grade stainless steel coated in durable 18k gold
+            plating. It is entirely waterproof, hypoallergenic, and will never
+            turn your skin green.
           </p>
         </div>
 
-        {/* Block 3: Magnetic Sound/Feel */}
+        {/* Block 3: Everyday Styling */}
         <div className="space-y-1.5">
-          <h3 className="font-medium text-xs tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
-            <span className="h-1.5 w-1.5 bg-stone-400 block rounded-none" />
-            Zone Into Your Workspace Flow
+          <h3 className="font-bold text-xs tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
+            <span className="h-1.5 w-1.5 bg-stone-950 block rounded-none" />
+            Comfortable Daily Wear
           </h3>
-          <p className="text-xs leading-relaxed text-stone-500 pl-3.5 max-w-sm">
-            Internal magnetic tracks deliver a crisp, deep click-clack sound
-            that naturally channels stress away while your eyes stay locked on
-            your code or design terminal.
+          {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
+          <p className="text-xs leading-relaxed text-stone-600 pl-3.5 max-w-sm">
+            Featuring an optimized, lightweight pendant profile resting on a
+            smooth link chain designed to sit beautifully next to any outfit.
           </p>
         </div>
 
-        {/* Block 4: Texture / Smudge */}
+        {/* Block 4: Hardcore Durability */}
         <div className="space-y-1.5">
-          <h3 className="font-medium text-xs tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
-            <span className="h-1.5 w-1.5 bg-stone-400 block rounded-none" />
-            Keep Your Setup Immaculate
+          <h3 className="font-bold text-xs tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
+            <span className="h-1.5 w-1.5 bg-stone-950 block rounded-none" />
+            Tarnish-Free Guarantee
           </h3>
-          <p className="text-xs leading-relaxed text-stone-500 pl-3.5 max-w-sm">
-            The raw sandblasted matte texture blocks fingerprint smudges
-            completely, maintaining a clean look right at home next to custom
-            mechanical keyboards.
+          {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
+          <p className="text-xs leading-relaxed text-stone-600 pl-3.5 max-w-sm">
+            Unlike cheap fashion items that scratch or fade in weeks, our metal
+            blends are mixed to resist daily surface friction and sweat
+            indefinitely.
           </p>
         </div>
       </div>
     </section>
   );
 }
-
-export default FeatureBox;

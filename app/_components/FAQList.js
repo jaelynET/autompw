@@ -1,25 +1,25 @@
-function FAQList() {
+export default function FAQList() {
   return (
-    <section className="mt-20 border-t border-stone-200 pt-12 mb-20 font-sans mx-4 min-[375px]:mx-8 min-[425px]:mx-11">
-      {/* Section Heading — Clean, Balanced and Technical */}
+    <section className="mt-20 border-t border-stone-200 pt-12 mb-20 font-sans">
+      {/* Section Heading — Clean and Tailored to Custom Jewelry */}
       <div className="mb-10">
         <h2 className="text-xl font-normal tracking-tight text-stone-950 sm:text-2xl">
           Frequently Asked Questions
         </h2>
-        <p className="mt-2 text-xs leading-relaxed text-stone-500 font-normal">
-          Mechanical specifications, tactile operation parameters, and acoustic
+        <p className="mt-2 text-xs leading-relaxed text-stone-600 font-normal">
+          Customization guidelines, material specifications, and tracking
           details.
         </p>
       </div>
 
       {/* FAQ Accordion List — Minimalist Architectural Divider Stack */}
       <div className="divide-y divide-stone-100 border-t border-b border-stone-100">
-        {/* Question 1: Core Mechanical Operation */}
+        {/* Question 1: Core Mechanical Operation / Photo Guidelines */}
         <div className="py-5 bg-transparent">
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
               <span className="text-sm font-medium text-stone-950 tracking-wide">
-                How does the sliding mechanism work?
+                What kind of pet photos work best for engraving?
               </span>
               <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
@@ -37,22 +37,21 @@ function FAQList() {
                 </svg>
               </span>
             </summary>
-            <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
-              The slider is built using two precision-machined steel plates with
-              powerful magnets hidden inside them. When you push the top card
-              with your thumb, the internal magnetic tracks pull and resist
-              against each other, snapping perfectly into place like a real deck
-              of cards.
+            <div className="mt-3 text-xs leading-relaxed text-stone-600 max-w-xl transition-all">
+              Any clear smartphone photo taken in decent lighting works
+              perfectly! Our design software automatically isolates your pet's
+              face boundaries, filters out busy background elements, and formats
+              the image profile into a high-contrast artisan engraving outline.
             </div>
           </details>
         </div>
 
-        {/* Question 2: The Sound / Stealth Objection Handle */}
+        {/* Question 2: Material Safety / Shower & Irritation Objection */}
         <div className="py-5 bg-transparent">
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
               <span className="text-sm font-medium text-stone-950 tracking-wide">
-                Will the clicking sound disturb others in a quiet office?
+                Will the necklace irritate sensitive skin or rust?
               </span>
               <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
@@ -70,23 +69,22 @@ function FAQList() {
                 </svg>
               </span>
             </summary>
-            <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
-              When slid freely, the steel plates create a crisp, solid
-              mechanical click that is highly satisfying for home workspace
-              focus. If you need to use it in a quiet meeting or shared office
-              space, simply wrap your fingers a bit firmer around the metal
-              edges to dampen the impact, converting it into a totally silent,
-              stealthy vibration.
+            <div className="mt-3 text-xs leading-relaxed text-stone-600 max-w-xl transition-all">
+              Never. We build exclusively on a solid foundation of premium,
+              marine-grade stainless steel coated in a durable 18k gold plating.
+              It is 100% hypoallergenic, nickel-free, and rustless. You can wear
+              it safely through intense workouts, swimming, or daily showers
+              without turning your skin green.
             </div>
           </details>
         </div>
 
-        {/* Question 3: Power Requirements */}
+        {/* Question 3: Power Requirements / Shipping Timelines */}
         <div className="py-5 bg-transparent">
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
               <span className="text-sm font-medium text-stone-950 tracking-wide">
-                Does it require batteries or maintenance?
+                How long does the custom creation and shipping take?
               </span>
               <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
@@ -104,21 +102,21 @@ function FAQList() {
                 </svg>
               </span>
             </summary>
-            <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
-              No. This tool is completely mechanical and operates without any
-              wires, charging, or electronics. The core system relies entirely
-              on permanent physical magnetism, meaning it will never lose its
-              snap or require spare parts.
+            <div className="mt-3 text-xs leading-relaxed text-stone-600 max-w-xl transition-all">
+              Because each piece requires custom photo processing and individual
+              laser engraving, please allow 1–3 business days for production.
+              Once dispatched, your package is shipped via tracked worldwide
+              delivery and arrives at your door within 10–14 business days.
             </div>
           </details>
         </div>
 
-        {/* Question 4: Materials & Wear Durability */}
+        {/* Question 4: Materials & Wear Durability / The Guarantee Objection */}
         <div className="py-5 bg-transparent">
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between list-none outline-none">
               <span className="text-sm font-medium text-stone-950 tracking-wide">
-                Will the steel plates scratch or wear down over time?
+                What is your 30-Day Keepsake Guarantee?
               </span>
               <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400">
                 <svg
@@ -136,12 +134,12 @@ function FAQList() {
                 </svg>
               </span>
             </summary>
-            <div className="mt-3 text-xs leading-relaxed text-stone-500 max-w-xl transition-all">
-              Not at all. The slider is machined from heavy, solid stainless
-              steel alloy and treated with a raw sandblasted finish. It is
-              highly resistant to surface scratches, impact damage, and drop
-              wear, ensuring it maintains its pristine metal appearance directly
-              on your desk for years.
+            <div className="mt-3 text-xs leading-relaxed text-stone-600 max-w-xl transition-all">
+              We stand behind our custom craftsmanship completely. If your
+              pendant arrives damaged from shipping, or if the final engraved
+              lines fail to accurately match the likeness of your uploaded pet
+              photo, simply email us a photo of the item for an immediate free
+              re-craft or a 100% refund.
             </div>
           </details>
         </div>
@@ -149,5 +147,3 @@ function FAQList() {
     </section>
   );
 }
-
-export default FAQList;
