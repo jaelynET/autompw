@@ -1,5 +1,5 @@
 export const product = {
-  title: "The MPW-01 Tactile Core",
+  title: "AutoMPW Custom Keepsake Necklace"",
   inStock: true,
 
   pricing: {
@@ -8,8 +8,8 @@ export const product = {
   },
 
   seo: {
-    meta_title: "The MPW-01 Tactile Core",
-    meta_description: "The MPW-01 Tactile Core",
+    meta_title: "AutoMPW Custom Keepsake Necklace",
+    meta_description: "AutoMPW Custom Keepsake Necklace"",
   },
 
   reviews: [
