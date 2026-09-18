@@ -1,5 +1,5 @@
 export const product = {
-  title: "AutoMPW Custom Keepsake Necklace"",
+  title: "AutoMPW Custom Keepsake Necklace",
   inStock: true,
 
   pricing: {
@@ -9,7 +9,7 @@ export const product = {
 
   seo: {
     meta_title: "AutoMPW Custom Keepsake Necklace",
-    meta_description: "AutoMPW Custom Keepsake Necklace"",
+    meta_description: "AutoMPW Custom Keepsake Necklace",
   },
 
   reviews: [
