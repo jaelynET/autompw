@@ -13,6 +13,7 @@ export default function ProductHeroMedia({ uploadedImage }) {
             alt="AutoMpw Custom Jewelry Box Setup"
             fill
             priority
+            fetchPriority="high"
             sizes="(max-w-768px) 100vw, 50vw"
             className="object-cover"
           />
