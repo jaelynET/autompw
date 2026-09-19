@@ -14,9 +14,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Preload your critical above-the-fold hero video asset */}
-        <link rel="preload" href="/loop-vid.mp4" as="video" type="video/mp4" />
-
         {fbPixelId && (
           <>
             <link
