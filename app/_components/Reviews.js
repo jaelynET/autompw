@@ -76,9 +76,9 @@ export default function Reviews() {
                 ))}
               </div>
 
-              <h4 className="mt-2.5 text-sm font-bold text-stone-950 tracking-wide">
+              <h3 className="mt-2.5 text-sm font-bold text-stone-950 tracking-wide">
                 {review.title}
-              </h4>
+              </h3>
 
               {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
               <p className="mt-2 text-xs leading-relaxed text-stone-600 font-normal">

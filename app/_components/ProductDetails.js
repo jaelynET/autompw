@@ -68,12 +68,16 @@ export default function ProductDetails({ product }) {
             <div className="mt-6 border-t border-stone-100 pt-5 space-y-5">
               <div>
                 {/* Optimized text-stone-400 to text-stone-600 for high-level contrast accessibility */}
-                <span className="text-[10px] font-bold uppercase tracking-widest text-stone-600 font-mono block mb-2.5">
+                <label
+                  htmlFor="pet-photo-upload"
+                  className="text-[10px] font-bold uppercase tracking-widest text-stone-600 font-mono block mb-2.5"
+                >
                   1. Upload Your Pet&apos;s Best Photo
-                </span>
+                </label>
 
                 <div className="relative border-2 border-dashed border-stone-200 hover:border-stone-400 rounded-xl p-6 text-center transition bg-stone-50/50 cursor-pointer">
                   <input
+                    id="pet-photo-upload"
                     type="file"
                     accept="image/*"
                     onChange={handleImageUpload}
