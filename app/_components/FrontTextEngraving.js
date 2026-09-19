@@ -17,15 +17,16 @@ export default function FrontTextEngraving({ onTextChange }) {
 
   return (
     <div className="w-full font-sans pt-5">
-      <span className="text-[11px] font-bold uppercase tracking-widest text-stone-700 font-mono block mb-2">
+      <label className="text-[11px] font-bold uppercase tracking-widest text-stone-700 font-mono block mb-2 cursor-pointer">
         2. Add Text Underneath Photo (Optional)
-      </span>
+      </label>
 
       <input
+        id="front-engraving-input"
         type="text"
         value={frontText}
         onChange={handleChange}
-        placeholder="e.g., Buddy / Forever Loved / 2012-2026"
+        placeholder="e.g., Buddy / Forever Loved"
         maxLength={15}
         className="w-full px-3.5 py-3 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-black transition bg-white text-stone-950 placeholder:text-stone-400 "
       />

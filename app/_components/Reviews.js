@@ -26,7 +26,7 @@ export default function Reviews() {
             {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
             <div className="flex items-center gap-2 text-xs font-semibold text-stone-600 tracking-wider font-mono uppercase">
               <span className="font-bold text-stone-950">4.9 / 5.0</span>
-              <span className="text-stone-200 font-light">|</span>
+              <span className="text-stone-400 font-light">|</span>
               <span>Verified Purchases</span>
             </div>
           </div>
