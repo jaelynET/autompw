@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function FeatureBox() {
   return (
     <section className="mt-16 md:mt-24 font-sans border-t border-stone-100 pt-12">
@@ -16,11 +17,14 @@ export default function FeatureBox() {
       </div>
 
       {/* 🌟 PERFECT MOBILE VISUAL REVEAL */}
-      <div className="w-full max-w-[480px] mx-auto mb-12 overflow-hidden rounded-xl border border-stone-100 bg-stone-50 shadow-sm">
-        <img
+      <div className="w-full max-w-[480px] mx-auto mb-12 overflow-hidden rounded-xl border border-stone-100 bg-stone-50 shadow-sm aspect-square relative">
+        <Image
           src="/pet-necklace-model.webp"
           alt="AutoMpw Custom Pet Pendant Neckline Detail"
-          className="w-full h-auto object-contain block"
+          fill
+          priority
+          sizes="(max-w-480px) 100vw, 480px"
+          className=" object-contain block"
         />
       </div>
 
@@ -35,7 +39,7 @@ export default function FeatureBox() {
           {/* 🌟 CONTRAST FIX: Bumped to text-stone-600 */}
           <p className="text-xs leading-relaxed text-stone-600 pl-3.5 max-w-sm">
             Our machine processes follow the exact details of your photo upload,
-            rendering high-contrast outlines that capture your pet's true
+            rendering high-contrast outlines that capture your pet&aspos;s true
             likeness and personality.
           </p>
         </div>

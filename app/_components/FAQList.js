@@ -39,9 +39,10 @@ export default function FAQList() {
             </summary>
             <div className="mt-3 text-xs leading-relaxed text-stone-600 max-w-xl transition-all">
               Any clear smartphone photo taken in decent lighting works
-              perfectly! Our design software automatically isolates your pet's
-              face boundaries, filters out busy background elements, and formats
-              the image profile into a high-contrast artisan engraving outline.
+              perfectly! Our design software automatically isolates your
+              pet&aspos;s face boundaries, filters out busy background elements,
+              and formats the image profile into a high-contrast artisan
+              engraving outline.
             </div>
           </details>
         </div>
