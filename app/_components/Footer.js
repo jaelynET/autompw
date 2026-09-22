@@ -73,7 +73,7 @@ export default function Footer() {
             </h3>
             <p className="text-xs text-stone-500 leading-relaxed font-normal max-w-xs">
               Every keepsake is individually processed, cropped, and
-              laser-engraved to preserve your pet's likeness forever. Form
+              laser-engraved to preserve your pet&asops;s likeness forever. Form
               follows function.
             </p>
           </div>
