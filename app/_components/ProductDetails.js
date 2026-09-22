@@ -10,6 +10,9 @@ import FeatureBox from "./FeatureBox";
 import FAQList from "./FAQList";
 import Reviews from "./Reviews";
 
+
+
+
 export default function ProductDetails({ product }) {
   // Client state to hold the uploaded file path or base64 preview
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -51,8 +54,8 @@ export default function ProductDetails({ product }) {
                 <span key={i}>★</span>
               ))}
             </div>
-            {/* Optimized to text-stone-600 for sharp skimming contrast */}
-            <span className="text-[10px] font-bold font-mono uppercase tracking-widest text-stone-600 pt-0.5">
+            {/* 🌟 AUDIT FIX 3: Changed text-[10px] text-stone-600 font-bold to text-xs text-stone-500 font-medium for smooth, clean hierarchy */}
+            <span className="text-xs font-medium font-mono uppercase tracking-widest text-stone-500 pt-0.5">
               (4.9 / 142 Reviews)
             </span>
           </div>
@@ -67,10 +70,10 @@ export default function ProductDetails({ product }) {
             {/* 🌟 CUSTOMIZED TRAP: The File Upload & Text Box Stack */}
             <div className="mt-6 border-t border-stone-100 pt-5 space-y-5">
               <div>
-                {/* Optimized text-stone-400 to text-stone-600 for high-level contrast accessibility */}
+                {/* 🌟 AUDIT FIX 2: Dropped text-stone-800 font-bold to text-stone-500 font-medium text-xs sm:text-sm for a clean, luxury guide layout */}
                 <label
                   htmlFor="pet-photo-upload"
-                  className="text-[10px] font-bold uppercase tracking-widest text-stone-600 font-mono block mb-2.5"
+                  className="text-xs sm:text-sm font-medium uppercase tracking-widest text-stone-500 font-mono block mb-2.5"
                 >
                   1. Upload Your Pet&apos;s Best Photo
                 </label>
@@ -92,7 +95,7 @@ export default function ProductDetails({ product }) {
                   </div>
                 </div>
                 {/* 🎯 THE ACCESSIBLE FIX: Handles separate photos or group photos elegantly */}
-                <p className="text-[10px] text-stone-600 leading-normal mt-2 font-sans font-medium pl-1">
+                <p className="text-xs text-stone-700 leading-relaxed mt-2.5 font-sans font-medium pl-1">
                   <strong className="text-stone-950 font-bold">
                     Ordering multiple pendants?
                   </strong>{" "}
@@ -119,20 +122,21 @@ export default function ProductDetails({ product }) {
             </div>
 
             {/* 4. Highly Scannable Bullet Benefits */}
-            <div className="mt-8 border-t border-stone-100 pt-6 space-y-3.5">
-              <div className="flex items-center gap-3 text-xs tracking-wide text-stone-600">
+            <div className="mt-8 border-t border-stone-100 pt-6 space-y-4">
+              {/* 🌟 AUDIT FIX 1: Changed text-xs to text-sm and text-stone-700 to match the list array cleanly */}
+              <div className="flex items-center gap-3 text-sm tracking-wide text-stone-700">
                 <span className="h-1.5 w-1.5 bg-stone-950 rounded-full block flex-shrink-0" />
                 <span className="font-bold text-stone-950">
                   Free Worldwide Tracked Shipping
                 </span>
               </div>
-              <div className="flex items-center gap-3 text-xs tracking-wide text-stone-600">
+              <div className="flex items-center gap-3 text-sm tracking-wide text-stone-700">
                 <span className="h-1.5 w-1.5 bg-stone-400 rounded-full block flex-shrink-0" />
                 <span className="font-medium">
                   Individually Hand-Engraved to Order
                 </span>
               </div>
-              <div className="flex items-center gap-3 text-xs tracking-wide text-stone-600">
+              <div className="flex items-center gap-3 text-sm tracking-wide text-stone-700">
                 <span className="h-1.5 w-1.5 bg-stone-400 rounded-full block flex-shrink-0" />
                 <span className="font-medium">
                   30-Day Risk-Free Keepsake Guarantee

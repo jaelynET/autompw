@@ -1,3 +1,5 @@
+"use client";
+
 import { product } from "../constants.js";
 
 export default function Reviews() {

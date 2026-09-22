@@ -17,12 +17,16 @@ export default function FrontTextEngraving({ onTextChange }) {
 
   return (
     <div className="w-full font-sans pt-5">
-      <label className="text-[11px] font-bold uppercase tracking-widest text-stone-700 font-mono block mb-2 cursor-pointer">
+      {/* 🌟 AUDIT FIX 1 & 2: Added htmlFor link attribute and bumped font size from text-[11px] to text-xs to match step 1 */}
+      <label
+        htmlFor="front-engraving-input"
+        className="text-xs font-medium uppercase tracking-widest text-stone-500 font-mono block mb-2.5 cursor-pointer"
+      >
         2. Add Text Underneath Photo (Optional)
       </label>
 
       <input
-        id="front-engraving-input"
+        id="front-engraving-input" // 🌟 LINKED ID
         type="text"
         value={frontText}
         onChange={handleChange}
@@ -31,7 +35,8 @@ export default function FrontTextEngraving({ onTextChange }) {
         className="w-full px-3.5 py-3 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-black transition bg-white text-stone-950 placeholder:text-stone-400 "
       />
 
-      <p className="text-[10px] font-medium text-stone-500 font-mono mt-1.5 text-right">
+      {/* 🌟 AUDIT FIX 2B: Bumped character count from text-[10px] to text-xs for sharp, accessible mobile visibility */}
+      <p className="text-xs font-medium text-stone-500 font-mono mt-2 text-right">
         {frontText.length}/15 characters max.
       </p>
     </div>

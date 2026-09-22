@@ -6,10 +6,10 @@ export default function FAQList() {
         <h2 className="text-xl font-normal tracking-tight text-stone-950 sm:text-2xl">
           Frequently Asked Questions
         </h2>
-        <p className="mt-2 text-xs leading-relaxed text-stone-600 font-normal">
+        {/* <p className="mt-2 text-xs leading-relaxed text-stone-600 font-normal">
           Customization guidelines, material specifications, and tracking
           details.
-        </p>
+        </p> */}
       </div>
 
       {/* FAQ Accordion List — Minimalist Architectural Divider Stack */}
