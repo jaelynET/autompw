@@ -9,7 +9,7 @@ export default function ProductHeroMedia({ uploadedImage }) {
       {!uploadedImage ? (
         <div className="relative w-full h-full">
           <Image
-            src="/pet-necklace-hero.webp"
+            src="/pet-necklace-model.webp"
             alt="AutoMpw Custom Jewelry Box Setup"
             fill
             priority

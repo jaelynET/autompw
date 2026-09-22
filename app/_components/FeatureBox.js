@@ -17,7 +17,7 @@ export default function FeatureBox() {
       {/* 🌟 VISUAL FIRST INTERFACE: The image now breathes perfectly without text walls choking it */}
       <div className="w-full max-w-[480px] mx-auto mb-12 overflow-hidden rounded-xl border border-stone-100 bg-stone-50 shadow-sm aspect-square relative">
         <Image
-          src="/pet-necklace-model.webp"
+          src="/pet-necklace-hero.webp"
           alt="AutoMpw Custom Pet Pendant Neckline Detail"
           fill
           priority
