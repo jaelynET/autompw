@@ -1,87 +1,90 @@
-// import { NextResponse } from "next/server";
-// import Stripe from "stripe";
-// import { createClient } from "@supabase/supabase-js";
+import { NextResponse } from "next/server";
+import Stripe from "stripe";
+import { createClient } from "@supabase/supabase-js";
 
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-// export const runtime = "nodejs";
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+export const runtime = "nodejs";
 
-// export const supabaseAdmin = createClient(
-//   process.env.NEXT_PUBLIC_SUPABASE_URL,
-//   process.env.SUPABASE_SERVICE_ROLE_KEY,
-// );
+export const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY,
+);
 
-// export async function POST(req) {
-//   try {
-//     const body = await req.text();
-//     const signature = req.headers.get("stripe-signature");
+export async function POST(req) {
+  try {
+    const body = await req.text();
+    const signature = req.headers.get("stripe-signature");
 
-//     let event;
+    let event;
 
-//     try {
-//       event = stripe.webhooks.constructEvent(
-//         body,
-//         signature,
-//         process.env.STRIPE_WEBHOOK_SECRET,
-//       );
-//     } catch (err) {
-//       console.error("Stripe signature error:", err.message);
-//       return new NextResponse("Invalid signature", { status: 400 });
-//     }
+    try {
+      event = stripe.webhooks.constructEvent(
+        body,
+        signature,
+        process.env.STRIPE_WEBHOOK_SECRET,
+      );
+    } catch (err) {
+      console.error("Stripe signature error:", err.message);
+      return new NextResponse("Invalid signature", { status: 400 });
+    }
 
-//     if (event.type !== "checkout.session.completed") {
-//       return NextResponse.json({ received: true });
-//     }
+    if (event.type !== "checkout.session.completed") {
+      return NextResponse.json({ received: true });
+    }
 
-//     const session = event.data.object;
+    const session = event.data.object;
 
-//     if (!session?.id) {
-//       return new NextResponse("No session", { status: 400 });
-//     }
+    if (!session?.id) {
+      return new NextResponse("No session", { status: 400 });
+    }
 
-//     // Prevent duplicates
-//     const { data: existing } = await supabaseAdmin
-//       .from("orders")
-//       .select("order_id")
-//       .eq("stripe_session_id", session.id)
-//       .maybeSingle();
+    // Prevent duplicates
+    const { data: existing } = await supabaseAdmin
+      .from("orders")
+      .select("order_id")
+      .eq("stripe_session_id", session.id)
+      .maybeSingle();
 
-//     if (existing) {
-//       return NextResponse.json({ received: true });
-//     }
-//     // Retrieve session object to get/expand shipping details
-//     const checkOutSession = await stripe.checkout.sessions.retrieve(
-//       event.data.object.id,
-//     );
+    if (existing) {
+      return NextResponse.json({ received: true });
+    }
 
-//     const shipping =
-//       checkOutSession.shipping_details?.address ||
-//       checkOutSession.customer_details?.address ||
-//       null;
-//     const billing = checkOutSession.customer_details?.address;
-//     // Add this temporary log right before you query the database
-//     console.log("DEBUG: Target Supabase URL is:", supabaseAdmin.supabaseUrl);
-//     // Insert order
-//     const { error: orderError } = await supabaseAdmin.from("orders").insert({
-//       stripe_session_id: session.id,
-//       product: session.metadata?.product,
-//       variant_color: session.metadata?.variant_color || "red",
-//       total_amount: session.amount_total,
-//       currency: session.currency,
-//       status: "paid",
-//       shipping_address: shipping,
-//       billing_address: billing,
-//       customer_email: session.customer_details?.email || session.customer_email,
-//     });
+    // Retrieve session object to get/expand shipping details
+    const checkOutSession = await stripe.checkout.sessions.retrieve(
+      event.data.object.id,
+    );
 
-//     if (orderError) {
-//       console.error("ORDER INSERT ERROR:", JSON.stringify(orderError, null, 2));
+    const shipping =
+      checkOutSession.shipping_details?.address ||
+      checkOutSession.customer_details?.address ||
+      null;
+    const billing = checkOutSession.customer_details?.address;
 
-//       return NextResponse.json({ error: orderError }, { status: 500 });
-//     }
+    console.log("DEBUG: Target Supabase URL is:", supabaseAdmin.supabaseUrl);
 
-//     return NextResponse.json({ received: true });
-//   } catch (err) {
-//     console.error("Webhook fatal error:", err);
-//     return new NextResponse("Webhook failed", { status: 500 });
-//   }
-// }
+    // 🚀 THE ULTIMATE FIX: Maps parameters to match your checkout configuration data perfectly
+    const { error: orderError } = await supabaseAdmin.from("orders").insert({
+      stripe_session_id: session.id,
+      product: session.metadata?.product,
+      // Fixed metadata tracking key parameters
+      variant_color: session.metadata?.finish || "Matte black",
+
+      total_amount: session.amount_total,
+      currency: session.currency,
+      status: "paid",
+      shipping_address: shipping,
+      billing_address: billing,
+      customer_email: session.customer_details?.email || session.customer_email,
+    });
+
+    if (orderError) {
+      console.error("ORDER INSERT ERROR:", JSON.stringify(orderError, null, 2));
+      return NextResponse.json({ error: orderError }, { status: 500 });
+    }
+
+    return NextResponse.json({ received: true });
+  } catch (err) {
+    console.error("Webhook fatal error:", err);
+    return new NextResponse("Webhook failed", { status: 500 });
+  }
+}

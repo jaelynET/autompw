@@ -2,144 +2,145 @@
 
 import { useState } from "react";
 import ProductHeroMedia from "./ProductHeroMedia";
-import ProductOptionsSection from "./ProductOptionsSection";
-import ProductionCap from "./ProductionCap";
-import FrontTextEngraving from "./FrontTextEngraving";
 import CheckoutBtn from "./CheckoutBtn";
 import FeatureBox from "./FeatureBox";
-import FAQList from "./FAQList";
-import Reviews from "./Reviews";
-
-
-
 
 export default function ProductDetails({ product }) {
-  // Client state to hold the uploaded file path or base64 preview
-  const [uploadedImage, setUploadedImage] = useState(null);
-  const [isUploading, setIsUploading] = useState(false);
-  const [engravingText, setEngravingText] = useState("");
+  const [selectedColor, setSelectedColor] = useState("black");
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const colors = [
+    {
+      id: "black",
+      name: "Matte Black",
+      class: "bg-stone-950",
+    },
+    {
+      id: "white",
+      name: "Monolith White",
+      class: "bg-stone-100 border border-stone-300",
+    },
+  ];
 
-    setIsUploading(true);
-
-    // Create an instant client-side local blob URL for previewing
-    const previewUrl = URL.createObjectURL(file);
-    setUploadedImage(previewUrl);
-
-    setIsUploading(false);
-  };
+  const selectedColorName =
+    colors.find((c) => c.id === selectedColor)?.name || selectedColor;
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 mt-4 md:mt-12 select-none font-sans antialiased text-stone-950 bg-white">
-      {/* Two-Column Grid Setup: Images on Left, Checkout Action Funnel on Right */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
-        {/* Left Side: Dynamic visual preview frame */}
-        <div className="w-full block md:sticky md:top-8 z-0">
-          <ProductHeroMedia uploadedImage={uploadedImage} />
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-sans antialiased text-stone-900 bg-white selection:bg-stone-900 selection:text-white">
+      {/* =========================================================
+          ABOVE THE FOLD
+      ========================================================== */}
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start pt-4 md:pt-12">
+        {/* PRODUCT MEDIA */}
+        <div className="w-full lg:col-span-7">
+          <div className="lg:sticky lg:top-8">
+            <ProductHeroMedia product={product} selectedColor={selectedColor} />
+          </div>
         </div>
 
-        {/* Right Side: Product Details & Customization Stack */}
-        <div className="w-full">
-          <h1 className="text-2xl font-bold tracking-tight text-stone-950 sm:text-3xl lg:text-4xl leading-tight">
-            AutoMPW Custom Pet Keepsake Necklace
-          </h1>
+        {/* CONVERSION PANEL */}
+        <div className="w-full lg:col-span-5">
+          <div className="lg:sticky lg:top-8">
+            {/* PRODUCT IDENTITY */}
+            <div className="pb-6">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-500">
+                SERIES 01 // DESK OBJECT
+              </span>
 
-          {/* Social Proof Aggregate row */}
-          <div className="mt-2.5 flex items-center gap-2">
-            <div className="flex gap-0.5 text-amber-500 text-sm">
-              {[...Array(5)].map((_, i) => (
-                <span key={i}>★</span>
-              ))}
+              <h1 className="mt-3 text-3xl sm:text-4xl lg:text-[3.25rem] font-light tracking-[-0.03em] leading-[0.95] text-stone-900">
+                Magnetic Perpetual Calendar
+              </h1>
+
+              <p className="mt-5 max-w-md text-[15px] leading-7 text-stone-600">
+                A sculptural calendar designed to bring function and simplicity
+                to the modern desk.
+              </p>
             </div>
-            {/* 🌟 AUDIT FIX 3: Changed text-[10px] text-stone-600 font-bold to text-xs text-stone-500 font-medium for smooth, clean hierarchy */}
-            <span className="text-xs font-medium font-mono uppercase tracking-widest text-stone-500 pt-0.5">
-              (4.9 / 142 Reviews)
-            </span>
-          </div>
 
-          <div className="mt-4 w-full bg-white font-sans">
-            {/* 1. Unified Metal Color & Pricing Selectors */}
-            <ProductOptionsSection />
+            {/* PRICE */}
+            <div className="border-t border-stone-200 py-6">
+              <div className="flex items-end justify-between">
+                <span className="text-3xl sm:text-4xl font-light tracking-tight">
+                  $49
+                </span>
 
-            {/* 2. Embedded Dynamic Urgent Capacity Row */}
-            <ProductionCap />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-500">
+                  One calendar
+                </span>
+              </div>
+            </div>
 
-            {/* 🌟 CUSTOMIZED TRAP: The File Upload & Text Box Stack */}
-            <div className="mt-6 border-t border-stone-100 pt-5 space-y-5">
+            {/* FINISH */}
+            <div className="border-t border-stone-200 py-6">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-stone-500">
+                  Finish
+                </span>
+
+                <span className="text-xs text-stone-900">
+                  {selectedColorName}
+                </span>
+              </div>
+
+              <div
+                className="flex items-center gap-5"
+                role="radiogroup"
+                aria-label="Choose calendar finish"
+              >
+                {colors.map((color) => {
+                  const isSelected = selectedColor === color.id;
+
+                  return (
+                    <button
+                      key={color.id}
+                      type="button"
+                      onClick={() => setSelectedColor(color.id)}
+                      aria-checked={isSelected}
+                      role="radio"
+                      title={color.name}
+                      className={`
+                        h-7 w-7 rounded-full
+                        transition-all duration-150
+                        focus:outline-none
+                        ${color.class}
+                        ${
+                          isSelected
+                            ? "ring-1 ring-stone-950 ring-offset-4"
+                            : "opacity-70 hover:opacity-100"
+                        }
+                      `}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* PRICING / SHIPPING / OTHER PURCHASE INFO */}
+
+            {/* PRIMARY CTA */}
+            <div className="pt-1">
+              <CheckoutBtn product={product} selectedColor={selectedColor} />
+            </div>
+
+            {/* SMALL TRUST / EXPECTATION ROW */}
+            <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-stone-200 pt-5">
               <div>
-                {/* 🌟 AUDIT FIX 2: Dropped text-stone-800 font-bold to text-stone-500 font-medium text-xs sm:text-sm for a clean, luxury guide layout */}
-                <label
-                  htmlFor="pet-photo-upload"
-                  className="text-xs sm:text-sm font-medium uppercase tracking-widest text-stone-500 font-mono block mb-2.5"
-                >
-                  1. Upload Your Pet&apos;s Best Photo
-                </label>
+                <span className="block text-[9px] font-mono uppercase tracking-widest text-stone-500">
+                  Designed for
+                </span>
 
-                <div className="relative border-2 border-dashed border-stone-200 hover:border-stone-400 rounded-xl p-6 text-center transition bg-stone-50/50 cursor-pointer">
-                  <input
-                    id="pet-photo-upload"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                  />
-                  <div className="space-y-1">
-                    <p className="text-xs font-semibold text-stone-900">
-                      {uploadedImage
-                        ? "✓ Photo Attached Successfully"
-                        : "📷 Tap to pick from Camera Roll"}
-                    </p>
-                  </div>
-                </div>
-                {/* 🎯 THE ACCESSIBLE FIX: Handles separate photos or group photos elegantly */}
-                <p className="text-xs text-stone-700 leading-relaxed mt-2.5 font-sans font-medium pl-1">
-                  <strong className="text-stone-950 font-bold">
-                    Ordering multiple pendants?
-                  </strong>{" "}
-                  Feel free to upload a group photo, or simply upload your first
-                  pet here. You can text or email our studio additional separate
-                  photos right after checkout!
-                </p>
-              </div>
-
-              {/* Integrated Name Input Field Component */}
-              <FrontTextEngraving
-                onTextChange={(text) => setEngravingText(text)}
-              />
-            </div>
-
-            {/* 3. Main CTA Purchase Execution Switch */}
-            <div className="mt-6">
-              <CheckoutBtn
-                product={product}
-                uploadedImage={uploadedImage}
-                engravingText={engravingText}
-                disabled={!uploadedImage || isUploading}
-              />
-            </div>
-
-            {/* 4. Highly Scannable Bullet Benefits */}
-            <div className="mt-8 border-t border-stone-100 pt-6 space-y-4">
-              {/* 🌟 AUDIT FIX 1: Changed text-xs to text-sm and text-stone-700 to match the list array cleanly */}
-              <div className="flex items-center gap-3 text-sm tracking-wide text-stone-700">
-                <span className="h-1.5 w-1.5 bg-stone-950 rounded-full block flex-shrink-0" />
-                <span className="font-bold text-stone-950">
-                  Free Worldwide Tracked Shipping
+                <span className="block mt-1 text-xs text-stone-600">
+                  Desk & workspace
                 </span>
               </div>
-              <div className="flex items-center gap-3 text-sm tracking-wide text-stone-700">
-                <span className="h-1.5 w-1.5 bg-stone-400 rounded-full block flex-shrink-0" />
-                <span className="font-medium">
-                  Individually Hand-Engraved to Order
+
+              <div>
+                <span className="block text-[9px] font-mono uppercase tracking-widest text-stone-500">
+                  Function
                 </span>
-              </div>
-              <div className="flex items-center gap-3 text-sm tracking-wide text-stone-700">
-                <span className="h-1.5 w-1.5 bg-stone-400 rounded-full block flex-shrink-0" />
-                <span className="font-medium">
-                  30-Day Risk-Free Keepsake Guarantee
+
+                <span className="block mt-1 text-xs text-stone-600">
+                  Perpetual calendar
                 </span>
               </div>
             </div>
@@ -147,12 +148,129 @@ export default function ProductDetails({ product }) {
         </div>
       </div>
 
-      {/* Secondary Information Components Section */}
-      <div className="w-full mt-12 md:mt-24 space-y-16">
+      {/* =========================================================
+          PRODUCT STORY
+      ========================================================== */}
+
+      <section className="mt-24 md:mt-40 border-t border-stone-200 pt-16 md:pt-20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
+          {/* LEFT */}
+          <div className="md:col-span-5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-500">
+              THE OBJECT
+            </span>
+
+            <h2 className="mt-3 text-3xl sm:text-4xl font-light tracking-tight leading-tight">
+              A calendar worth leaving on display.
+            </h2>
+          </div>
+
+          {/* RIGHT */}
+          <div className="md:col-span-6 md:col-start-7">
+            <p className="text-base md:text-lg leading-8 text-stone-600">
+              Most calendars disappear into the background. This one is designed
+              to be part of the space.
+            </p>
+
+            <p className="mt-5 text-base md:text-lg leading-8 text-stone-600">
+              The magnetic markers give you a simple, tactile way to keep track
+              of the date while the geometric form works naturally within modern
+              desks, studios, offices, and interiors.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          FEATURES
+      ========================================================== */}
+
+      <div className="mt-20 md:mt-28">
         <FeatureBox />
-        <FAQList />
-        <Reviews />
       </div>
+
+      {/* =========================================================
+          DETAILS
+      ========================================================== */}
+
+      <section className="mt-20 md:mt-28 border-t border-stone-200 pt-16 md:pt-20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+          <div className="md:col-span-4">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-500">
+              OBJECT DETAILS
+            </span>
+
+            <h2 className="mt-3 text-2xl sm:text-3xl font-light tracking-tight">
+              Made to be seen.
+            </h2>
+          </div>
+
+          <div className="md:col-span-7 md:col-start-6">
+            <div className="divide-y divide-stone-200 border-t border-stone-200">
+              <div className="flex justify-between gap-8 py-4">
+                <span className="text-xs uppercase tracking-wider text-stone-500">
+                  Finish
+                </span>
+                <span className="text-sm text-right">{selectedColorName}</span>
+              </div>
+
+              <div className="flex justify-between gap-8 py-4">
+                <span className="text-xs uppercase tracking-wider text-stone-500">
+                  Function
+                </span>
+                <span className="text-sm text-right">Perpetual calendar</span>
+              </div>
+
+              {/* Replace these with your ACTUAL supplier specs */}
+
+              <div className="flex justify-between gap-8 py-4">
+                <span className="text-xs uppercase tracking-wider text-stone-500">
+                  Material
+                </span>
+                <span className="text-sm text-right">
+                  {/* YOUR ACTUAL MATERIAL */}
+                  ABS / Magnetic
+                </span>
+              </div>
+
+              <div className="flex justify-between gap-8 py-4">
+                <span className="text-xs uppercase tracking-wider text-stone-500">
+                  Dimensions
+                </span>
+                <span className="text-sm text-right">
+                  {/* YOUR ACTUAL DIMENSIONS */}
+                  25 x 20 x 15 cm
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          FINAL CTA
+      ========================================================== */}
+
+      <section className="mt-24 md:mt-36 border-t border-stone-200 py-20 md:py-28">
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-500">
+            SERIES 01
+          </span>
+
+          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-light tracking-tight">
+            Bring the date into the space.
+          </h2>
+
+          <p className="mt-5 text-sm md:text-base leading-7 text-stone-600 max-w-lg mx-auto">
+            A functional object for desks, studios, offices and modern
+            interiors.
+          </p>
+
+          <div className="mt-8 max-w-sm mx-auto">
+            <CheckoutBtn product={product} selectedColor={selectedColor} />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,83 +1,61 @@
-import Image from "next/image";
-
 export default function FeatureBox() {
+  const details = [
+    {
+      number: "01",
+      title: "PERPETUAL",
+      body: "No year to replace. Adjust the magnetic markers as the date changes and keep the same calendar year after year.",
+    },
+    {
+      number: "02",
+      title: "TACTILE",
+      body: "The date is something you interact with rather than simply read. Move the magnetic markers by hand to update the calendar.",
+    },
+    {
+      number: "03",
+      title: "DISPLAY-WORTHY",
+      body: "Designed to live in the open. Its sculptural form adds visual interest to desks, studios, offices and modern interiors.",
+    },
+  ];
+
   return (
-    <section className="mt-16 md:mt-24 font-sans border-t border-stone-100 pt-12">
-      {/* 1. Main Heading — Stripped of text clutter */}
-      <div className="mb-8">
-        <h2 className="text-xl font-bold tracking-tight text-stone-950 sm:text-2xl">
-          Keep Your Best Friend Close
+    <section className="border-t border-stone-200 pt-16 md:pt-20 pb-4">
+      {/* SECTION HEADER */}
+
+      <div className="max-w-2xl">
+        <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-500">
+          WHY IT EXISTS
+        </span>
+
+        <h2 className="mt-3 text-3xl sm:text-4xl font-light tracking-tight leading-tight">
+          Function, without the visual clutter.
         </h2>
-        <p className="mt-2.5 text-sm leading-relaxed text-stone-600 font-normal">
-          Our custom pendant transforms your favorite smartphone picture into a
-          permanently engraved metallic keepsake you can carry everywhere.
+
+        <p className="mt-5 text-sm md:text-base leading-7 text-stone-600">
+          A simple everyday tool reimagined as an object you actually want to
+          keep on display.
         </p>
       </div>
 
-      {/* 🌟 VISUAL FIRST INTERFACE: The image now breathes perfectly without text walls choking it */}
-      <div className="w-full max-w-[480px] mx-auto mb-12 overflow-hidden rounded-xl border border-stone-100 bg-stone-50 shadow-sm aspect-square relative">
-        <Image
-          src="/pet-necklace-hero.webp"
-          alt="AutoMpw Custom Pet Pendant Neckline Detail"
-          fill
-          priority
-          sizes="(max-w-480px) 100vw, 480px"
-          className="object-contain block"
-        />
-      </div>
+      {/* FEATURE GRID */}
 
-      {/* 2. Technical Features Matrix — Quick Fragments */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 border-t border-stone-100 pt-8">
-        {/* Block 1: Artwork Precision */}
-        <div className="space-y-2">
-          <h3 className="font-bold text-sm tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
-            <span className="h-1.5 w-1.5 bg-stone-950 block rounded-none flex-shrink-0" />
-            Artisan Laser Engraving
-          </h3>
-          <p className="text-sm leading-relaxed text-stone-600 pl-3.5 max-w-sm">
-            Our machine processes follow the exact details of your photo upload,
-            rendering high-contrast outlines that capture your pet&apos;s true
-            likeness and personality.
-          </p>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-14 md:mt-16">
+        {details.map((item) => (
+          <div key={item.number} className="border-t border-stone-200 pt-5">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono tracking-widest text-stone-500">
+                {item.number}
+              </span>
 
-        {/* Block 2: Durable Waterproofing */}
-        <div className="space-y-2">
-          <h3 className="font-bold text-sm tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
-            <span className="h-1.5 w-1.5 bg-stone-950 block rounded-none flex-shrink-0" />
-            100% Shower Proof Design
-          </h3>
-          <p className="text-sm leading-relaxed text-stone-600 pl-3.5 max-w-sm">
-            Built using marine-grade stainless steel coated in durable 18k gold
-            plating. It is entirely waterproof, hypoallergenic, and will never
-            turn your skin green.
-          </p>
-        </div>
+              <span className="h-px w-8 bg-stone-200" />
+            </div>
 
-        {/* Block 3: Everyday Styling */}
-        <div className="space-y-2">
-          <h3 className="font-bold text-sm tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
-            <span className="h-1.5 w-1.5 bg-stone-950 block rounded-none flex-shrink-0" />
-            Comfortable Daily Wear
-          </h3>
-          <p className="text-sm leading-relaxed text-stone-600 pl-3.5 max-w-sm">
-            Featuring an optimized, lightweight pendant profile resting on a
-            smooth link chain designed to sit beautifully next to any outfit.
-          </p>
-        </div>
+            <h3 className="mt-8 text-xs font-mono font-medium uppercase tracking-[0.15em] text-stone-900">
+              {item.title}
+            </h3>
 
-        {/* Block 4: Hardcore Durability */}
-        <div className="space-y-2">
-          <h3 className="font-bold text-sm tracking-wider uppercase text-stone-950 font-mono flex items-center gap-2">
-            <span className="h-1.5 w-1.5 bg-stone-950 block rounded-none flex-shrink-0" />
-            Tarnish-Free Guarantee
-          </h3>
-          <p className="text-sm leading-relaxed text-stone-600 pl-3.5 max-w-sm">
-            Unlike cheap fashion items that scratch or fade in weeks, our metal
-            blends are mixed to resist daily surface friction and sweat
-            indefinitely.
-          </p>
-        </div>
+            <p className="mt-4 text-sm leading-7 text-stone-600">{item.body}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

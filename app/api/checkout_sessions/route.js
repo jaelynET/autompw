@@ -6,45 +6,49 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
   try {
-    const { selectedFinish, pendantCount, engravingText } = await req.json();
+    const { selectedFinish } = await req.json();
     const headersList = await headers();
     const origin = headersList.get("origin");
 
-    // Calculate dynamic product values server-side to prevent client tamper alterations
-    const baseAmount = 3495; // \$34.95
-    const upsellAmount =
-      pendantCount === 2 ? 1000 : pendantCount === 3 ? 2000 : 0;
-    const finalUnitAmount = baseAmount + upsellAmount;
+    // Clear, non-negotiable unit pricing framework
+    const finalUnitAmount = 4900; // \$49.00 flat
+
+    // Capitalize variation inputs for clean Stripe Invoice processing presentation
+    const displayFinish =
+      selectedFinish === "white" ? "Monolith White" : "Matte Black";
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      // 🌟 SECURE INGESTION: Passes options straight into order tracking records
+
+      // Structural order tracking data injection layer
       metadata: {
-        product: "custom-pet-necklace",
-        finish: selectedFinish || "Gold",
-        pendant_count: String(pendantCount || 1),
-        custom_engraving: engravingText || "None",
+        product: "magnetic-perpetual-calendar",
+        finish: displayFinish,
       },
+
       line_items: [
         {
           price_data: {
             currency: "usd",
             unit_amount: finalUnitAmount,
             product_data: {
-              name: `AutoMPW Custom Pet Keepsake Necklace`,
-              description: `Finish: ${selectedFinish || "Gold"} | Pendants: ${pendantCount || 1} | Engraving: ${engravingText || "None"}`,
-
+              name: `Magnetic Perpetual Calendar`,
+              description: `Finish: ${displayFinish} // Series 01`,
+              // Clean placeholder mockup reference matching selection
               images: [
-                "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfVTNJd1lKS1FGU2VFRHZJeDlzNU1IUkRI00SfJ30ZvU",
+                selectedFinish === "white"
+                  ? "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfRnFFTFV5QTZJa1pCdGhNZ2hJb1BNSnln0090Ay6QcQ"
+                  : "https://files.stripe.com/links/MDB8YWNjdF8xU1BWaldEN1o3Tk15ZWtzfGZsX2xpdmVfVTk4Z1l4czlncjdDWW41dXNNUGVWckVx00EfDbxMZD",
               ],
             },
           },
           quantity: 1,
         },
       ],
-      // 🟢 ELIMINATED LATENCY: Uses fast native Stripe toggle instead of making custom API shipping requests
+
+      // High-performance direct delivery localization fields
       shipping_address_collection: {
-        allowed_countries: ["US", "CA", "GB", "AU"],
+        allowed_countries: ["US"],
       },
       billing_address_collection: "auto",
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
