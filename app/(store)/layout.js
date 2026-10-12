@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import Header from "@/app/_components/Header";
+import DemoBanner from "@/app/_components/DemoBanner";
+
 import Footer from "../_components/Footer";
 import { DomProvider } from "../_components/DomContext";
 
@@ -17,12 +19,13 @@ export default function StoreLayout({ children }) {
     >
       {/* 2. Moved DomProvider to wrap the entire viewport tree for coordinated client-side mounting */}
       <DomProvider>
+        {/* <DemoBanner /> */}
         <Header />
 
         {/* 3. Added a layout containment strategy to prevent dynamic content shifts */}
         <main className="flex-1 w-full contain-intrinsic-size">{children}</main>
 
-        <Footer />
+        {/* <Footer /> */}
       </DomProvider>
     </div>
   );

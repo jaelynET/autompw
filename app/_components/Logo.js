@@ -1,19 +1,14 @@
-import Image from "next/image";
-
-import logo from "@/public/ampwlgo-1.1.svg";
 
 export default function Logo() {
   return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-      <Image
-        src={logo}
-        alt="AutoMPW logo"
-        width={1200}
-        height={300}
-        priority
-        // Downsized widths give the image below breathing room
-        className="block h-auto w-[90px] sm:w-[105px] md:w-[120px] object-contain"
-      />
-    </div>
+    <a href="#" className="inline-flex flex-col items-center gap-1">
+      <span className="font-serif text-2xl tracking-[0.22em] text-[#292A27]">
+        CLIPSE
+      </span>
+
+      <span className="text-[9px] font-medium tracking-[0.28em] text-[#A87953]">
+        HOME REMODELING
+      </span>
+    </a>
   );
 }

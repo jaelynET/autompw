@@ -1,0 +1,1 @@
+export default function DemoBanner() { return ( <div className="flex min-h-8 items-center justify-center bg-[#292A27] px-4 py-2"> <p className="text-center text-[9px] font-medium uppercase tracking-[0.18em] text-[#F8F6F2] sm:text-[10px]"> Design Concept — Demonstration Website </p> </div> ); }  
