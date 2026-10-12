@@ -29,8 +29,8 @@ export default function ContactSection() {
           </h2>
 
           <p className="mt-6 text-sm leading-7 text-neutral-300 sm:text-base">
-            Tell us a little about your remodeling project. We'd love to hear
-            what you have in mind and explore how we can help.
+            Tell us a little about your remodeling project. We&apos;d love to
+            hear what you have in mind and explore how we can help.
           </p>
         </div>
 
