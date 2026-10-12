@@ -21,11 +21,11 @@ export default function ContactSection() {
         {/* Intro */}
         <div className="max-w-xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[#C5A486]">
-            Let's Get Started
+            Let&apos;s Get Started
           </p>
 
           <h2 className="text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-            Let's Bring Your Vision to Life.
+            Let&apos;s Bring Your Vision to Life.
           </h2>
 
           <p className="mt-6 text-sm leading-7 text-neutral-300 sm:text-base">
